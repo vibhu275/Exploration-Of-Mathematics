@@ -1,0 +1,161 @@
+/* Base styling */
+body {
+  background-image: url('background1.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #f3f3f3;
+  font-family: 'Caveat', 'Indie Flower', cursive, sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.75;
+  padding: 2rem;
+  margin: auto;
+  max-width: 61.8rem;
+  backdrop-filter: brightness(0.9) contrast(1.1);
+}
+
+/* Title Section */
+.title {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #aff5f5;
+  box-shadow: 0 0 20px rgba(0,255,255,0.2);
+  margin-bottom: 3rem;
+}
+
+/* Headers */
+h1 {
+  color: #ffdd57;
+  border-left: 6px solid #ffaa00;
+  padding-left: 1rem;
+  margin-top: 3rem;
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: #66ccff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #00ffff;
+}
+
+/* Math content */
+.math-box-container {
+  text-align: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.math-box {
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid #ccc;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1.25rem;
+  color: #00ffcc;
+  font-family: 'Georgia', serif;
+}
+
+/* Equations */
+mjx-container {
+  font-size: 1em !important;
+  color: #00ffcc;
+}
+
+/* Paragraphs and explanation */
+p {
+  margin: 1rem 0;
+  font-size: 1.618rem;
+}
+
+.explanation-line {
+  color: white;
+  font-style: italic;
+  margin-top: 1.2rem;
+  text-align: center;
+}
+
+/* Highlighted note or block (like a theorem box) */
+.tcolorbox {
+  border: 2px solid #003366;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  margin: 2rem 0;
+  box-shadow: 0 4px 12px rgba(0, 51, 102, 0.2);
+}
+
+.tcolorbox-title {
+  background-color: #cce0ff;
+  color: #003366;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.6rem;
+  font-family: 'Caveat', cursive;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.tcolorbox-body {
+  padding: 1.5rem;
+  color: #fefefe;
+  font-family: 'Arial', sans-serif;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 0 0 10px 10px;
+}
+
+/* Footer */
+.site-footer {
+  background-color: #070707;
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 4rem;
+  font-family: 'Georgia', serif;
+  border-top: 1px solid #fff;
+}
+
+.site-footer a {
+  color: #fdd835;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+.stacked-boxes {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.wide-box {
+  width: 95%;
+  font-size: 1.2rem;
+  padding: 1.25rem 2rem;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.final-step {
+  border: 2px solid #fff;
+  font-size: 1.35rem;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  background-color: rgba(0, 0, 0, 0.2);
+}

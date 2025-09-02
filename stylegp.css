@@ -1,0 +1,188 @@
+/* --- Root Variables: The Control Panel for Your Theme --- */
+:root {
+  /* Colors */
+  --color-text-main: #f0f0f0;
+  --color-text-bright: #ffffff;
+  --color-primary: #00ffff;   /* Neon Cyan */
+  --color-primary-dark: #00cccc;
+  --color-accent: #ffa500;    /* Orange */
+  --color-link: #ffff66;      /* Bright Yellow */
+  --color-link-hover: #00bfff; /* Deep Sky Blue */
+  --color-theorem-bg: rgba(0, 255, 127, 0.08); /* Spring Green */
+  --color-theorem-border: #00ff7f;
+
+  /* Typography */
+  --font-body: 'Caveat', 'Indie Flower', cursive, sans-serif;
+  --font-math: 'Georgia', serif;
+  
+  /* Layout & Spacing */
+  --golden-ratio: 1.618;
+  --spacing-unit: 1rem;
+  --content-width: 61.8rem;
+}
+
+
+/* --- General Styling & Background --- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-image: url('background2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  
+  color: var(--color-text-main);
+  font-family: var(--font-body);
+  font-size: 1.25em; /* A slightly larger base font size for the handwritten style */
+  line-height: var(--golden-ratio);
+  
+  max-width: var(--content-width);
+  padding: calc(var(--spacing-unit) * 2);
+  margin: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* This pseudo-element creates a dark overlay for better text readability */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Adjust opacity here */
+  z-index: -1; /* Places it behind the content */
+}
+
+
+/* --- Typography --- */
+h1, h2 {
+  color: var(--color-primary);
+  border-bottom: 2px dashed var(--color-primary-dark);
+  padding-bottom: calc(var(--spacing-unit) / 2);
+  margin-top: calc(var(--spacing-unit) * 2.5);
+  margin-bottom: var(--spacing-unit);
+  font-weight: 700;
+}
+
+.title {
+  color: var(--color-accent);
+  text-align: center;
+  font-size: 2.8em;
+  text-shadow: 2px 2px 4px #000;
+  border-bottom: none;
+  margin-top: 0;
+}
+
+p {
+  color: var(--color-text-bright);
+  margin-bottom: var(--spacing-unit);
+  font-size: 1.618rem; /* <-- ADD THIS LINE - Adjust the value as you like */
+}
+
+ul {
+  list-style-type: '→ ';
+  margin-left: calc(var(--spacing-unit) * 2);
+  margin-bottom: var(--spacing-unit);
+}
+
+li {
+  padding-left: 0.5rem;
+  margin-bottom: calc(var(--spacing-unit) / 2);
+}
+
+
+/* --- Links --- */
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--color-link-hover);
+}
+
+/* Style for links pointing to equations */
+.ref-link {
+  font-family: var(--font-math);
+  font-style: italic;
+  color: var(--color-primary-dark);
+}
+
+
+/* --- Highlighted Section Boxes --- */
+.section-box {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 0.1rem calc(var(--spacing-unit) * 1.5);
+  margin: calc(var(--spacing-unit) * 2) 0;
+  border-left: 4px solid;
+  border-radius: 8px;
+}
+
+.section-box.is-highlight {
+  background-color: rgba(0, 255, 255, 0.07);
+  color: #ccffff;
+  border-color: var(--color-primary-dark);
+}
+
+.section-box.is-accent {
+  background-color: rgba(255, 255, 0, 0.05);
+  color: #ffff00;
+  border-color: #ffcc00;
+}
+
+.section-box.is-theorem {
+  text-align: center;
+  background-color: var(--color-theorem-bg);
+  border: 2px solid var(--color-theorem-border);
+  border-left: 4px solid var(--color-theorem-border);
+  color: var(--color-text-bright);
+}
+.section-box.is-theorem strong {
+  color: var(--color-theorem-border);
+}
+
+
+/* --- Math & Equation Styling --- */
+.math,
+mjx-container { /* Target MathJax directly */
+  color: var(--color-text-bright);
+  font-family: var(--font-math);
+  font-size: 1.1em !important;
+}
+
+/* Center numbered equations and give them space */
+.equation-box {
+  text-align: center;
+  margin: var(--spacing-unit) 0;
+}
+
+
+/* --- Footer --- */
+.site-footer {
+  background-color: rgba(17, 17, 17, 0.8);
+  color: var(--color-text-bright);
+  text-align: center;
+  padding: calc(var(--spacing-unit) * 1.5);
+  margin-top: calc(var(--spacing-unit) * 3);
+  border-top: 2px solid var(--color-text-bright);
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.site-footer p {
+  margin: 0.5rem 0;
+}
+
+.site-footer a {
+  color: #fdd835;
+  font-weight: bold;
+}

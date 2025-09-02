@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trigonometry Explained</title>
+    <link rel="stylesheet" href="trig.css">
+    
+    <!-- MathJax for rendering LaTeX math equations -->
+    <script>
+        MathJax = {
+          tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']]
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <!-- Chart.js for the interactive graph -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Trigonometry</h1>
+        </header>
+
+        <main>
+            <!-- Sticky Table of Contents -->
+            <nav class="toc">
+                <h3>Contents</h3>
+                <ul>
+                    <li><a href="#relation">Relation Between Functions</a></li>
+                    <li><a href="#sum-difference">Sum or Difference of Angles</a></li>
+                    <li><a href="#other-identities">Other Important Identities</a></li>
+                    <li><a href="#inverse-functions">Inverse Functions</a></li>
+                    <li><a href="#graph-plotter">Interactive Graph Plotter</a></li>
+                </ul>
+            </nav>
+
+            <p>Pythagoras is credited with discovering the Pythagorean theorem around 500 BCE. The theorem says that for any right-angled triangle, the square of the hypotenuse is the sum of the squares of the two sides.</p>
+            
+            <div class="svg-container">
+                 <svg width="150" height="120" viewBox="0 0 100 80">
+                   <polygon points="10,70 90,70 10,10" fill="none" stroke="#333" stroke-width="1.5"/>
+                   <text x="5" y="78" class="svg-label">A</text>
+                   <text x="92" y="78" class="svg-label">B</text>
+                   <text x="0" y="10" class="svg-label">C</text>
+               </svg>
+            </div>
+
+            <p>In this triangle, using the Pythagorean theorem, we can write,</p>
+            \[ AB^2+AC^2=BC^2 \]
+
+            <p>Let's name the angles,</p>
+            \[ \begin{align*} \angle ABC &= b \\ \angle BCA &= c \\ \angle CAB &= a \end{align*} \]
+            
+            <p>and we define some trigonometric ratios,</p>
+            \[ \begin{align*} \sin b &= \frac{CA}{CB} \\ \cos b &= \frac{AB}{CB} \\ \tan b &= \frac{AC}{AB} \\ \csc b &= \frac{1}{\sin b} \\ \sec b &= \frac{1}{\cos b} \\ \cot b &= \frac{1}{\tan b} \end{align*} \]
+            
+            <p>One might ask what the point of defining all these functions is. Well, we'll see about that. I don't think there is any field in science that is complete without trigonometry. From astronomy to even computer graphics, it is used everywhere.</p>
+
+            <section>
+                <h2 id="relation">Relation between trigonometric functions</h2>
+                <p>Well it might not be obvious at first but every trig function can be written in terms of all the other trig function.</p>
+                <p>This table shows each of the six trigonometric functions expressed in terms of the other five. The \(\pm\) sign indicates that the sign of the result depends on the quadrant of the angle \(x\). For a specific angle, the correct sign must be chosen.</p>
+
+                <div class="table-container">
+                    <table>
+                        <caption>Trigonometric Functions in Terms of Each Other</caption>
+                        <thead>
+                            <tr>
+                                <th>Function</th>
+                                <th>in terms of \(\sin(x)\)</th>
+                                <th>in terms of \(\cos(x)\)</th>
+                                <th>in terms of \(\tan(x)\)</th>
+                                <th>in terms of \(\csc(x)\)</th>
+                                <th>in terms of \(\sec(x)\)</th>
+                                <th>in terms of \(\cot(x)\)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr> <td>\(\sin(x)\)</td> <td>\(\sin(x)\)</td> <td>\(\pm\sqrt{1-\cos^2 x}\)</td> <td>\(\frac{\tan x}{\pm\sqrt{1+\tan^2 x}}\)</td> <td>\(\frac{1}{\csc x}\)</td> <td>\(\frac{\pm\sqrt{\sec^2 x - 1}}{\sec x}\)</td> <td>\(\frac{1}{\pm\sqrt{1+\cot^2 x}}\)</td> </tr>
+                            <tr> <td>\(\cos(x)\)</td> <td>\(\pm\sqrt{1-\sin^2 x}\)</td> <td>\(\cos(x)\)</td> <td>\(\frac{1}{\pm\sqrt{1+\tan^2 x}}\)</td> <td>\(\frac{\pm\sqrt{\csc^2 x - 1}}{\csc x}\)</td> <td>\(\frac{1}{\sec x}\)</td> <td>\(\frac{\cot x}{\pm\sqrt{1+\cot^2 x}}\)</td> </tr>
+                            <tr> <td>\(\tan(x)\)</td> <td>\(\frac{\sin x}{\pm\sqrt{1-\sin^2 x}}\)</td> <td>\(\frac{\pm\sqrt{1-\cos^2 x}}{\cos x}\)</td> <td>\(\tan(x)\)</td> <td>\(\frac{1}{\pm\sqrt{\csc^2 x - 1}}\)</td> <td>\(\pm\sqrt{\sec^2 x - 1}\)</td> <td>\(\frac{1}{\cot x}\)</td> </tr>
+                            <tr> <td>\(\csc(x)\)</td> <td>\(\frac{1}{\sin x}\)</td> <td>\(\frac{1}{\pm\sqrt{1-\cos^2 x}}\)</td> <td>\(\frac{\pm\sqrt{1+\tan^2 x}}{\tan x}\)</td> <td>\(\csc(x)\)</td> <td>\(\frac{\sec x}{\pm\sqrt{\sec^2 x - 1}}\)</td> <td>\(\pm\sqrt{1+\cot^2 x}\)</td> </tr>
+                            <tr> <td>\(\sec(x)\)</td> <td>\(\frac{1}{\pm\sqrt{1-\sin^2 x}}\)</td> <td>\(\frac{1}{\cos x}\)</td> <td>\(\pm\sqrt{1+\tan^2 x}\)</td> <td>\(\frac{\csc x}{\pm\sqrt{\csc^2 x - 1}}\)</td> <td>\(\sec(x)\)</td> <td>\(\frac{\pm\sqrt{1+\cot^2 x}}{\cot x}\)</td> </tr>
+                            <tr> <td>\(\cot(x)\)</td> <td>\(\frac{\pm\sqrt{1-\sin^2 x}}{\sin x}\)</td> <td>\(\frac{\cos x}{\pm\sqrt{1-\cos^2 x}}\)</td> <td>\(\frac{1}{\tan x}\)</td> <td>\(\pm\sqrt{\csc^2 x - 1}\)</td> <td>\(\frac{1}{\pm\sqrt{\sec^2 x - 1}}\)</td> <td>\(\cot(x)\)</td> </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p>Now you might be wondering what we mean by saying that "the result depends on the quadrant of the angle x". Well there's a very nice way to picturize the trig functions and try to grasp them easily with the help of diagrams. We seriously cannot always keep drawing triangles and try to work out things. Instead what we will do is this.</p>
+                <p>We imagine ourselves a unit circle (a circle with radius one unit). This will help us now because if you see in the diagram below we can see that taking the origin to be the pivot if we rotate the radius by an angle \(\theta\) the coordinate of the point on this line touching the circle is \((\cos{\theta} , \sin{\theta})\). Why? because the \(\cos{\theta}= \frac{base}{hypotenuse}\) and the \(hypotenuse = 1\) in this case so, \(base=\cos{\theta}\) and \(height = \sin{\theta}\).</p>
+                
+                <div class="svg-container">
+                    <svg width="300" height="300" viewBox="-150 -150 300 300">
+                        <line x1="-140" y1="0" x2="140" y2="0" stroke="black" stroke-width="1"/><line x1="0" y1="-140" x2="0" y2="140" stroke="black" stroke-width="1"/><text x="145" y="5" font-size="12px">x</text><text x="-5" y="-145" font-size="12px">y</text>
+                        <circle cx="0" cy="0" r="100" fill="none" stroke="var(--accent-color)" stroke-width="1.5" />
+                        <path d="M 40 0 A 40 40 0 0 1 30.64 25.88" fill="none" stroke="black" stroke-width="1.5"/><text x="35" y="15" font-size="12px">\(\theta\)</text>
+                        <line x1="0" y1="0" x2="76.6" y2="-64.28" stroke="black" stroke-width="1.5"/><circle cx="76.6" cy="-64.28" r="2" fill="red"/><text x="80" y="-70" font-size="12px">\(P(\cos\theta, \sin\theta)\)</text>
+                        <line x1="76.6" y1="-64.28" x2="76.6" y2="0" stroke="black" stroke-dasharray="3,3"/><line x1="76.6" y1="-64.28" x2="0" y2="-64.28" stroke="black" stroke-dasharray="3,3"/><text x="30" y="-15" font-size="12px">\(\cos\theta\)</text><text x="-35" y="-30" font-size="12px">\(\sin\theta\)</text>
+                    </svg>
+                </div>
+            </section>
+            
+            <section>
+                 <h2 id="sum-difference">Value of Trigonometric Functions at Sum or Difference of Angles</h2>
+                 
+                 <div class="theorem">
+                       <h4>Theorem: Cosine of the Difference of Two Angles</h4>
+                       <p>For all values of angles \(A\) and \(B\), the following identity holds true:</p>
+                       \[ \cos(A-B) = \cos A \cos B + \sin A \sin B \]
+                 </div>
+
+                 <details class="proof">
+                    <summary>View Proof</summary>
+                    <div>
+                       <p>Let us consider a unit circle with center at the origin \(O(0,0)\). Let \(P_0\), \(P_1\), and \(P_2\) be points on the circle such that \(\angle XOP_0 = 0\), \(\angle XOP_2 = B\), and \(\angle XOP_1 = A\). Let \(P_3\) be another point on the circle such that \(\angle XOP_3 = A-B\).</p>
+
+                       <p>The coordinates of these points are:</p>
+                       <ul> <li>\(P_0 = (1, 0)\)</li> <li>\(P_1 = (\cos A, \sin A)\)</li> <li>\(P_2 = (\cos B, \sin B)\)</li> <li>\(P_3 = (\cos(A-B), \sin(A-B))\)</li> </ul>
+
+                       <div class="svg-container">
+                         <svg width="300" height="300" viewBox="-150 -150 300 300">
+                             <line x1="-140" y1="0" x2="140" y2="0" stroke="black" stroke-width="1"/><line x1="0" y1="-140" x2="0" y2="140" stroke="black" stroke-width="1"/><text x="145" y="5" font-size="12px">X</text><text x="-5" y="-145" font-size="12px">Y</text><text x="-10" y="10" font-size="12px">O</text>
+                             <circle cx="0" cy="0" r="100" fill="none" stroke="var(--accent-color)" stroke-width="1.5"/>
+                             <line x1="0" y1="0" x2="25.88" y2="96.59" stroke="black"/> <line x1="0" y1="0" x2="86.6" y2="50" stroke="black"/> <line x1="0" y1="0" x2="70.71" y2="70.71" stroke="black"/>
+                             <line x1="100" y1="0" x2="70.71" y2="70.71" stroke="blue" stroke-width="1.5"/><line x1="25.88" y1="96.59" x2="86.6" y2="50" stroke="blue" stroke-width="1.5"/>
+                             <circle cx="100" cy="0" r="1.5" fill="black"/><text x="105" y="5" font-size="11px">\(P_0(1,0)\)</text>
+                             <circle cx="25.88" cy="96.59" r="1.5" fill="black"/><text x="15" y="108" font-size="11px">\(P_1(\cos A, \sin A)\)</text>
+                             <circle cx="86.6" cy="50" r="1.5" fill="black"/><text x="90" y="55" font-size="11px">\(P_2(\cos B, \sin B)\)</text>
+                             <circle cx="70.71" cy="70.71" r="1.5" fill="black"/><text x="75" y="85" font-size="11px">\(P_3(\cos(A-B), \sin(A-B))\)</text>
+                             <path d="M 40 0 A 40 40 0 0 1 34.64 20" fill="none" stroke="black"/><text x="42" y="15" font-size="12px">\(B\)</text>
+                             <path d="M 60 0 A 60 60 0 0 1 15.52 58" fill="none" stroke="black"/><text x="50" y="35" font-size="12px">\(A\)</text>
+                           </svg>
+                       </div>
+
+                       <p>From the diagram, we can see that the angle subtended by the chord \(P_2P_1\) at the center is \(\angle P_2OP_1 = A - B\). Similarly, the angle subtended by the chord \(P_0P_3\) at the center is \(\angle P_0OP_3 = (A-B) - 0 = A - B\).</p>
+                       <p>Since the chords subtend equal angles at the center, their lengths must be equal.</p>
+                       \[ P_0P_3 = P_2P_1 \]
+                       <p>Squaring both sides, we get: \((P_0P_3)^2 = (P_2P_1)^2\)</p>
+                       <p>Using the distance formula, \((d)^2 = (x_2-x_1)^2 + (y_2-y_1)^2\):</p>
+                       \[ (\cos(A-B) - 1)^2 + (\sin(A-B) - 0)^2 = (\cos A - \cos B)^2 + (\sin A - \sin B)^2 \]
+                       
+                       <h5>Left Hand Side (LHS):</h5>
+                       \[ \begin{align*} & (\cos(A-B) - 1)^2 + \sin^2(A-B) \\ &= \cos^2(A-B) - 2\cos(A-B) + 1 + \sin^2(A-B) \\ &= (\cos^2(A-B) + \sin^2(A-B)) - 2\cos(A-B) + 1 \\ &= 1 - 2\cos(A-B) + 1 \\ &= 2 - 2\cos(A-B) \end{align*} \]
+                       
+                       <h5>Right Hand Side (RHS):</h5>
+                        \[ \begin{align*} & (\cos A - \cos B)^2 + (\sin A - \sin B)^2 \\ &= (\cos^2 A - 2\cos A \cos B + \cos^2 B) + (\sin^2 A - 2\sin A \sin B + \sin^2 B) \\ &= (\cos^2 A + \sin^2 A) + (\cos^2 B + \sin^2 B) - 2\cos A \cos B - 2\sin A \sin B \\ &= 1 + 1 - 2(\cos A \cos B + \sin A \sin B) \\ &= 2 - 2(\cos A \cos B + \sin A \sin B) \end{align*} \]
+                        
+                        <p>Equating the simplified LHS and RHS:</p>
+                        \[ 2 - 2\cos(A-B) = 2 - 2(\cos A \cos B + \sin A \sin B) \]
+                        \[ \cos(A-B) = \cos A \cos B + \sin A \sin B \]
+                        <p>Hence, the identity is proved.</p>
+                    </div>
+                 </details>
+
+                 <div class="theorem">
+                       <h4>Theorem: Sine of the Difference of Two Angles (Geometric Proof)</h4>
+                       <p>For all values of angles \(\alpha\) and \(\beta\), the following identity holds true:</p>
+                       \[ \sin(\beta - \alpha) = \sin\beta\cos\alpha - \cos\beta\sin\alpha \]
+                 </div>
+                 <details class="proof">
+                    <summary>View Geometric Proof</summary>
+                    <div>
+                        <div class="svg-container">
+                            <svg width="400" height="350" viewBox="0 0 190 200">
+                                <style>
+                                    .label { font-family: 'Times New Roman', serif; font-size: 10px; font-style: italic; }
+                                    .angle-label { font-family: 'Times New Roman', serif; font-size: 8px; }
+                                    .shaded-area { fill: #e0e0e0; stroke: black; stroke-width: 0.5; }
+                                    .main-line { stroke: black; stroke-width: 0.7; fill: none; }
+                                    .right-angle { stroke: black; stroke-width: 0.6; fill: none; }
+                                </style>
+
+                                <polygon points="10,180 60.04,93.43 110,7" class="shaded-area" />
+
+                                <path d="M 10,180 L 170,180" class="main-line" /> <path d="M 110,180 L 110,7" class="main-line" />   <path d="M 170,180 L 170,87.7" class="main-line" /> <path d="M 10,180 L 170,87.7" class="main-line" />  <path d="M 10,180 L 110,7" class="main-line" />     <path d="M 110,122.3 L 60.04,93.43" class="main-line" /> <path d="M 110,173 L 103,173 L 103,180" class="right-angle" /> <path d="M 170,173 L 163,173 L 163,180" class="right-angle" /> <path d="M 65.2,96.43 L 68.2,91.27 L 63.04,88.27" class="right-angle" /> <path d="M 36,180 A 26 26 0 0 1 32.5,166.5" class="main-line" /> <path d="M 45,180 A 35 35 0 0 1 27.5,152.5" class="main-line" /> <text x="5" y="185" class="label">A</text>
+                                <text x="172" y="185" class="label">C</text>
+                                <text x="108" y="185" class="label">E</text>
+                                <text x="172" y="85" class="label">B</text>
+                                <text x="112" y="6" class="label">D</text>
+                                <text x="112" y="125" class="label">O</text>
+                                <text x="50" y="90" class="label">O'</text>
+                                <text x="85" y="105" class="label">x</text>
+                                
+                                <text x="35" y="172" class="angle-label">α</text>
+                                <text x="32" y="157" class="angle-label">β - α</text>
+                            </svg>
+                        </div>
+                        <p>In the right-angled triangle \(\triangle AOO'\), where \(OO'\) (denoted as \(x\)) is the perpendicular from \(O\) to \(AD\), we can state:
+                        \[
+                        \sin(\beta - \alpha) = \frac{OO'}{AO} \quad \cdots (1)
+                        \]
+                        Our goal is to express the terms \(OO'\) and \(AO\) using other elements from the diagram.
+                        </p>
+                        <p>For the hypotenuse \(AO\), we look at the right-angled triangle \(\triangle AOE\).
+                        \[
+                        \sin\alpha = \frac{OE}{AO} \implies AO = \frac{OE}{\sin\alpha} \quad \cdots (2)
+                        \]
+                        For the segment \(OO'\), we look at the right-angled triangle \(\triangle O'DO\). By definition of sine:
+                        \[
+                        \sin(\angle O'DO) = \frac{OO'}{OD} \implies OO' = OD \cdot \sin(\angle O'DO)
+                        \]
+                        The angle \(\angle O'DO\) is identical to \(\angle ADE\). In the right-angled triangle \(\triangle ADE\), we have \(\angle ADE = 90^\circ - \beta\). Therefore:
+                        \[
+                        OO' = OD \cdot \sin(90^\circ - \beta) = OD \cdot \cos\beta \quad \cdots (3)
+                        \]
+                        The segment \(OD\) can be expressed as the difference between \(ED\) and \(OE\). In \(\triangle ADE\), we know \(\sin\beta = \frac{ED}{AD}\), which implies \(ED = AD \cdot \sin\beta\).
+                        \[
+                        OD = ED - OE = (AD \cdot \sin\beta) - OE \quad \cdots (4)
+                        \]
+                        Substituting (4) into (3), we get:
+                        \[
+                        OO' = \big( (AD \cdot \sin\beta) - OE \big) \cos\beta \quad \cdots (5)
+                        \]
+                        </p>
+                        <p>Now, we substitute expressions (2) and (5) back into our original equation (1).
+                        \begin{align*}
+                        \sin(\beta - \alpha) &= \frac{\big( (AD \cdot \sin\beta) - OE \big) \cos\beta}{\frac{OE}{\sin\alpha}} \\
+                        &= \frac{\sin\alpha \cos\beta}{OE} \big( (AD \cdot \sin\beta) - OE \big) \\
+                        &= \sin\alpha \cos\beta \left( \frac{AD \cdot \sin\beta}{OE} - 1 \right)
+                        \end{align*}
+                        From the right-angled triangles \(\triangle ADE\) and \(\triangle AOE\), we can establish a ratio for \(AD/OE\):
+                        \[
+                        \cos\beta = \frac{AE}{AD} \implies AD = \frac{AE}{\cos\beta}
+                        \]
+                        \[
+                        \tan\alpha = \frac{OE}{AE} \implies OE = AE \cdot \tan\alpha
+                        \]
+                        Therefore:
+                        \[
+                        \frac{AD}{OE} = \frac{\frac{AE}{\cos\beta}}{AE \cdot \tan\alpha} = \frac{1}{\cos\beta \tan\alpha} = \frac{\cos\alpha}{\cos\beta \sin\alpha}
+                        \]
+                        Substituting this ratio back into our main equation:
+                        \begin{align*}
+                        \sin(\beta - \alpha) &= \sin\alpha \cos\beta \left( \left( \frac{\cos\alpha}{\cos\beta \sin\alpha} \right) \sin\beta - 1 \right) \\
+                        &= \sin\alpha \cos\beta \left( \frac{\cos\alpha \sin\beta}{\cos\beta \sin\alpha} - 1 \right) \\
+                        &= \left( \sin\alpha \cos\beta \cdot \frac{\cos\alpha \sin\beta}{\cos\beta \sin\alpha} \right) - (\sin\alpha \cos\beta) \\
+                        &= (\cos\alpha \sin\beta) - (\sin\alpha \cos\beta)
+                        \end{align*}
+                        Thus, we arrive at the final identity:
+                        \[
+                        \sin(\beta - \alpha) = \sin\beta\cos\alpha - \sin\alpha\cos\beta
+                        \]</p>
+                        <p>This derivation is yet another simple example, demonstrating that every mathematical theorem can be proved in multiple ways.</p>
+                    </div>
+                </details>
+            </section>
+            
+            <section>
+                <h2 id="other-identities">Other Important Identities</h2>
+                <p>Using the fundamental identity for \(\cos(A-B)\), we can derive a whole family of other useful formulas.</p>
+                
+                <h3>Angle Sum Identities</h3>
+                <p>By substituting \(-B\) for \(B\) and using the properties \(\cos(-B) = \cos B\) and \(\sin(-B) = -\sin B\), we get:</p>
+                \[ \cos(A+B) = \cos A \cos B - \sin A \sin B \]
+                \[ \sin(A+B) = \sin A \cos B + \cos A \sin B \]
+                \[ \sin(A-B) = \sin A \cos B - \cos A \sin B \]
+                \[ \tan(A+B) = \frac{\tan A + \tan B}{1 - \tan A \tan B} \]
+                \[ \tan(A-B) = \frac{\tan A - \tan B}{1 + \tan A \tan B} \]
+
+                <h3>Double Angle Identities</h3>
+                <p>If we set \(A = B\) in the sum identities, we get the double angle formulas:</p>
+                \[ \sin(2A) = 2 \sin A \cos A \]
+                \[ \cos(2A) = \cos^2 A - \sin^2 A = 2\cos^2 A - 1 = 1 - 2\sin^2 A \]
+                \[ \tan(2A) = \frac{2 \tan A}{1 - \tan^2 A} \]
+            </section>
+
+            <section>
+                <h2 id="inverse-functions">Inverse Trigonometric Functions</h2>
+                <p>For every trigonometric function, there is an inverse function. These functions "undo" the trigonometric functions and are used to find an angle when the value of a trigonometric ratio is known. They are often denoted with an "arc" prefix (e.g., \(\arcsin\)) or with a \(-1\) exponent (e.g., \(\sin^{-1}\)).</p>
+                <p>Since the standard trigonometric functions are periodic (they repeat their values), their domains must be restricted to make their inverses true functions (i.e., to ensure each input has only one output).</p>
+
+                <h4>Principal Value Ranges</h4>
+                <p>The output of an inverse trigonometric function is called a principal value, which falls within a specific, restricted range.</p>
+                <ul>
+                    <li>\(\sin^{-1}(x)\): The range is \([-\frac{\pi}{2}, \frac{\pi}{2}]\).</li>
+                    <li>\(\cos^{-1}(x)\): The range is \([0, \pi]\).</li>
+                    <li>\(\tan^{-1}(x)\): The range is \((-\frac{\pi}{2}, \frac{\pi}{2})\).</li>
+                    <li>\(\csc^{-1}(x)\): The range is \([-\frac{\pi}{2}, 0) \cup (0, \frac{\pi}{2}]\).</li>
+                    <li>\(\sec^{-1}(x)\): The range is \([0, \frac{\pi}{2}) \cup (\frac{\pi}{2}, \pi]\).</li>
+                    <li>\(\cot^{-1}(x)\): The range is \((0, \pi)\).</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 id="graph-plotter">Interactive Graph Plotter</h2>
+                <p>Select a function from the dropdown menu to see its graph. Use the buttons to zoom in, zoom out, or reset the view. You can also click and drag the graph to pan left and right.</p>
+
+                <div id="graph-container">
+                    <div class="controls">
+                        <label for="function-select">Choose a function:</label>
+                        <select id="function-select">
+                            <option value="sin">sin(x)</option> <option value="cos">cos(x)</option> <option value="tan">tan(x)</option> <option value="csc">csc(x)</option> <option value="sec">sec(x)</option> <option value="cot">cot(x)</option>
+                            <option value="asin">arcsin(x)</option> <option value="acos">arccos(x)</option> <option value="atan">arctan(x)</option> <option value="acsc">arccsc(x)</option> <option value="asec">arcsec(x)</option> <option value="acot">arccot(x)</option>
+                        </select>
+                        <button id="zoom-in">+</button>
+                        <button id="zoom-out">-</button>
+                        <button id="reset-zoom">Reset</button>
+                    </div>
+                    <canvas id="trigChart"></canvas>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+    <script src="trig.js"></script>
+</body>
+</html>
+

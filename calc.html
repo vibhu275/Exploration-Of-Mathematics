@@ -1,0 +1,2016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculus</title>
+    <link rel="stylesheet" href="calc.css">
+    
+    <!-- Use MathJax for rendering LaTeX -->
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<h1 class="page-title">
+    <img src="background.png" alt="My Webpage Title Image" class="title-image">
+</h1>
+
+<div class="main-content">
+    
+    <p>
+        We will discuss calculus in the simplest way possible by exploring how it was researched and discovered, rather than learning the concepts by rote. Our discussion will begin with limits.
+    </p>
+
+    <h2 id="limit">Limit</h2>
+    
+    <p>
+        Before reading any topic, a simple question often arises in the reader's mind: Why read this? In other words, what is the purpose of this topic?
+    </p>
+    
+    <p>
+        In our earlier discussion about functions, we noted that certain functions—particularly piecewise functions—can have specific points in the real plane where they are not properly defined or are defined unusually. Since "unusual" is not a precise mathematical term, let's consider an example to clarify what I mean by "unusual" in this context.
+    </p>
+
+    <p>
+        Let us consider a function defined as follows; however, it is not a piecewise function.
+        \[f(x)=\frac{1}{x-1}\]
+        Graphing this function gives us:-
+    </p>
+    
+    <section class="graph-box-section">
+        <div class="graph-box">
+            <h3>
+                Graph of \(f(x) = \frac{1}{x-1}\)
+            </h3>
+            
+            <!-- Canvas for the first graph (1/(x-1)) -->
+            <canvas id="staticGraphCanvas"></canvas>
+        </div>
+    </section>
+
+    <p>
+        Notice that this function is negative when \(x < 1\) and positive when \(x > 1\). Additionally, at \(x=1\), the function is undefined because \(f(x)\) takes the form of \(\frac{1}{0}\), which can be interpreted as infinity. However, it is important to determine whether this results in positive or negative infinity.
+    </p>
+
+    <p>
+        As shown in the graph, the function is negative on the left side of the line \(x = 1\) and positive on the right side. If we only consider the portion of the graph to the left of the line \(x = 1\) and ask, "What does the graph appear to be doing as it approaches the point \(x = 1\)?" you would likely conclude that it seems to be heading toward negative infinity. However, if we were to block out the left side of the graph and ask the same question, your answer would be different. So, what is the value of the function \(f(x) = \frac{1}{x - 1}\) at \(x = 1\)?
+    </p>
+
+    <p>
+        Before defining this, let's see another example of a piecewise function.
+    </p>
+
+    <div class="code-block">
+        <p>
+            \[f(x)=\begin{cases} \frac{\sin x}{x} &, if \: x \neq 0 \\ undefined &, if \: x=0 \end{cases}\]
+        </p>
+    </div>
+
+    <p>
+        Why is it undefined at \(x=0\)? Because when we substitute \( x = 0 \), we obtain 
+        \[
+        \frac{\sin 0}{0} = \frac{0}{0}
+        \]
+        which is an indeterminate form. Since division by zero is not defined, the function does not have a value at \( x = 0 \).
+    </p>
+
+    <div class="graph-container">
+        <h3>
+            Graph of \(f(x)=\frac{\sin x}{x}\)
+        </h3>
+        
+        <!-- Canvas for the second graph (sin(x)/x) -->
+        <canvas id="discontinuityGraphCanvas"></canvas>
+
+        <div class="controls">
+            <button id="controlButton">
+                Start Animation
+            </button>
+            <div class="coordinates">
+                <p id="leftPointCoords" class="point-left">Left Point: </p>
+                <p id="rightPointCoords" class="point-right">Right Point: </p>
+            </div>
+        </div>
+    </div>
+
+    <p>    
+        But if you look at the graph, you will notice that if we start from a point slightly to the right of \(x=0\), say at \(x=5\), and move along the graph towards the y-axis (as shown in the animation above), the graph gets closer and closer to \(y=1\). This shows that by making \(x\) closer and closer to \(0\), we can make the value of the graph as close to \(y=1\) as we want. The highlighting line here is "as close as we want."
+    </p>
+
+    <p>
+        In cases like these, we say that \(f(x)=\frac{\sin x}{x}\) approaches \(1\) as \(x\) approaches \(0\). It is never exactly \(1\); however, we can get as close to \(1\) as we want by making \(x\) smaller and smaller.     
+    </p>
+
+    <p>
+        But the difference between the two functions that we have talked about above is that in the first function \(f(x)=\frac{1}{x-1}\), the graph was approaching two different values on the either side of the line \(x=1\), whereas in this case of \(g(x)=\frac{\sin x}{x}\) we see that the graph approaches the same value from either sides of the line \(x=0\). We will use this very fact to define if a limit exists for a function at a point or not.
+    </p>
+
+    <p>
+        In simple terms, we can define a limit based on what we have read so far.
+    </p>
+
+    <p>
+        Provisional Definition:      The function \(f\) approaches the limit \(l\) near \(a\), if we can make \(f(x)\) as close as we like to \(l\) by requiring that \(x\) be sufficiently close to, but unequal to, \(a\).     
+    </p>
+    
+    <p>
+        Thus, to summarise a general definition of limit for a general audience:-
+    </p>
+
+    <p>
+        If we can make a function \(f\) as close as we want to a value \(l\), for a particular value of \(x\) that is sufficiently close enough to \(a\) and \(x\neq a\). Then we say that \(f\) approaches a limit value \(l\) as x approaches \(a\).
+    </p>
+
+    <p>
+        From the above definitions and discussions, we can write a pure mathematical definition of limit as follows:
+    </p>
+
+    <div class="definition">
+    <p><strong>Definition 1.</strong> 
+        <em> Let \( f(x) \) be a function defined on the interval \( (r, t) \), except possibly at \( a \), where \( a \) is in the interval i.e. \( r < a < t \).  
+            Then the limit is 
+            \[
+            \lim_{x \to a} f(x) = l
+            \]
+            if for every number \( \varepsilon > 0 \), there exists a \( \delta > 0 \) such that
+            \[
+            \left| f(x) - l \right| < \varepsilon \quad \text{whenever} \quad 0 < \left| x - a \right| < \delta \tag{1.1}
+            \]
+            For all \( x \).
+        </em>
+    </p>
+    </div>
+
+    <p>
+        I will try and justify to the readers that this definition means the same thing as we discussed above. For that, we need an example, so we take our discussed example of \(f(x)=\frac{\sin x}{x}\). According to our graph and the provisional definition given above, we can write the following statement. "There will always be some \(x\) near \(0\) such that we can make \(f(x)=\frac{\sin x}{x}\) as close to \(1\) as we want". (Notice that in this case \(l=1\) and \(a=0\)). 
+    </p>
+
+    <p>
+        According to the definition, we can make the value \(\lvert\frac{\sin{x}}{x}-1 \rvert\) as small as we want by making \(\lvert x-0 \rvert\) sufficiently small. Note that I have used absolute value because we can approach the graph from either side. 
+    </p>
+
+    <p>
+        We start with a positive number \(\epsilon\), which can be chosen to be as small as desired, and express this as the inequality \(\lvert\frac{\sin{x}}{x}-1 \rvert < \epsilon\). No matter how small \(\epsilon\) is, or in other words, no matter how close the graph gets to \(1\), there will always be an \(x\) that is close enough to \(0\) but not equal to \(0\). 
+    </p>
+
+    <p>
+        We can express this relationship as \(\lvert x-0 \rvert < \delta\), where \(\delta\) is a sufficiently small positive number that keeps \(x\) close to \(0\) without equaling \(0\). Thus, writing the above discussion in a general form that for any \(\epsilon>0\), if \(|f(x)-l|<\epsilon\), then there is some \(\delta\) such that the above condition is satisfied by all the x in the interval \(0<|x-a|<\delta\).
+    </p>
+
+    <p>
+        Now we can express the function discussed earlier using the definition and the limit notation.
+    </p>
+
+    \[ \lim_{x \to 0} \frac{\sin x}{x} = 1 \]
+
+    <div class="quote-box">
+        <p>
+            Doesn’t that equation just look beautiful? Srinivasa Ramanujan once said that mathematics is just like paintings without colours. I recommend the readers to watch the movie <em>The Man Who Knew Infinity</em>. It shows how committed and, in such an innocent way, a person can just love math and contribute to this field in the most productive way in the shortest of time.
+        </p>
+    </div>
+
+    <p>
+        Now coming back to the first function we talked about in this discussion \(f(x)=\frac{1}{x-1}\). Can we write this function's behaviour at \(x=1\) the same way we did for \(\frac{\sin x}{x}\)? The answer is " Not Exactly". Why? 
+    </p>
+    
+    <p>
+        Before answering this question, we must know about these two terms.
+    </p>
+
+    \[\lim_{x \to a^-} f(x) \quad (\text{sometimes also written as}) \quad \lim_{x \uparrow a} f(x)\] 
+
+    <p>
+        can be understood as approaching the graph of \(f(x)\) from the left side of \(x=a\).    
+    </p>
+
+    <p>
+        Or properly written as
+        \[\lim_{x \to a^-} f(x)=l\]
+    </p>
+
+    <p>
+        means that for every \(\epsilon>0\) there is a \(\delta>0\) such that, for all \(x\), if  
+    </p>
+
+    \[0 < -(x-a) < \delta, \text{ then }\]
+    \[|f(x)-l|<\epsilon.\]
+
+    <p>
+        And similarly,
+    </p>
+    \[\lim_{x \to a^+} f(x) \quad (\text{sometimes also written as}) \quad \lim_{x \downarrow a} f(x)\] 
+
+    <p>
+        can be understood as approaching the graph of \(f(x)\) from the right side of \(x=a\).     
+    </p>
+
+    <p>
+        Or properly written as
+        \[\lim_{x \to a^+} f(x)=l\]
+    </p>
+
+    <p>
+        means that for every \(\epsilon>0\) there is a \(\delta>0\) such that, for all \(x\), if  
+    </p>
+
+    \[0 < x-a < \delta, \text{ then }\]
+    \[|f(x)-l|<\epsilon.\]
+
+    <div class="quote-box">
+        <p>
+            Consider the following statements:
+            \[
+            \text{If } 0 < -(x-a) < \delta, \text{ then } f(x) - l > -\epsilon
+            \]
+            and
+            \[
+            \text{If } 0 < (x-a) < \delta, \text{ then } f(x) - l < \epsilon
+            \]
+            <b>Think about the following:</b>
+            <ul>
+                <li>Do these expressions accurately describe the definitions of the left-hand and right-hand limits of \(f(x)\) as \(x\) approaches \(a\)?</li>
+                <li>How do these inequalities compare to the standard formal definition of a limit?</li>
+                <li>What do these conditions imply about the values of \(f(x)\) near \(a\)?</li>
+            </ul>
+            <b>Justify your answer:</b>
+            <ul>
+                <li>Would you write the definition of a one-sided limit in this way? Why or why not?</li>
+                <li>If not, how would you revise these statements to more precisely express the concept of a one-sided limit?</li>
+            </ul>
+        </p>
+    </div>
+
+    <p>
+        If readers have understood the previous content well, the next theorem will be predictable and easy to grasp.
+    </p>
+
+    <div class="theorem-box">
+        <strong>Theorem:1</strong>
+        <p>
+            Saying that the following limit exists 
+            \[\lim_{x \to a} f(x)=l\]
+            means that
+            \[\lim_{x \to a^+} f(x)=\lim_{x \to a^-} f(x)=l,\]
+            and vice versa.
+        </p>
+    </div>
+
+    <p>
+        This will be easy to prove for the readers, just look at the interval of \(x\) for which we are talking about in all the cases and you will be able to see the proof.
+    </p>
+
+    <p>
+        Now coming back to the problem, why can't we write the same thing about the function \(f(x) = \frac{1}{x - 1}\) at \(x=1\)?
+    </p>
+
+    <p>
+        Because \(\frac{1}{x - 1}\) defies the above theorem as the limit seems to be approaching positive infinity from the right side and negative infinity from the left side.
+    </p>
+
+    <p>
+        Well actually, this leads us to our next theorem that
+    </p>
+
+    <div class="theorem-box">
+        <strong>Theorem:2</strong>
+        <p>
+            A function cannot approach two different limits near \(a\). Or in other words, if \(f\) approaches \(l\) near \(a\), and \(f\) approaches \(m\) near \(a\), that implies that \(l = m\).
+        </p>
+    </div>
+
+    <p>
+        Now that we can say we have understood the core of limits, we present one of the most intriguing theorems (at least for me) to prove, which we will demonstrate later in the upcoming sections.
+    </p>
+
+    <div class="theorem-box">
+        <strong>Theorem:3</strong>
+        <p>
+            \[
+            \text{If } f(x) \leq g(x) \leq h(x) \ \text{ for all } x \text{ in some interval around } a, 
+            \]
+            \[
+            \text{and if } \lim_{x \to a} f(x) = \lim_{x \to a} h(x) = L,
+            \]
+            \[
+            \text{then } \lim_{x \to a} g(x) = L.
+            \]
+        </p>
+    </div>
+
+    <h2 id="Continuity">Continuity</h2>
+
+    <p>
+        Now that we have understood limits, it's time to use them and discuss continuity a bit. Let's start with the definition before moving on to anything else.
+    </p>
+
+    <div class="definition">
+        <strong>Definition 2.</strong>
+        The function f is continuous at a if 
+        \[\lim_{x \to a} f(x)=f(a)\]
+    </div>
+
+    <p>
+        This is a simple definition. We just have to check if the limit that the function approaches as we approach \(x = a\) is equal to the value of the function at \(x = a\).
+    </p>
+
+    <p>
+        Let us examine the function \(\frac{\sin{x}}{x}\). This function is continuous for all values of \(x\) except at \(x=0\), where it is undefined, and there is a discrepancy between the limit and the value at that point. To address this, we can define a new function \(h(x)\) as follows:
+    </p>
+
+    <div class="definition">
+        \[h(x)=\begin{cases} \frac{\sin x}{x}, & \text{if } x \neq 0 \\ 1, & \text{if } x=0 \end{cases}\]
+    </div>
+
+    <p>
+        then it is continuous at \(x=0\) because we have defined \(h(0) = 1\) and when \(x\) is approaching \(0\) but \( x \neq 0 \) we will use \(h(x) = \frac{\sin x}{x}\) and we know that
+    </p>
+
+    <div class="math-display">
+        \[ \lim_{x \to 0} \frac{\sin x}{x} = 1 \]
+    </div>
+
+    <p>
+        Using the aforementioned condition for continuity, I encourage readers to solve the following question independently.
+    </p>
+
+    <p class="question">Question:</p>
+    <p>
+        If the function \(f(x)\) is defined as follows
+    </p>
+
+    <div class="definition">
+        \[f(x) = \begin{cases} \frac{\sin x}{x}, & \text{if } x < 0 \\ a^2+a+1, & \text{if } x = 0 \\ b, & \text{if } x > 0 \end{cases}\]
+    </div>
+
+    <p>
+        and is continuous at \(x=0\), then what are all the possible values of \(a\) and \(b\)?
+    </p>
+
+    <p>
+        So far, our discussion has centered on whether a graph is continuous at a single point. But what if we expand our focus to consider continuity over an entire interval?
+    </p>
+
+    <p>
+        To evaluate continuity across all points within a specific interval, we can apply the definition of continuity at individual points.
+    </p>
+
+    <div class="definition-list-box">
+        <strong>Definition 3.</strong>
+        <p>
+            If \(f\) is continuous at \(x\) for all \(x \in (a,b)\), then \(f\) is called <strong>continuous on</strong> \((a,b)\). Continuity on a closed interval must be defined a little differently; a function \(f\) is called <strong>continuous on</strong> \([a,b]\) if
+            \[
+                \begin{align}
+                    & f \text{ is continuous at } x \text{ for all } x \in (a,b), \\
+                    & \lim_{x \to a^+} f(x)=f(a) \text{ and } \lim_{x \to b^-} f(x)=f(b).
+                \end{align}
+            \]
+        </p>
+    </div>
+
+    <p>
+        Dealing with open intervals is quite straightforward, but handling closed intervals requires extra consideration. We must check if the graph approaches the limit value from the right side at the point \(a\) and from the left side at the point \(b\). This concept may take a little time to fully grasp. If you're still struggling to understand it, I recommend looking at a simple graph of a basic function. Identify a closed interval on the graph to see why the second condition is essential.
+    </p>
+
+    <p>
+        The above definition is sometimes expressed in more general terms as follows:
+    </p>
+
+    <div class="definition">
+        <strong>Definition 4.</strong>
+        The function is continuous at all points \(c\) within the interval \([a,b]\) if the graph can be drawn from \(x=a\) to \(x=b\) without lifting the pen.
+    </div>
+
+    <p>
+        Yes, this is correct. A discontinuous graph cannot be drawn without lifting the pen from the paper.
+    </p>
+
+    <p>
+        This definition aligns the mathematical concept of continuity with everyday usage.
+    </p>
+
+    <p>
+        Up to this point, we have learned about limits and used this knowledge to define continuous functions. But is that all limits are used for? The answer is no.
+    </p>
+
+    <p>
+        Consider this: Can we say that if a graph is continuous over an interval, it is also smooth throughout that interval? In this context, we use the term "smooth" in a general sense. We will find that the mathematical definition of smoothness closely aligns with our everyday understanding of the term, just as it does with continuous.
+    </p>
+
+    <p>
+        Consider the following function,
+    </p>
+
+    <div class="math-inline">
+        \(f(x)=3-|x-1|\)
+    </div>
+
+    <p>
+        Graphing this gives us,
+    </p>
+
+    <div class="graph-space">
+        <canvas id="absoluteValueGraphCanvas"></canvas>
+    </div>
+    
+    <p>
+        Do you think this graph is continuous over the interval \([-2, 5]\)? Absolutely! We can easily draw the graph from \(x = -2\) to \(x = 5\) without lifting the pen from the paper.
+    </p>
+
+    <p>
+        Next, let’s consider whether this graph is smooth at all points within the interval \([-2, 5]\).
+    </p>
+
+    <p>
+        Imagine a car traveling along this graph at a steady speed. When it reaches \(x = 1\), does the car need to make a smooth turn or a sharp turn? Clearly, it must make a sharp turn. If you're having difficulty visualizing this, please refer to the animation below.
+    </p>
+
+    <section>
+        <div class="animation-container">
+            <h3>Car Moving on \(f(x) = 3-|x-1|\)</h3>
+            <div class="animation-space">
+                <canvas id="carAnimationCanvas"></canvas>
+            </div>
+            <div class="controls">
+                <button id="playPauseBtn">Play Animation</button>
+            </div>
+        </div>
+    </section>
+
+    <p>
+      Now see the function \( f(x) = -x^2+2x+2 \)
+    </p>
+
+    <section class="graph-fart-section">
+        <div class="graph-fart">
+            <h3>\(f(x) = -(x^2 - 2x) + 2\)</h3>
+            <div class="graph-fart">
+                <canvas id="parabolaGraphCanvas"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <p>
+      Consider a car moving along this track. Do you think the car needs to make any sharp turns at any point? Keep in mind that this is a horizontal track, not a vertical one. This track seems to be smoother than the previous one.
+    </p>
+
+    <section>
+        <div class="animation-container">
+            <h3>Car Moving on \(f(x) = -(x^2-2x)+2\)</h3>
+            <div class="animation-space">
+                <canvas id="parabolaCarAnimationCanvas"></canvas>
+            </div>
+            <div class="controls">
+                <button id="parabolaPlayPauseBtn">Play Animation</button>
+            </div>
+        </div>
+    </section>
+
+
+    <p>
+      Let's simplify this problem by removing the car from the discussion. This way, we can focus more on the mathematics rather than the physics. If we were to include the car, I would need to introduce concepts like velocity and acceleration to explain derivatives. However, by excluding those elements, I can explain things much more easily using the previously taught concepts.
+    </p>
+
+    <p>
+      As you see in the animation below, how a line would move on this track. 
+    </p>
+
+    <section>
+      <h2>Animations with Tangent Lines</h2>
+      <div class="dual-animation-container">
+          <div class="animation-wrapper">
+              <h3>\(f(x) = 3-|x-1|\)</h3>
+              <div class="animation-space">
+                  <canvas id="absoluteValueAnimationCanvas"></canvas>
+              </div>
+          </div>
+          <div class="animation-wrapper">
+              <h3>\(f(x) = -(x^2-2x)+2\)</h3>
+              <div class="animation-space">
+                  <canvas id="parabolaAnimationCanvas"></canvas>
+              </div>
+          </div>
+      </div>
+      <div class="controls-center">
+          <button id="dualPlayPauseBtn">Play All Animations</button>
+      </div>
+    </section>
+
+    <p>
+        In the graph of the equation \(-(x^2 - 2x) + 2\), there is a line that touches the curve at only one specific point without intersecting any other nearby points. Such lines are known as tangents to a curve. Many readers may be familiar with the concept of a tangent line to a point on a circle, which is quite similar. It requires imagination and intuition to grasp that there is only one point where the line merely grazes the curve. This line is referred to as the tangent to the curve at that specific point.
+    </p>
+
+    <p>
+        For the graph of \( f(x) = 3 - |x - 1| \), the tangent line at certain points coincides with the graph itself, meaning the tangent and the curve overlap along those linear segments. In the animation, the tangent is shown slightly offset from the graph to make it easier for readers to distinguish between the tangent line and the actual graph. Thus, although the tangent truly coincides with the graph in those segments, it is visually separated in the illustration for clarity.
+    </p>
+
+    <p>
+      The term "tangent" is important because it enables us to find \(\tan{\theta}\), where \(\theta\) is the angle formed between the tangent line and the x-axis. This relationship helps us determine the angle through which the line must move to travel from one point to another.
+    </p>
+
+    <p>
+        Let's consider the following question: how does the graph change direction at every point? In the first graph, this is straightforward, as it follows a straight path and makes a sharp right-angle turn at \(x=1\). It's easy to see that the angle between the two lines formed is 90 degrees due to simple geometry. But what about the second graph?
+    </p>
+
+    <p>
+        We observe that the graph of \(f(x) = -x^2 + 2x + 2\) is changing direction at every single point. We have recently learned about tangents, which can help us determine how the angle is changing at each point on the graph. To do this, we need to find a general formula for the angle \(\theta\), where \(\theta\) is the angle between the tangent line and the x-axis. If we know the angle between the tangents and the x-axis for two different points on the curve, then we can find the change in angle by just subtracting the two angles. We can find this angle if we know the slope of the tangent line, as the slope is given by \(\tan{\theta}\). But how can we determine the slope of the tangent line? Is there a formula to compute the slope of the tangent at any point on any graph?
+    </p>
+
+    <p>
+        Well lets see for example,
+    </p>
+
+    <section class="custom-graph-section">
+        <div class="custom-graph-box">
+            <canvas id="tikz-graph"></canvas>
+        </div>
+    </section>
+
+    <p>
+        In the following exploration, we let point \(P\) be an arbitrary point on the graph of a function \(y=f(x)\). We denote its coordinates as \(P(x,y)\). We define a point \(P'\) as the perpendicular projection of \(P\) onto the x-axis. With this construction, we can see that the length of the segment \(\lvert PP' \rvert = y\) and the distance from the origin to this projection is \(\lvert OP' \rvert = x\). 
+    </p>
+
+    <p>
+        In our construction, we define the line \(PA\) as the tangent to the graph of \(f(x)\) at point \(P\). We also define the line \(PA'\) as the normal to the graph, which is, by definition, perpendicular to the tangent \(PA\) at point \(P\). The points \(A\) and \(A'\) are the respective intersections of the tangent and normal lines with the x-axis.
+    </p>
+
+    <p>
+        This construction forms a large right-angled triangle, \(\triangle APA'\), with the right angle at vertex \(P\).
+    </p>
+
+    <p>
+        I encourage readers to not only read these like a story, but also to open a notebook, draw these, and attempt to do some geometry themselves before seeking further discussion.
+    </p>
+
+    <h2 id="Slope">Finding Slope of tangent</h2>
+
+    <p>
+        Our goal is to determine the slope of the tangent line \(PA\). The slope is defined as the ratio of "rise" to "run", which is also how we define \(tan{\theta} \), where \(\theta = \angle{PAP^\prime}\). For the right-angled triangle \(\triangle PP'A\), this corresponds to:
+    </p>
+
+    <span class="math-inline">
+        <div id="eq:enumeration31">
+        \[
+        \begin{equation}\tag{31}
+            \text{Slope of tangent } PA = \frac{\text{rise}}{\text{run}} = \frac{\lvert PP' \rvert}{\lvert P'A \rvert} 
+        \end{equation}
+        \]
+        </div>
+    </span>
+    
+
+    <p>
+        For our analysis, we will define two special lengths based on our geometric construction:
+    </p>
+
+    <div class="definition">
+         Let \(\delta = \lvert AO \rvert\), the distance from the tangent's x-intercept (\(A\)) to the origin (\(O\)).
+    </div>
+
+    <div class="definition">
+             Let \(\epsilon = \lvert P'A' \rvert\), the distance from the foot of the ordinate (\(P'\)) to the normal's x-intercept (\(A'\)). This length is traditionally known as the subnormal.
+    </div>
+
+    <h2 id="Geometric">A Key Geometric Identity</h2>
+
+    <p>
+        With these definitions and some geometry, we can derive this powerful identity.
+    </p>
+
+    <div class="theorem-box">
+        <strong>Geometric Identity:</strong>
+        <p>
+            The defined lengths are related by the equation:
+        </p>
+        <span class="math-inline">
+            <div id="eq:enumeration1">
+            \[
+            \begin{equation}\tag{1}
+                y^2 = (x+\delta)\epsilon
+            \end{equation}
+            \]
+            </div>
+        </span>
+    </div>
+
+    <h2 id="Slope">Finding the Slope</h2>
+
+    <p>
+        Our construction is based on the following foundational principle of coordinate geometry.
+    </p>
+
+    <p>
+        <strong>Premise:</strong>
+        The product of the slopes of two non-vertical perpendicular lines is \(-1\).
+    </p>
+    
+    <p>
+        In our case, this means:
+    </p>
+
+    <div class="math-display">
+        \[ (\text{slope of } PA) \times (\text{slope of } PA') = -1  \]  
+    </div>
+
+    <p>
+        Using our rise-over-run definitions, this is:
+    </p>
+
+    <div class="math-display">
+        \[ \left( \frac{\lvert PP' \rvert}{\lvert P'A \rvert} \right) \times \left( -\frac{\lvert PP' \rvert}{\lvert P'A' \rvert} \right) = -1  \]  
+    </div>
+
+    <p>
+        Note that the slope of \(PA'\) is taken as negative because, in our diagram, as \(x\) increases, \(y\) decreases along that line.
+    </p>
+
+    <p>
+        Now, we can establish a direct formula for the slope of the tangent at a point \((x,y)\) using our defined lengths.
+    </p>
+
+    <span class="math-inline">
+        <div id="eq:enumeration2">
+        \[
+        \begin{equation}\tag{2}
+            \text{Slope} = \frac{\lvert PP' \rvert}{\lvert P'A \rvert} = \frac{y}{\lvert P'O \rvert + \lvert OA \rvert} = \frac{y}{x+\delta}
+        \end{equation}
+        \]
+        </div>
+    </span>
+
+    <p>
+        You can see from the 
+        <a href="#eq:enumeration1">equation 1</a> 
+        and the slope formula that if we can somehow find the value of \(\epsilon\), we can determine \(\delta\) and subsequently find the slope. It is this \(\epsilon\), the length of the subnormal, that creates the whole ruckus.
+    </p>
+
+    <h2 id="Need for Limits">The Need for Limits</h2>
+
+    <p>
+        Mathematicians at the time realised that while this geometric framework is beautiful, it is impractical for finding exact values. Determining \(\epsilon\) by physically drawing a diagram and measuring is inherently imprecise. This created the need for a new analytical tool that could capture the geometric idea of a tangent perfectly using algebra.
+    </p>
+
+    <p>
+        This tool is the limit. Using the concept of a limit to analyze the behavior of the function as a small interval shrinks to zero, we were finally able to define the slope analytically, giving rise to the field of differential calculus.
+    </p>
+
+    <h2 id="Differential">Differential Calculus</h2>
+
+    <p>
+        In an attempt to find the slope of the tangent, let's draw the above diagram as follows,
+    </p>
+
+    <section class="graph-container-shit">
+        <div class="graph-display-shit">
+            <canvas id="fitzzzz-graph" width="600" height="450"></canvas>
+        </div>
+    </section>
+
+    <p>
+        In this diagram, we have introduced a new point \(Q\), which we will move along the graph. Let's denote the coordinates of \(Q\) as \((x-h, f(x-h))\). Graphically, we can observe that the distance \(QQ'\) is equal to \(h\) since \(PQ'\) is perpendicular to \(QQ'\). Additionally, the distance \(PQ'\) is given by \(f(x) - f(x-h)\). As we move point \(Q\) along the graph, what do you think happens to the slope?
+    </p>
+
+    <p>
+        The slope of the line \(PQ\) at any point \(Q(x-h,f(x-h))\) from a perticular point \(P(x,y)\) can be written as,
+    </p>
+
+    <div class="math-display">
+        \[  Slope_{PQ}=\frac{PQ^\prime}{Q^\prime Q} = \frac{f(x)-f(x-h)}{h}  \]  
+    </div>
+
+    <p>
+        Since our main aim is to find the slope of \(PA\) rather than \(PQ^\prime\), you might wonder why we are determining the slope of \(PQ\). Don't worry; I will show you how we will use the slope of \(PQ\) to find the slope of \(PA\).
+    </p>
+
+    <p>
+        Remember that we mentioned moving the point \(Q\) on the graph. Some may question how we can do that. Will it still remain on the graph of \(f(x)\) if we move the point?
+    </p>
+
+    <p>
+        Yes, we can move the point along the graph by adjusting \(h\) to be smaller or larger. Importantly, it will remain on the graph, since regardless of the x-coordinate, the y-coordinate is always \(f(x-h)\), which is always a point on the graph of \(y=f(x)\).
+    </p>
+
+    <p>
+        Thus, coming back to finding slope, it can easily be seen that by making the point \(Q\) get closer and closer to \(P\), we see that the slope of \(PQ\) starts to get closer and closer to the slope of \(PA\). It might not seem that obvious at first, but I'd like you to imagine this and try, or you can take help from the following animation, but it's better if you try it yourself, because only then will you be able to not only learn calculus but will be able to comprehend it. 
+    </p>
+
+    <div class="tangent-slope">
+        <h1>Visualizing the Derivative</h1>
+        <canvas id="graph-canvas"></canvas>
+        <div class="controls">
+            <div class="button-group">
+                <button id="start-button">Start Animation</button>
+                <button id="reset-button">Reset</button>
+            </div>
+            <div class="slope-display">
+                <p><span class="label text-green-600">Slope of Secant (PQ):</span> <span id="secant-slope">--</span></p>
+                <p><span class="label text-blue-600">Slope of Tangent (PA):</span> <span id="tangent-slope">--</span></p>
+            </div>
+        </div>
+    </div>
+
+    <p>
+        Now, since we have learned about limits, and this is the most important and interesting part that needed the mathematicians to develop the concept of limit to solve the problems of slope, we can use the concept of limit and make \(Q\) as close to \(P\) as we want or need. But how exactly? By making \(h \to 0\). 
+    </p>
+
+    <p>
+        Thus by making \(h\) smaller and smaller, we can know the slope of \(PA\), because it will just be the slope of \(PQ\) just when \(h \to 0\).
+    </p>
+
+    <p>
+        Thus we define the slope of the tangent on the graph of \(y=f(x)\) at an arbitrary point \(P(a.f(a)\) is defined as,
+    </p>
+
+    <div class="math-display">
+        \[
+        \text{ Slope of the tangent to the graph of \(f(x)\) at point \((a,f(a))\) } = \lim_{h \to 0} \frac{f(a-h)-f(a)}{-h} 
+        \]
+    </div>
+
+    <p>
+        Well after this discussion one might say atlast we have defined the slope of tangent to a graph at a point but wait! What if we had approached the point \(P\) from the right side of the point or in other words what if \(Q(x+h,f(x+h))\)? Well then we caould write it in the same way as before,
+    </p>
+
+    <div class="math-display">
+        \[
+        \text{ Slope of the tangent to the graph of \(f(x)\) at point \((a,f(a))\) } = \lim_{h \to 0} \frac{f(a-h)-f(a)}{h} 
+        \]
+    </div>
+
+    <p>
+        But what if the above two formulas for tangent do not give the same value of the limit? Well thats where differentiability comes in.
+    </p>
+
+    <h2 id="differentiability">Differentiability</h2>
+    <p>
+        Well as we saw in a function being continuous it must approach the same limit value from eitherr side of the point and these two should be equal to the value of the function at that point. In the very same way we define differentiability.
+    </p>
+
+    
+    <div class="definition">
+        <strong>Definition 5.</strong>
+    A function \(f(x)\) is said to be differentiable at a point \(x=a\) if 
+    \[
+    \lim_{h \to 0} \frac{f(a+h)-f(a)}{h} = \lim_{h \to 0} \frac{f(a-h)-f(a)}{-h}
+    \]
+    </div>
+    
+    <p>
+        Using a little bit of intuition and investing a little bit of time, we can write the following theorem,
+    </p>
+
+    <div class="theorem-box">
+        <strong>Geometric Identity:</strong>
+        <p>
+            If a fucntion f is differntiable in the interval \([a,b]\), then f is continuous in the interval \([a,b]\).
+        </p>
+    </div>
+
+    <p>
+        Actually the above definition of differentiability allows us to define differentiation or derivative of a function. 
+    </p>
+
+    <div class="definition">
+        <strong>Definition 6.</strong>
+        <p>
+            Differentiation or derivative of a function \(y=f(x)\), which is differentiable in the interval \([a,b]\), is written as \(\frac{dy}{dx}\) and is only defined for \(x \in [a,b]\). Derivative of a function just gives us another function \(f^\prime(x)\) that tells us the slope of the tangent to the graph of the function \(f(x)\) at an arbitrary point \(x\).
+        </p>    
+        <p>
+            Thus define it mathematically as,
+        </p>
+        <span class="math-inline">
+            <div id="eq:enumeration1">
+            \[
+            \begin{equation}\tag{1}
+                    f^\prime(x)=\frac{dy}{dx}=\frac{d}{dx}f(x)=\lim_{h \to 0 }\frac{f(x+h)-f(x)}{h}
+            \end{equation}
+            \]
+            </div>
+        </span>
+    </div>
+
+    <p>
+        Differentiation or derivative of a function \(f(x)\), which is differentiable at \(x=a\) is given by,
+    </p>>
+
+    <span class="math-inline">
+        <div id="eq:enumeration1">
+        \[
+        \begin{equation}\tag{1}
+            f^\prime(a)=\frac{dy}{dx}\bigg|_{x=a}=\left.\frac{d}{dx}f(x)\right|_{x=a}=\lim_{h \to 0} \frac{f(a+h)-f(a)}{h}= \lim_{x \to a} \frac{f(a)-f(x)}{a-x}
+        \end{equation}
+        \]
+        </div>
+    </span>
+
+    <p>
+        This last expression \(\lim_{x \to a} \frac{f(a)-f(x)}{a-x}\) can be achieved by putting in \(x=a+h\).
+    </p>
+
+    <p>
+        Basically, the reason why we write \(\frac{dy}{dx}\) as the derivative is because when we write \(ds\), we mean a very small change in \(s\). When we talk about the slope, it is the ratio of the change in \(y\) over the change in \(x\). Since both these changes, in \(y\) and \(x\), are very small, we use this ''\(d\)'' notation.
+    </p>
+
+    <p>
+        Notice that it is not \(y\) or \(x\) themselves that are small---it is the \emph{change in \(y\)} and the \emph{change in \(x\)} that we make small. Thus, we write \(dy\) for change in \(y\), and \(dx\) for change in \(x\).
+    </p>
+
+    <p>
+        Suppose a change in a variable \(s\) is written as \(\Delta s\). Now imagine making this change smaller and smaller: 
+    </p>
+
+    <div class="math-display">
+        \[
+        \Delta s \to 0 \implies ds.
+        \]
+    </div>
+
+    <p>
+        What this means is that as the change in \(s\) gets closer to zero, we give it a different name: \(ds\). This is because \(ds\) behaves differently from \(\Delta s\). Neither is \(ds\) exactly zero, nor is it a definite number. It is a concept---something \emph{infinitesimally small}. Just as infinity is not a proper number, but a concept of ``foreverness'', in the same way, \(ds\) is not a proper number but is ``unimaginably small''.
+    </p>
+
+    <p>
+        There is a term for this kind of thing: we call it \emph{infinitesimal}. 
+    </p>
+
+    <p>
+        This shows one of the beauties of mathematics: sometimes we deal with concepts that can't easily be described to someone with little math knowledge (maybe, say, an alien!). Yet, we learn to use and manipulate these ideas very precisely. For example, how would you describe to an alien the idea of dividing two ``unimaginably small'' numbers?
+    </p>
+
+    <p>
+        When we find the slope, we usually write:
+    </p>
+
+    <div class="math-display">
+        \[
+        \text{slope} = \frac{\Delta y}{\Delta x}
+        \]
+    </div>
+
+    <p>
+        But when \(\Delta x \to 0\), we enter the world of infinitesimals. 
+    </p>
+
+    <p>
+        It is important to realize that as the change in \(x\) gets very small, for many functions, the change in \(y\) also becomes very small:
+    </p>
+
+    <div class="math-display">
+        \[
+        (\Delta x \to 0) \implies (\Delta y \to 0)
+        \]
+    </div>
+
+    <p>
+        but this is true only for ``nice'' (continuous) functions.
+    </p>
+
+    <p>
+        - We use \(dy\) and \(dx\) to describe unimaginably small changes.
+- The derivative \(\frac{dy}{dx}\) is the ratio of these changes and represents the ``instantaneous'' slope of the function.
+- Infinitesimals, like infinity, are not actual numbers, but powerful mathematical ideas.
+- Even concepts that are hard to describe (like to an alien!) can reveal truths about reality when used in mathematics.
+    </p>
+
+    <p>
+        That's the power and beauty of mathematical thinking.
+    </p>
+    
+    <p>
+        Thus, we can now find the slope. For all points \(x=a\), if \(f(x)\) is differentiable at \(x=a\), 
+    </p>
+
+    <span class="math-inline">
+        <div id="eq:enumeration1">
+        \[
+        \begin{equation}\tag{1}
+            \text{Slope of tangent to \(f(x)\) at \(a\) } = f^\prime(a)
+        \end{equation}
+        \]
+        </div>
+    </span>
+
+    <p>
+        In the above graph, we defined the slope to be \(\frac{y}{x+\delta}\) and also derived the relation \(y^2=\epsilon (x+\delta)\). Thus,
+    </p>
+
+    <div class="math-display">
+        \[
+        Slope = \frac{y}{x+\delta} = \frac{\epsilon}{y} = f^\prime(x)
+        \]
+    </div>
+
+    <p>
+        Sometimes we also write \(f^\prime(x)\) as \(y^\prime\) (for obvious reason).
+    </p>
+
+    <p>
+        Now we have covered the most of important topics of calculus, i.e., Limits and derivatives. It should now be easy to confirm some of the following properties of limits.
+    </p>
+
+    <p>
+        If \(\lim_{x \to a} f(x) = l\) and \(\lim_{x \to a} g(x) = m\), then
+    </p>
+
+    <span class="math-inline">
+        <div id="eq:enumeration1">
+        \[
+        \begin{equation}\tag{1}
+            \lim_{x \to a} (f+g)(x) = l + m
+        \end{equation}
+        \]
+        </div>
+    </span>
+
+    <span class="math-inline">
+        <div id="eq:enumeration1">
+        \[
+        \begin{equation}\tag{1}
+            \lim_{x \to a} (f \cdot g)(x) = l \cdot m
+        \end{equation}
+        \]
+        </div>
+    </span>
+
+    <span class="math-inline">
+        <div id="eq:enumeration1">
+        \[
+        \begin{equation}\tag{1}
+            \lim_{x \to a} \left(\frac{f}{g}\right)(x) = \frac{l}{m}, m \neq 0
+        \end{equation}
+        \]
+        </div>
+    </span>
+
+    <p>
+        It might seem obvious or maybe even intuitive to some readers but it is not easy to prove. 
+    </p>
+
+    <p>
+        I encourage the readers to play a little with the epsilon-delta definition of limits and you will see some similarity with these relations and you will be able to prove these.
+    </p>
+
+    <p>
+        Using the above relations on limits, one can come up with the following relations on differentiations, that if \(f(x)\) and \(g(x)\) are differentiable,
+    </p>
+
+    <span class="math-inline">
+        <div id="eq:enumeration1">
+        \[
+        \begin{equation}\tag{1}
+         \frac{d}{dx}(f+g)(x) = \frac{d}{dx}f(x) + \frac{d}{dx}g(x) \\
+        \end{equation}
+        \]
+        </div>
+    </span>
+
+    <p>
+        But, 
+    </p>
+
+    <div class="math-display">
+        \[
+        \frac{d}{dx}(f.g)(x) \neq \frac{d}{dx}f(x).\frac{d}{dx}g(x)
+        \]
+    </div>
+
+    <p>
+        We have to do some mathematics to find out \(\frac{d}{dx}(f.g)(x)\).
+    </p>
+
+    <div class="math-display">
+        \[
+        \begin{aligned}
+            & \frac{d}{dx}(f.g)(x) = \lim_{h \to 0}\frac{f(x+h)g(x+h)-f(x)g(x)}{h} \\ 
+            & =\lim_{h \to 0}f(x+h)\bigg[\frac{g(x+h)-g(x)\frac{f(x)}{f(x+h)}}{h}\bigg] \\
+            & = \lim_{h \to 0}f(x+h)\bigg[\frac{g(x+h)-g(x)-\big[\frac{f(x)}{f(x+h)}-1\big]g(x)}{h}\bigg] \\
+            & = \lim_{h \to 0}f(x+h)\bigg[\frac{g(x+h)-g(x)}{h}\bigg]+g(x) \bigg[\frac{f(x+h)-f(x)}{h}\bigg] \\
+            & = f(x)\frac{d}{dx}g(x) + g(x)\frac{d}{dx}f(x)
+        \end{aligned}
+        \]
+    </div>
+
+    <span class="math-inline">
+        <div id="eq:enumeration1">
+        \[
+        \begin{equation}\tag{1}
+            \frac{d}{dx}(f.g)(x) = f(x)\frac{d}{dx}g(x) + g(x)\frac{d}{dx}f(x)
+        \end{equation}
+        \]
+        </div>
+    </span>
+
+    <p>
+        Now it is up to the readers to derive the following: that
+    </p>
+
+    <p>
+        if \(g^\prime(x) \neq 0\), then
+        <span class="math-inline">
+        <div id="eq:enumeration1">
+        \[
+        \begin{equation}\tag{1}
+            \frac{d}{dx}\bigg(\frac{f}{g}\bigg)(x) = \frac{g(x)f^\prime(x)-f(x)g^\prime(x)}{(g(x))^2}
+        \end{equation}
+        \]
+        </div>
+    </span>
+    </p>
+
+    <p>
+        Now that we have learned the basics and the definitions of differentiation and limits, we can now do anything we want. Like, let's have fun a little bit. Let's take the simplest of the functions ever, i.e., \(y=x^n\). Well for any number \(n\), we can say that,
+    </p>
+
+    <div class="math-display">
+        \[
+        \lim_{x \to a}x^n = a^n
+        \]
+    </div>
+
+    <p>
+        and that it is continuous everywhere. now what if I ask, what is the derivative of \(x^n\) with respect to \(x\)? ( Writing "with respect to x" is important or how would one know if \(x\) is the variable that's changing or \(n\) ).  
+    </p>
+
+    <p>
+        Well, according to our definition, 
+    </p>
+
+    <div class="math-display">
+        \[
+        \frac{d}{dx}x^n = \lim_{h \to 0}\frac{x^{n+h}-x^n}{h}
+        \]
+    </div>
+
+    <p>
+        Right? 
+    </p>
+
+    <p>
+        For all of you who thought this is correct, let me please write the definition again
+    </p>
+
+    <div class="math-display">
+        \[
+        \frac{d}{dx}f(x) = \lim_{h \to 0}\frac{f(x+h)-f(x)}{h}
+        \]
+    </div>
+
+    <p>
+        and this is why I had written "with respect to x" to show that it is x that is a variable and that its changing and n is just a constant.
+    </p>
+
+    <p>
+        Thus the correct formula will be,
+    </p>
+
+    <div class="math-display">
+        \[
+        \frac{d}{dx}x^n = \lim_{h \to 0}\frac{(x+h)^n-x^n}{h}
+        \]
+    </div>
+
+    <p>
+        Using binomial expansion formula, 
+    </p>
+
+    <div class="math-display">
+        \[
+        (x+h)^n = \sum_{r=0}^{n}\binom{n}{r}x^{n-r}h^r 
+        \]
+    </div>
+
+    <p>
+        we get,
+    </p>
+
+    <div class="math-display">
+        \[
+        \begin{aligned}
+            & \frac{d}{dx}x^n = \lim_{h \to 0}\frac{\sum_{r=1}^{n}\binom{n}{r}x^{n-r}h^r}{h} \\
+            \implies & \frac{d}{dx}x^n = \lim_{h \to 0}\frac{\binom{n}{1} x^{n-1} h + \sum_{r=2}^{n}\binom{n}{r}x^{n-r}h^r}{h} \\
+            \implies & \frac{d}{dx}x^n = \lim_{h \to 0} \bigg\{  \frac{n x^{n-1} h}{h} + \frac{ \sum_{r=2}^{n}\binom{n}{r}x^{n-r}h^r}{h} \bigg\} \\
+            \implies & \frac{d}{dx}x^n = \lim_{h \to 0} \bigg\{ n x^{n-1}  + \frac{ \sum_{r=2}^{n}\binom{n}{r}x^{n-r}h^r}{h} \bigg\} \\
+            \implies & \boxed{ \frac{d}{dx}x^n = n x^{n-1} }
+        \end{aligned}
+        \]
+    </div>
+
+    <p>
+        I have skipped a small step of logic and intuition in the last step, which is for the readers to figure out. 
+    </p>
+
+    <p>
+        Now, since we already knew that this function is continuous and differentiable everywhere, we must first check if it is differentiable or not, which we will justify to you now that this function is really differentiable everywhere.
+    </p>
+
+    <div class="math-display">
+        \[
+        \frac{d}{dx}x^n = \lim_{h \to 0}\frac{(x-h)^n-x^n}{-h}
+        \]
+    </div>
+
+    <p>
+        Using the binomial expansion formula,
+    </p>
+
+    <div class="math-display">
+        \[
+        (x-h)^n = \sum_{r=0}^{n}\binom{n}{r}x^{\,n-r}(-h)^r
+        \]
+    </div>
+
+    <p>
+        we get,
+    </p>
+
+    <div class="math-display">
+        \[
+        \begin{aligned}
+            & \frac{d}{dx}x^n = \lim_{h \to 0}\frac{\sum_{r=1}^{n}\binom{n}{r}x^{\,n-r}(-h)^r}{-h} \\
+            \implies & \frac{d}{dx}x^n = \lim_{h \to 0}\frac{\binom{n}{1} x^{n-1} (-h) + \sum_{r=2}^{n}\binom{n}{r}x^{\,n-r}(-h)^r}{-h} \\
+            \implies & \frac{d}{dx}x^n = \lim_{h \to 0} \bigg\{  \frac{-n x^{n-1} h}{-h} + \frac{ \sum_{r=2}^{n}\binom{n}{r}x^{\,n-r}(-h)^r}{-h} \bigg\} \\
+            \implies & \frac{d}{dx}x^n = \lim_{h \to 0} \bigg\{ n x^{n-1}  + \sum_{r=2}^{n}\binom{n}{r}x^{\,n-r}(-1)^{r-1}h^{\,r-1} \bigg\} \\
+            \implies & \boxed{ \frac{d}{dx}x^n = n x^{n-1} }
+        \end{aligned}
+        \]
+    </div>
+
+    <p>
+        Since both the limits approach the same value, which is \(nx^{n-1}\), therefore it is differentiable for every \(x\) and the derivative is \(nx^{n-1}\).
+    </p>
+
+    <p>
+        We can now create a whole chart of derivatives of different functions and their derivatives.
+    </p>
+
+    <div class="math-display">
+        \[
+        \begin{array}{|c|c|c|}
+        \hline
+        \textbf{Function } f(x) & \textbf{Derivative } f'(x) & \textbf{Interval of Differentiability} \\
+        \hline
+        c \ (\text{constant}) & 0 & (-\infty, \infty) \\
+        \hline
+        x^n \ (n \in \mathbb{N}) & n x^{n-1} & (-\infty, \infty) \\
+        \hline
+        e^x & e^x & (-\infty, \infty) \\
+        \hline
+        a^x \ (a>0, a \neq 1) & a^x \ln(a) & (-\infty, \infty) \\
+        \hline
+        \ln(x) & \tfrac{1}{x} & (0, \infty) \\
+        \hline
+        \log_a(x) \ (a>0, a \neq 1) & \tfrac{1}{x \ln(a)} & (0, \infty) \\
+        \hline
+        \sin(x) & \cos(x) & (-\infty, \infty) \\
+        \hline
+        \cos(x) & -\sin(x) & (-\infty, \infty) \\
+        \hline
+        \tan(x) & \sec^2(x) & \mathbb{R}\setminus \left\{ \tfrac{\pi}{2}+k\pi \,:\, k \in \mathbb{Z} \right\} \\
+        \hline
+        \cot(x) & -\csc^2(x) & \mathbb{R}\setminus \{ k\pi \,:\, k \in \mathbb{Z} \} \\
+        \hline
+        \sec(x) & \sec(x)\tan(x) & \mathbb{R}\setminus \left\{ \tfrac{\pi}{2}+k\pi \,:\, k \in \mathbb{Z} \right\} \\
+        \hline
+        \csc(x) & -\csc(x)\cot(x) & \mathbb{R}\setminus \{ k\pi \,:\, k \in \mathbb{Z} \} \\
+        \hline
+        \sin^{-1}(x) & \tfrac{1}{\sqrt{1-x^2}} & (-1,1) \\
+        \hline
+        \cos^{-1}(x) & -\tfrac{1}{\sqrt{1-x^2}} & (-1,1) \\
+        \hline
+        \tan^{-1}(x) & \tfrac{1}{1+x^2} & (-\infty, \infty) \\
+        \hline
+        \cot^{-1}(x) & -\tfrac{1}{1+x^2} & (-\infty, \infty) \\
+        \hline
+        \sec^{-1}(x) & \tfrac{1}{|x|\sqrt{x^2-1}} & (-\infty,-1)\cup(1,\infty) \\
+        \hline
+        \csc^{-1}(x) & -\tfrac{1}{|x|\sqrt{x^2-1}} & (-\infty,-1)\cup(1,\infty) \\
+        \hline
+        \end{array}
+        \]
+    </div>
+
+    <p>
+        There are a lot of other formulas for other functions as well. I encourage the readers to think of as much as formulas as they can and find out their intervals in which they are differentiable and the derivative of those.
+    </p>
+
+    <p>
+        Though there is a non-intuitive formula that combines concepts from limits and differentiation. There is a lot of interesting cases in limits where the limits for certain functions at certain places seem to be approaching some crazy values like \(\frac{0}{0}\) or \(\frac{\infty}{\infty}\). But there is even more interesting rule to deal with these.
+    </p>
+
+    <h2 id="rule">L'Hospital's Rule :</h2>
+
+    <div class="math-display">
+        \[
+        \frac{0}{0} \quad \text{form}
+        \]
+    </div>
+
+    <p>
+        If \(\lim_{x \to a} f(x) = 0\) and \(\lim_{x \to a} g(x) = 0\), then
+    </p>
+
+    <div class="math-display">
+        \[
+        \lim_{x \to a} \frac{f(x)}{g(x)} 
+        = \lim_{x \to a} \frac{f'(x)}{g'(x)}
+        \quad \text{(if the RHS limit exists, possibly infinite).}
+        \]
+    </div>
+
+    <div class="math-display">
+        \[
+        \frac{\infty}{\infty} \quad \text{form}
+        \]
+    </div>
+
+    <p>
+        If \(\lim_{x \to a} f(x) = \pm \infty\) and \(\lim_{x \to a} g(x) = \pm \infty\), then
+    </p>
+
+    <div class="math-display">
+        \[
+        \lim_{x \to a} \frac{f(x)}{g(x)} 
+= \lim_{x \to a} \frac{f'(x)}{g'(x)}.
+        \]
+    </div>
+
+    <p>
+        I encourage you all to try and justify this rule as well.
+    </p>
+
+    <p>
+        REMARK: If the resulting limit is still of the indeterminate type \(\tfrac{0}{0}\) or \(\tfrac{\infty}{\infty}\), one may apply the same reasoning again (i.e. take another derivative), and so on.
+    </p>
+
+    <h2 id="Series">Taylor's Series Expansion</h2>
+
+    <p>
+        Before we begin this discussion, I recommend reading the Wikipedia article on
+        <a href="https://en.wikipedia.org/wiki/Taylor_series#History" target="_blank">the History of Taylor's Series Expansion</a>. 
+    </p>
+
+    <p>
+        As mentioned in the article, the goal at that time was to sum an infinite series. In other words, we can reverse the problem and ask whether every function can be expressed in the form of an infinite series.
+    </p>
+
+    <p>
+        Well, let's try something. Let us assume a function \(f(x)\) defined over some domain and that \(f(x)\) can be written as follows,
+    </p>
+
+    <div class="math-display">
+        \[
+            f(x)=a_0+a_1x+a_2x^2+a_3x^3+\cdots
+        \]
+    </div>
+
+    <p>
+        Putting \(x=0\) in the above equation, we get,
+    </p>
+
+    <div class="math-display">
+        \[
+            a_0=f(0)
+        \]
+    </div>
+
+    <p>
+        Now differentiating both sides,we get
+    </p>
+
+    <div class="math-display">
+        \[
+            f^\prime (x) = a_1+2a_2x+3a_3x^2+\cdots
+        \]
+    </div>
+
+    <p>
+        and putting \(x=0\), we get,
+    </p>
+    
+    <div class="math-display">
+        \[
+            a_1=f^\prime(0)
+        \]
+    </div>
+
+    <p>
+        Continuing from this work, let's differentiate again to find \(a_2\):
+    </p>
+    
+    <div class="math-display">
+        \[
+            f^{\prime\prime}(x) = 2a_2 + (3 \cdot 2)a_3x + (4 \cdot 3)a_4x^2 + \cdots
+        \]
+    </div>
+    
+    <p>
+        As before, we substitute \(x=0\). All terms containing \(x\) vanish, leaving:
+    </p>
+
+    <div class="math-display">
+        \[
+            f^{\prime\prime}(0) = 2a_2 \implies a_2 = \frac{f^{\prime\prime}(0)}{2}
+        \]
+    </div>
+
+    <p>
+        Differentiating a third time gives us a pattern for \(a_3\):
+    </p>
+
+    <div class="math-display">
+        \[
+             f^{\prime\prime\prime}(x) = (3 \cdot 2 \cdot 1)a_3 + (4 \cdot 3 \cdot 2)a_4x + \cdots
+        \]
+    </div>
+
+    <p>
+        And substituting \(x=0\):
+    </p>
+    
+    <div class="math-display">
+        \[
+            f^{\prime\prime\prime}(0) = (3 \cdot 2 \cdot 1)a_3 = 3! a_3 \implies a_3 = \frac{f^{\prime\prime\prime}(0)}{3!}
+        \]
+    </div>
+
+    <h3>The General Pattern</h3>
+    <p>
+        By now, a clear pattern has emerged. If we continue to differentiate \(n\) times, the only term that will not have an \(x\) factor is the one originating from \(a_nx^n\). Each derivative brings down the current power, resulting in a factorial coefficient. The \(n\)-th derivative of \(f(x)\) is:
+    </p>
+
+    <div class="math-display">
+        \[
+        f^{(n)}(x) = n! a_n + (n+1)! a_{n+1}x + \cdots
+        \]
+    </div>
+
+    <p>
+        Evaluating this at \(x=0\), we find the general formula for our coefficients:
+    </p>
+    
+    <div class="math-display">
+        \[
+            f^{(n)}(0) = n! a_n \implies a_n = \frac{f^{(n)}(0)}{n!}
+        \]
+    </div>
+    
+    <h3>The Maclaurin Series</h3>
+    <p>
+        Substituting these coefficients back into our original assumption for \(f(x)\), we arrive at the final series expansion, known as the Maclaurin Series.
+    </p>
+
+    <div class="definition">
+        <strong>Definition: Maclaurin Series Expansion</strong>
+        <p>
+            The Maclaurin series of a function \(f(x)\) is the power series expansion about \(x=0\):
+            \[
+                f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(0)}{n!} x^n = f(0) + \frac{f'(0)}{1!}x + \frac{f''(0)}{2!}x^2 + \frac{f'''(0)}{3!}x^3 + \cdots
+            \]
+            This representation is valid for all \(x\) within the radius of convergence, provided the function is equal to its series expansion.
+        </p>
+    </div>
+
+    <h3>Generalization: The Taylor Series</h3>
+    <p>
+        The Maclaurin series is a special case of the more general <strong>Taylor series</strong>, where we expand the function around an arbitrary point \(x=a\) instead of just \(x=0\). Our assumption changes slightly. We assume \(f(x)\) can be written in powers of \((x-a)\):
+    </p>
+
+    <div class="math-display">
+        \[
+        f(x) = c_0 + c_1(x-a) + c_2(x-a)^2 + c_3(x-a)^3 + \cdots
+        \]
+    </div>
+
+    <p>
+        The process is identical, except we now substitute \(x=a\) at each step.
+    </p>
+        <ul>
+            <li><strong>For \(c_0\):</strong> Let \(x=a \implies f(a) = c_0\).</li>
+            <li><strong>For \(c_1\):</strong> Differentiate once to get \(f'(x) = c_1 + 2c_2(x-a) + \cdots\). Now let \(x=a \implies f'(a) = c_1\).</li>
+            <li><strong>For \(c_2\):</strong> Differentiate again to get \(f''(x) = 2c_2 + (3 \cdot 2)c_3(x-a) + \cdots\). Let \(x=a \implies f''(a) = 2c_2\), so \(c_2 = \frac{f''(a)}{2!}\).</li>
+        </ul>
+    <p>
+        The general coefficient is found to be \(c_n = \frac{f^{(n)}(a)}{n!}\).
+    </p>
+
+    <div class="definition">
+        <strong>Definition: Taylor Series Expansion</strong>
+        <p>
+            The Taylor series of a function \(f(x)\) that is infinitely differentiable at a point \(a\) is the power series:
+            \[
+                f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!} (x-a)^n
+            \]
+            This provides a polynomial approximation of the function in the neighborhood of \(x=a\).
+        </p>
+    </div>
+
+    <p>
+        This derivation beautifully answers the question of how a function can be represented as an infinite series, provided it meets certain conditions of differentiability and convergence.
+    </p>
+
+    <h2 id="integral">Integration: The Inverse of Differentiation</h2>
+    <p>
+        In mathematics, most operations have an inverse: subtraction undoes addition, division undoes multiplication, and inverse functions reverse their original functions. The same principle applies to calculus. The process of differentiation, which finds the rate of change of a function, has an inverse operation that reconstructs the original function from its rate of change.
+    </p>
+
+    <p>
+        It's helpful to think of differentiation, denoted by \(\frac{d}{dx}\), as an <b>operator</b>—something that acts on a function to produce another function. If we have:
+    </p>
+
+    <div class="math-display">
+        \[
+        \frac{d}{dx}f(x) = f'(x)
+        \]
+    </div>
+    <p>
+        The inverse operator that takes us from \(f'(x)\) back to \(f(x)\) is called <b>integration</b>, denoted by the integral sign \(\int\).
+    </p>
+
+    <h2>The Indefinite Integral</h2>
+    <p>
+        Let's start with the derivative relationship:
+    </p>
+    <div class="math-display">
+        \[
+        \frac{dy}{dx} = f'(x)
+        \]
+    </div>
+    <p>
+        To reverse this, we can first write the equation in its <b>differential form</b>. While treating \(\frac{dy}{dx}\) as a fraction is a convenient simplification, it's more formally understood as expressing the small change in \(y\) (\(dy\)) in terms of the small change in \(x\) (\(dx\)):
+    </p>
+    <div class="math-display">
+        \[
+        dy = f'(x) \, dx
+        \]
+    </div>
+    <p>
+        This equation states that a small change in \(y\) is equal to the slope of the function at that point (\(f'(x)\)) multiplied by the corresponding small change in \(x\).
+    </p>
+    <p>
+        Now, we apply the integration operator to both sides. Integration is fundamentally a process of summation. By integrating \(dy\), we are summing all the small changes in \(y\) to reconstruct the total function \(y\).
+    </p>
+
+    <h3>The LEGO Tower Analogy </h3>
+    <p>Imagine you're building a tower out of LEGO bricks.</p>
+    
+    <ul>
+        <li><strong>\(dy\) (a tiny change in \(y\))</strong>: Think of a single, flat LEGO brick. It has a very small height. This single brick represents \(dy\)—a tiny, incremental change in the tower's total height (\(y\)).</li>
+        <li><strong>\(\int \) (The Integral Sign)</strong>: This symbol is just a fancy 'S' that stands for "sum." It's the instruction to start stacking all your tiny pieces together.</li>
+        <li><strong>\(y\) (The Total Function)</strong>: This is your finished LEGO tower. Its total height (\(y\)) is the result of adding up the heights of all the individual bricks (\(dy\)) you stacked one on top of the other.</li>
+    </ul>
+
+    <p>So, the equation <strong>\(\int dy = y\)</strong> is the mathematical way of saying:</p>
+    <blockquote>"If you sum up all the tiny, individual changes in height (\(dy\)), you will reconstruct the total, final height (\(y\))."</blockquote>
+    
+    <p style="text-align:center; font-style:italic; color:#777;"></p>
+
+    <h3>From a Staircase to a Smooth Ramp </h3>
+    <p>Now, let's apply this to a graph.</p>
+    
+    <ol>
+        <li><strong>A Staircase:</strong> Think of a graph that looks like a staircase. To find its total height, you just add up the height of each individual step. Each step is a \(dy\).</li>
+        <li><strong>A Smooth Curve:</strong> A regular function's graph is like a perfectly smooth ramp, not a blocky staircase. This ramp is made of an infinite number of infinitesimally small steps. Each "step" is so tiny you can't even see it, but it's still there—a tiny rise \(dy\) for every tiny run \(dx\).</li>
+    </ol>
+
+    <p>
+        Integration is the powerful tool that allows us to sum up all of these <em>infinite</em> tiny steps to find the total height (\(y\)) of the function at any point. It's how we turn an endless collection of tiny pieces back into the complete, smooth whole.
+    </p>
+
+    <p>
+        Thus, from above equations, we can write,
+    </p>
+    
+    <div class="math-display">
+        \[
+        \int dy = \int f'(x) \, dx
+        \]
+    </div>
+    <p>
+        Since integration reverses differentiation, we get:
+    </p>
+    <div class="math-display">
+        \[
+        y = f(x) = \int f'(x) \, dx
+        \]
+    </div>
+    <p>
+        This is called the <b>indefinite integral</b> or the <b>antiderivative</b>.
+    </p>
+
+    <section class="tangent-animation-container">
+        <h2 class="animation-title"> Tangent and Slope</h2>
+        <p class="animation-subtitle">
+            See how the slope of the tangent line remains the same even when the graph is shifted vertically.
+        </p>
+        <canvas id="tangentGraphCanvas" class="w-full" width="600" height="400"></canvas>
+        <div class="animation-controls">
+            <div>
+                <label for="xValue" class="control-label">
+                    Position on graph (x-value): <span id="xValueLabel" class="value-display">0</span>
+                </label>
+                <input type="range" id="xValue" min="-5" max="5" value="0" step="0.1" class="slider">
+            </div>
+            <div>
+                <label for="cValue" class="control-label">
+                    Vertical Shift (C): <span id="cValueLabel" class="value-display">0</span>
+                </label>
+                <input type="range" id="cValue" min="-3" max="3" value="0" step="0.1" class="slider">
+            </div>
+            <div class="slope-display-box">
+                <p class="slope-text">
+                    Slope of the tangent at x: 
+                    <span id="slopeDisplay" class="slope-value">1.00</span>
+                </p>
+            </div>
+        </div>
+    </section>
+    <h2 id="constant">Why We Need the Constant of Integration, \(C\)</h2>
+    <p>
+        A crucial detail arises when finding an antiderivative. Consider these functions:
+        <ul>
+            <li>\(f(x) = x^2\)</li>
+            <li>\(g(x) = x^2 + 5\)</li>
+            <li>\(h(x) = x^2 - 100\)</li>
+        </ul>
+        If we differentiate each of them, we get the exact same result because the derivative of any constant is zero:
+    </p>
+    <div class="math-display">
+        \[
+        f'(x) = g'(x) = h'(x) = 2x
+        \]
+    </div>
+    <p>
+        When we integrate \(2x\) to reverse the process, which original function should we get back? We have lost the information about the original constant. To account for this, we add a generic constant, \(C\), called the <b>constant of integration</b>.
+    </p>
+    <div class="math-display">
+        \[
+        \int 2x \, dx = x^2 + C
+        \]
+    </div>
+    <p>
+        This single expression represents an entire <b>family of functions</b> (\(x^2\), \(x^2+5\), etc.), all of which are valid antiderivatives of \(2x\). Graphically, these functions are just vertical shifts of one another. As shown in the " Tangent and Slope" animation, shifting a graph vertically doesn't change the slope of its tangent line at any given \(x\)-value. The constant \(C\) captures this ambiguity.
+    </p>
+
+    <h2 id="area">The Definite Integral and Area Under a Curve</h2>
+    <p>
+        Integration isn't just an abstract inverse operation; it has a powerful geometric interpretation: calculating the area under a curve.
+    </p>
+
+    <p>
+        Imagine we want to find the area under the curve \(y = f(x)\) between \(x = a\) and \(x = b\). Many people might argue that it's impossible to find a general formula for determining the area under the curve of \(y = f(x)\). They may believe that in order to find the area, we must first understand the shape of the curve and then break it down into known shapes to calculate the area. 
+    </p>
+
+    <p>
+        We faced a similar dilemma when trying to find the slope of a curve. It was evident that by drawing a proper graph and using scales and other tools, we could calculate the slope; however, finding a general formula seemed unattainable because determining the value of \(\epsilon\) (the length of the subnormal) was challenging. Fortunately, the concept of limits provided a solution.
+    </p>
+
+    <p>
+        Similarly, we are now set out to discover a general formula for finding the area under a curve over an interval without actually graphing the function and measuring its shape.
+    </p>
+
+
+    <section class="integration-animation-container">
+        <h2 class="animation-title">Visualizing Integration with Riemann Sums</h2>
+        <p class="animation-subtitle">
+            Adjust the rectangle width (\(\Delta x\)) to see how the sum of the areas of the rectangles approaches the true area under the curve \(y = x^2\).
+        </p>
+        <canvas id="integrationCanvas" width="600" height="400"></canvas>
+        <div class="integration-controls">
+            <div class="control-item">
+                <label for="dxValue" class="control-label">
+                    Rectangle Width (\(\Delta x\)): <span id="dxValueLabel" class="value-display">0.100</span>
+                </label>
+                <input type="range" id="dxValue" min="0.005" max="0.5" value="0.1" step="0.005" class="slider">
+            </div>
+            <div class="area-display-box">
+                <p class="area-text">
+                    Sum of Rectangle Areas: 
+                    <span id="rectangleArea" class="area-value rectangle-color">2.4700</span>
+                </p>
+                <p class="area-text">
+                    Exact Area Under Curve: 
+                    <span id="exactArea" class="area-value exact-color">2.6667</span>
+                </p>
+            </div>
+        </div>
+    </section>
+    <p>
+        Let's consider a specific graph, for example, \(y = x^2\). A question we ask is: What is the area under this curve? At first glance, the graph doesn’t conform to simple geometric shapes like rectangles or squares, which makes it difficult to determine the area directly. We aim to find a formula that allows us to calculate the area under any function across a specified interval.
+    </p>
+
+    <p>
+        As mentioned earlier, we can approximate the area by breaking it down into familiar shapes for which we know the area formulas. With our understanding of limits, differentiation, and integrals, we can handle even the smallest subdivisions effectively. 
+    </p>
+
+    <p>
+        For any given graph, we can divide the entire area into sums of \(n\) rectangular sections (as illustrated in the graph). It's important to note that using any other shape won't simplify the problem; feel free to test this out yourself. When we calculate the area using rectangles, we observe that the area beneath the graph is actually greater than the total area of the rectangles alone. Thus, we can state that:
+    </p>
+
+    <div class="math-display">
+        \[
+        \textbf{Area under the curve} > \sum_{i=1}^{n} f(x_{i}^\prime) \, \delta x
+        \]
+    </div>
+
+    <p>
+        We may need to clarify the symbols on the right side of this inequality.
+    </p>
+
+    
+    <dl>
+        <h3>Here:</h3>
+        <dd>\(\Delta x\) is the width of each of the \(n\) rectangles, calculated as \(\Delta x = \frac{b-a}{n}\).</dd>
+
+        <dd>\(x_i^\prime\) is a sample point within the \(i\)-th rectangle (e.g., its left endpoint, right endpoint, or midpoint).</dd>
+
+        <dd>\(f(x_i^\prime)\) is the height of the \(i\)-th rectangle.</dd>
+    </dl>
+
+    <p>
+        Depending on how the rectangles are drawn (left, right, midpoint), the sum may overestimate or underestimate the actual area. As \(\Delta x\) is made smaller, both cases lead to the same limiting value.
+    </p>
+
+    <p>
+        The area of each rectangle is calculated as length multiplied by breadth, where the length is represented by \(f(x)\) and the breadth is \(\delta x\). We then sum the areas of all these rectangles within the given interval, leading us to the last equation.
+    </p>
+
+    <p>
+        (Notice that the above inequality is satisfied for this particular graph and this particular way of drawing the graphs and the rectangles. As you will see in the above animation that for certain widths of rectangles, the area of the rectangles is greater than the area under the curve. But whatever the case may be, the discussion that follows after this is satisfied by all the graphs.)
+    </p>
+
+    <p>
+        As we decrease the width \(\delta x\) of the rectangles, their number \(n\) increases, and the total area of the rectangles approaches the area under the curve. This is because the excess area above the rectangles diminishes as their widths reduce. You can adjust the value of \(\delta x\) in the animation above. Given our understanding of limits, we can express this mathematically.
+    </p>
+
+    
+    <div class="math-display">
+        \[
+        \delta x \to 0 \implies  \sum_{i=1}^{n} f(x_{i}^\prime) \, \delta x \to \textbf{area under the graph}
+        \]
+    </div>
+
+    <p>
+        Now, all this means that as \(\delta x\) approaches \(0\), the sum of areas of the rectangles approaches the value of the area under the curve. Also notice that we can also write that \(\delta x \to 0 \implies n \to \infty\). And since we know, \(\delta x \to 0 \implies dx\), but we cannot write 
+    </p>
+
+    <div class="math-display">
+        \[
+        \sum_{i=1}^{n} f(x_{i}^\prime) \, dx
+        \]
+    </div>
+
+    <p>
+        because it would not make sense, instead we use,
+    </p>
+
+    <div class="math-display">
+        \[
+        \int_{a}^{b} f(x) \, dx
+        \]
+    </div>
+
+    <p>
+        as the area under the curve. We use this integral sign because, as we saw in the previous section that if we want to sum up very small elements, we use \(\int\) instead of the usual \(\sum\)(for obvious reasons discussed before). Thus, one could write the following: In general
+    </p>
+
+    <div class="math-display">
+        \[
+        \lim_{\delta x \to 0} \sum_{i=1}^{n} f(x_{i}^\prime) \, \delta x = \int_{a}^{b} f(x). \,dx
+        \]
+    </div>
+    
+    <p>
+        This equation can also be written as,
+    </p>
+
+    <p>
+        <span class="math-inline">
+        <div id="eq:enumeration1">
+        \[
+        \begin{equation}\tag{1}
+            \lim_{n \to \infty}\sum_{i=1}^{n} f(x_{i}^\prime) \, \delta x = \lim_{\delta x \to 0} \sum_{i=1}^{\frac{b-a}{\delta x}} f(x_{i}^\prime) \, \delta x = \int_{a}^{b} f(x). \,dx
+        \end{equation}
+        \]
+        </div>
+    </span>
+    </p>
+
+    <p>
+        Having established that the area under the graph of \(y=f(x)\) from \(x=a\) to \(x=b\) is represented by the following expression,
+    </p>
+
+    <p>
+        <span class="math-inline">
+        <div id="eq:enumeration1">
+        \[
+        \begin{equation}\tag{1}
+            \int_{a}^{b} f(x) dx
+        \end{equation}
+        \]
+        </div>
+    </span>
+    </p>
+    
+    <p>
+        This raises another question in my mind: What if we consider the area under the graph with respect to the \(y\)-axis? Previously, when we discussed the area under the curve, we were referring to the area between the \(x\)-axis and the graph of \(y = f(x)\) from \(x = a\) to \(x = b\). Now, however, we are focusing on the \(y\)-axis instead of the \(x\)-axis.
+    </p>
+
+    <p>
+        I will present the results, but it will be up to the readers to justify them. With a bit of logical reasoning, one can clearly understand why this is true.
+    </p>
+
+    <p>
+        <span class="math-inline">
+            <div id="eq:enumeration1">
+                \[
+                \begin{equation}\tag{1}
+                    \text{The area under the graph of } y = f(x) \text{ with respect to the } y\text{-axis from } y = a \text{ to } y = b \text{ is} \int_{a}^{b} f^{-1}(y)\, dy , 
+                \end{equation}
+                \]
+            </div>
+        </span>
+    </p>
+
+    <p>
+        provided that \( f^{-1}(y)\) is properly defined in the given interval.
+    </p>
+
+    <p>
+        Therefore, it is important to clarify whether we are discussing the area with respect to the \(y\)-axis or the \(x\)-axis. If it is not specified, it is generally understood that we refer to the area with respect to the \(x\)-axis. 
+    </p>
+
+    <p>
+        There is a minor technical issue with the definition of the area under a graph as we initially discussed. Consider the example of a circle. 
+    </p>
+
+    <p>
+        We know the area of a circle of radius \( r \) is 
+    </p>
+
+    <div class="math-display">
+        \[
+        \pi r^2,
+        \]
+    </div>
+
+    <p>
+        and that of a semicircle is
+    </p>
+
+    <div class="math-display">
+        \[
+        \frac{\pi r^2}{2}.
+        \]
+    </div>
+
+    <p>
+        The equation of a circle centered at the origin with radius \( r \) is 
+    </p>
+
+    <div class="math-display">
+        \[
+        x^2 + y^2 = r^2.
+        \]
+    </div>
+
+    <p>
+        Solving for \( y \), we get two functions,
+    </p>
+
+    <div class="math-display">
+        \[
+        y = \sqrt{r^2 - x^2} \quad \text{and} \quad y = -\sqrt{r^2 - x^2},
+        \]
+    </div>
+
+    <p>
+        which represent the upper and lower semicircles, respectively.
+    </p>
+
+    <p>
+        Let's consider integrating the upper semicircle from \(-r\) to \(r\):
+    </p>
+
+    <div class="math-display">
+        \[
+        \int_{-r}^r \sqrt{r^2 - x^2} \, dx.
+        \]
+    </div>
+
+    <p>
+        We use the known indefinite integral formula:
+    </p>
+
+    <div class="math-display">
+        \[
+        \int \sqrt{a^2 - x^2} \, dx = \frac{x}{2} \sqrt{a^2 - x^2} + \frac{a^2}{2} \sin^{-1}\left(\frac{x}{a}\right) + C.
+        \]
+    </div>
+
+    <div class="quote-box">
+        <strong>Theorem: [Second Fundamental Theorem of Calculus]</strong>
+        <p>
+            If 
+            \[
+            \int f(x) \, dx = F(x) + C,
+            \]
+            then 
+            \[
+            \int_a^b f(x)\, dx = F(x) \mid_{a}^{b} = F(b) - F(a).
+            \]
+        </p>
+    </div>
+
+    <p>
+        Using this, we evaluate the definite integral:
+    </p>
+
+    <div class="math-display">
+        \[
+        \int_{-r}^r \sqrt{r^2 - x^2} \, dx = \left[\frac{x}{2} \sqrt{r^2 - x^2} + \frac{r^2}{2} \sin^{-1}\left(\frac{x}{r}\right) \right]_{-r}^r = \frac{\pi r^2}{2}.
+        \]
+    </div>
+
+    <p>
+        But intuitively, the area of a full circle should be \( \pi r^2 \), not \( \frac{\pi r^2}{2} \). Why the discrepancy?
+    </p>
+
+    <p>
+        This happens because the circle’s equation represents two functions, the positive and negative square roots. The negative part corresponds to the area below the \( x \)-axis, which contributes negatively when integrated. Thus,
+    </p>
+
+    <div class="math-display">
+        \[
+        \int_{-r}^r -\sqrt{r^2 - x^2} \, dx = -\frac{\pi r^2}{2}.
+        \]
+    </div>
+
+    <p>
+        When finding the area, we often take the absolute value or sum the areas of both semicircles to get the total positive area:
+    </p>
+
+    <div class="math-display">
+        \[
+        \text{Area of full circle} = \int_{-r}^r \sqrt{r^2 - x^2} \, dx - \int_{-r}^r \left(- \sqrt{r^2 - x^2}\right) \, dx = \pi r^2.
+        \]
+    </div>
+
+    <p>
+        Hence, one must be careful when interpreting the integral as an area, especially if the function dips below the axis.
+    </p>
+
+    <p>
+        As a simple example, consider integrating \( y = x \) from \(-1\) to \(1\):
+    </p>
+
+    <div class="math-display">
+        \[
+        \int_{-1}^1 x \, dx = 0,
+        \]
+    </div>
+
+    <p>
+        even though the graph encloses positive and negative areas (which cancel out in the integral). The area is actually \(1 \)unit.
+    </p>
+
+    <p>
+        It's important to keep that in mind.
+    </p>
+
+    <p>
+        Essentially, this encapsulates the core principles of calculus. There is much more to explore on the topic of calculus, which I will discuss later (see the footer note at the end of this page).
+    </p>
+
+    <h2 id="propertiesf">Properties and Formulas for Integration</h2>
+
+    <p>
+        Integration, as the inverse process of differentiation and the limit of Riemann sums, possesses a rich set of properties and standard formulas. What follows is a summary of the foundational rules and theorems governing indefinite and definite integrals.
+    </p>
+
+    <h3>Linearity of the Integral</h3>
+    <p>
+        For integrable functions \( f(x) \) and \( g(x) \) and a constant \( k \):
+    </p>
+    <div class="math-display">
+    \[
+    \begin{align*}
+        \text{Constant Multiple Rule:} \quad & \int k \cdot f(x)\,dx = k \int f(x)\,dx \\
+        \text{Sum/Difference Rule:} \quad & \int \bigl( f(x) \pm g(x) \bigr)\,dx = \int f(x)\,dx \pm \int g(x)\,dx
+    \end{align*}
+    \]
+    </div>
+
+    <h3>Fundamental Techniques of Integration</h3>
+    <h4>1. Integration by Substitution (u-Substitution)</h4>
+    <p>Let \( u = g(x) \) be a differentiable function.</p>
+    <ul>
+        <li>
+            <strong>Indefinite Integral:</strong>
+            <div class="math-display">\[ \int f(g(x))g'(x)\,dx = \int f(u)\,du \]</div>
+        </li>
+        <li>
+            <strong>Definite Integral:</strong>
+            <div class="math-display">\[ \int_{a}^{b} f(g(x))g'(x)\,dx = \int_{g(a)}^{g(b)} f(u)\,du \]</div>
+        </li>
+    </ul>
+
+    <h4>2. Integration by Parts</h4>
+    <p>Derived from the product rule for differentiation, this technique is used for integrating products of functions. Let \( u \) and \( v \) be differentiable functions.</p>
+    <ul>
+        <li>
+            <strong>Indefinite Integral:</strong>
+            <div class="math-display">\[ \int u\,dv = uv - \int v\,du \]</div>
+        </li>
+        <li>
+            <strong>Definite Integral:</strong>
+            <div class="math-display">\[ \int_{a}^{b} u\,dv = \Big[ uv \Big]_{a}^{b} - \int_{a}^{b} v\,du \]</div>
+        </li>
+    </ul>
+
+    <h3>The Fundamental Theorems of Calculus</h3>
+    <h4>First Fundamental Theorem (FTC1)</h4>
+    <p>If \( f \) is continuous on \( [a, b] \), then the function \( G(x) \) defined by</p>
+    <div class="math-display">\[ G(x) = \int_{a}^{x} f(t)\,dt, \quad x \in [a, b] \]</div>
+    <p>is continuous on \( [a, b] \), differentiable on \( (a, b) \), and its derivative is \( G'(x) = f(x) \). In essence:</p>
+    <div class="math-display">\[ \frac{d}{dx} \int_{a}^{x} f(t)\,dt = f(x) \]</div>
+
+    <h4>Second Fundamental Theorem (FTC2)</h4>
+    <p>If \( f \) is continuous on \( [a, b] \) and \( F \) is any antiderivative of \( f \) (i.e., \( F' = f \)), then:</p>
+    <div class="math-display">\[ \int_{a}^{b} f(x)\,dx = F(b) - F(a) = F(x) \bigg|_{a}^{b} \]</div>
+
+    <h3>Properties of Definite Integrals</h3>
+    <p>Let \( f \) and \( g \) be integrable on an interval containing \( a, b, \) and \( c \).</p>
+    <ol>
+        <li>
+            <strong>Zero-Width Interval:</strong>
+            <div class="math-display">\[ \int_{a}^{a} f(x)\,dx = 0 \]</div>
+        </li>
+        <li>
+            <strong>Reversing Limits:</strong>
+            <div class="math-display">\[ \int_{a}^{b} f(x)\,dx = -\int_{b}^{a} f(x)\,dx \]</div>
+        </li>
+        <li>
+            <strong>Additivity of Intervals:</strong>
+            <div class="math-display">\[ \int_{a}^{c} f(x)\,dx = \int_{a}^{b} f(x)\,dx + \int_{b}^{c} f(x)\,dx \]</div>
+        </li>
+        <li>
+            <strong>King's Property:</strong>
+            <div class="math-display">\[ \int_{a}^{b} f(x)\,dx = \int_{a}^{b} f(a + b - x)\,dx \]</div>
+        </li>
+        <li>
+            <strong>Symmetry Properties:</strong>
+            <ul>
+                <li>If \( f \) is an <strong>even function</strong> (\(f(-x) = f(x)\)), then <div class="math-display">\[ \int_{-a}^{a} f(x)\,dx = 2 \int_{0}^{a} f(x)\,dx \]</div></li>
+                <li>If \( f \) is an <strong>odd function</strong> (\(f(-x) = -f(x)\)), then <div class="math-display">\[ \int_{-a}^{a} f(x)\,dx = 0 \]</div></li>
+            </ul>
+        </li>
+        <li>
+            <strong>Comparison Properties:</strong>
+            <ul>
+                <li>If \( f(x) \geq 0 \) for \( x \in [a, b] \), then <div class="math-display">\[ \int_{a}^{b} f(x)\,dx \geq 0 \]</div></li>
+                <li>If \( f(x) \geq g(x) \) for \( x \in [a, b] \), then <div class="math-display">\[ \int_{a}^{b} f(x)\,dx \geq \int_{a}^{b} g(x)\,dx \]</div></li>
+                <li>If \( m \leq f(x) \leq M \) for \( x \in [a, b] \), then <div class="math-display">\[ m(b-a) \leq \int_{a}^{b} f(x)\,dx \leq M(b-a) \]</div></li>
+            </ul>
+        </li>
+    </ol>
+
+    <h3>Improper Integrals</h3>
+    <h4>Type 1: Infinite Intervals of Integration</h4>
+    <div class="math-display">\[
+    \begin{align*}
+    \int_{a}^{\infty} f(x)\,dx &= \lim_{t \to \infty} \int_{a}^{t} f(x)\,dx \\
+    \int_{-\infty}^{b} f(x)\,dx &= \lim_{t \to -\infty} \int_{t}^{b} f(x)\,dx \\
+    \int_{-\infty}^{\infty} f(x)\,dx &= \int_{-\infty}^{c} f(x)\,dx + \int_{c}^{\infty} f(x)\,dx \quad \text{(provided both integrals converge)}
+    \end{align*}
+    \]</div>
+
+    <h4>Type 2: Integrands with Infinite Discontinuities</h4>
+    <ul>
+        <li>If \( f \) is discontinuous at \( b \): <div class="math-display">\[ \int_{a}^{b} f(x)\,dx = \lim_{t \to b^-} \int_{a}^{t} f(x)\,dx \]</div></li>
+        <li>If \( f \) is discontinuous at \( a \): <div class="math-display">\[ \int_{a}^{b} f(x)\,dx = \lim_{t \to a^+} \int_{t}^{b} f(x)\,dx \]</div></li>
+        <li>If \( f \) is discontinuous at \( c \in (a, b) \): <div class="math-display">\[ \int_{a}^{b} f(x)\,dx = \int_{a}^{c} f(x)\,dx + \int_{c}^{b} f(x)\,dx \]</div></li>
+    </ul>
+
+</div>
+
+</div>
+<footer>
+    <p>The website is currently undergoing development. Due to the ongoing SOME project, updates will not be implemented until September 30th. Consequently, all visitors are encouraged to continue monitoring this website, as I will be offering comprehensive discussions on various mathematical concepts in the near future. There is much more to teach on every topic, and I will also be adding some completed examples and exercises.</p>
+</footer>
+
+<script src="staticGraph.js"></script>
+<script src="discontinuityGraph.js"></script>
+<script src="graphAbs.js"></script> 
+<script src="parabolaGraph.js"></script>
+<script src="carAnimation.js"></script>
+<script src="parabolaCarAnimation.js"></script>
+<script src="dualGraphAnimations.js"></script>
+<script src="tikz-graph.js"></script>
+<script src="scriptgraph.js"></script>
+<script src="tangent.js"></script>
+<script src="calc.js"></script>
+<script src="integration.js"></script>
+</body>
+</html>
+

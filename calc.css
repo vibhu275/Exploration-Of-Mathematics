@@ -1,0 +1,760 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6;
+    padding: 2rem;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+.main-content {
+    max-width: 61.8rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.0618rem;
+}
+
+h1, h2, h3 {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+h2 {
+    font-size: 1.618rem;
+    border-bottom: 2px solid #3b82f6;
+    padding-bottom: 0.5rem;
+}
+
+p {
+    font-size: 1.1618rem;
+}
+
+.page-title {
+    text-align: center;
+}
+
+.title-image {
+    width: 200em;
+    height: 38.2%;
+}
+
+.graph-fart {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border: 1px solid #ddd;
+    width: auto;
+    max-width: 600px;
+    margin: 0 auto; /* Center the graph box */
+    height: auto; /* Set a fixed height for the container */
+}
+
+.graph-fart h3 {
+    font-size: 1.618rem;
+    text-align: center;
+    margin-top: 0;
+}
+
+.graph-fart canvas{
+    max-width: 500px;
+    width: 500px;
+    height: 400px; /* Let height adjust to maintain aspect ratio */
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+/* Specific styling for the first graph box */
+.graph-box {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border: 1px solid #ddd;
+    width: 500px;
+    max-width: 500px;
+    margin: 0 auto; /* Center the graph box */
+    height: auto; /* Set a fixed height for the container */
+}
+
+.graph-box h3 {
+    font-size: 1.618rem;
+    text-align: center;
+    margin-top: 0;
+}
+
+.graph-box canvas{
+    max-width: 500px;
+    width: 500px;
+    height: 400px; /* Let height adjust to maintain aspect ratio */
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+/* Specific styling for the second graph container */
+.graph-container {
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 700px; /* Set a fixed height for the container */
+    max-width: 761px;
+    width: 761px;
+    margin: 0 auto; /* Center the graph box */
+}
+
+.graph-container h3 {
+    text-align: center;
+}
+
+.graph-container canvas{
+    max-width: 761px;
+    width: 761px;
+    height: 500px; /* Let height adjust to maintain aspect ratio */
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+/* Specific styling for the third graph space */
+.graph-space {
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: auto;
+    width: 700px;
+    border: 0 solid #d1d5db;
+    max-height: auto;
+    height: auto; /* Set a fixed height for the container */
+}
+
+.graph-space canvas {
+    width: 700px;
+    height: auto; /* Make canvas fill its parent container */
+    background-color: #f8fafc;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+    .controls {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+.controls button {
+    background-color: #3b82f6;
+    color: #ffffff;
+    font-weight: 700;
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition-property: background-color;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.controls button:hover {
+    background-color: #2563eb;
+}
+
+.coordinates {
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .coordinates {
+        text-align: left;
+    }
+}
+
+.coordinates p {
+    font-family: 'Inter', monospace;
+    font-size: 0.875rem;
+}
+
+.point-left {
+    color: #ef4444;
+}
+
+.point-right {
+    color: #4f46e5;
+}
+
+.code-block {
+    background-color: #e5e7eb;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    color: #1f2937;
+}
+
+.quote-box {
+    border: 2px solid #000;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.definition {
+    padding: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    background-color: #f9fafb;
+}
+
+.definition-list-box {
+    padding: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    background-color: #f9fafb;
+}
+
+.definition-list-box ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+    padding-left: 1.25rem;
+}
+
+.theorem-box {
+    padding: 1rem;
+    border-left: 4px solid #3b82f6;
+    background-color: #eff6ff;
+}
+
+.question {
+    font-weight: 700;
+}
+
+.title-image {
+    max-width: 50%;
+    height: 30%;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ... (rest of your existing CSS) ... */
+
+/* New CSS for the car animation container */
+.animation-container {
+    background-color: #1f2937; /* Dark gray background */
+    color: #e5e7eb; /* Light text color */
+    padding: 2.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    width: 100%;
+    max-width: 36rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.animation-container h3 {
+    color: #e5e7eb;
+    text-align: center;
+    font-size: 1.618rem;
+}
+
+.animation-space {
+    width: 100%;
+    height: auto;
+}
+
+.animation-space canvas {
+    background-color: #2d3748; /* Slightly lighter dark background for the canvas */
+    border-radius: 0.5rem;
+}
+
+.animation-container .controls button {
+    background-color: #f59e0b; /* Amber-500 */
+    color: #1f2937; /* Dark text for contrast */
+    font-weight: 700;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition-property: background-color;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animation-container .controls button:hover {
+    background-color: #d97706; /* Amber-600 */
+}
+
+/* ... (rest of your existing CSS) ... */
+
+/* New CSS for the parabola animation container */
+.parabola-animation-container {
+    background-color: #e2e8f0; /* Lighter background */
+    color: #1f2937; /* Dark text */
+    padding: 2.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    width: 100%;
+    max-width: 36rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.parabola-animation-container h3 {
+    color: #1f2937;
+    text-align: center;
+    font-size: 1.875rem;
+}
+
+.parabola-animation-container .animation-space canvas {
+    background-color: #f8fafc; /* Even lighter background for the canvas */
+    border-radius: 0.5rem;
+    border: 1px solid #d1d5db;
+}
+
+.parabola-animation-container .controls button {
+    background-color: #4f46e5; /* Indigo-500 */
+    color: #ffffff;
+    font-weight: 700;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition-property: background-color;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.parabola-animation-container .controls button:hover {
+    background-color: #4338ca; /* Indigo-600 */
+}
+
+/* ... (rest of your existing CSS) ... */
+
+/* Container for the two animations to be side-by-side */
+.dual-animation-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: #f1f5f9; /* light-slate-100 */
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.animation-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.1), inset 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.animation-wrapper h3 {
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    font-size: 1.5rem;
+    color: #1f2937;
+}
+
+.controls-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.controls-center button {
+    background-color: #10b981; /* Emerald-500 */
+    color: #ffffff;
+    font-weight: 700;
+    padding: 0.75rem 2.5rem;
+    border-radius: 9999px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: background-color 150ms ease-in-out;
+}
+
+.controls-center button:hover {
+    background-color: #059669; /* Emerald-600 */
+}
+
+@media (min-width: 768px) {
+    .dual-animation-container {
+        flex-direction: row;
+    }
+}
+
+/* --- Custom TikZ Graph Styles --- */
+.custom-graph-section {
+    margin-top: 2em;
+    padding: 20px 0;
+}
+
+.custom-graph-box {
+    max-width: 500px;
+    margin: 0 auto; /* Center the graph box */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fafafa;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.custom-graph-box canvas {
+    width: 100%;
+    height: auto; /* Let height adjust to maintain aspect ratio */
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+.graph-container-shit {
+    padding: 2rem;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.graph-display-shit {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 700px;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+        /* --- Main Container --- */
+        /* In calc.css */
+
+/* In your CSS file, find and replace these two rules */
+
+.tangent-slope {
+    width: 100%;
+    max-width: 1200px;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    height: auto;
+    /* REMOVED the "height: 1200px;" property from here */
+}
+
+.tangent-slope canvas {
+    width: 100%;
+    height: 100%;
+    background-color: #f8fafc; /* Lighter background for better contrast */
+    border-radius: 0.5rem;
+    border: 1px solid #e2e8f0;
+    flex: 1; /* ADDED this line to make the canvas fill available space */
+}
+
+/* ========== STYLES FOR TANGENT ANIMATION ========== */
+
+.tangent-animation-container {
+    background-color: #ffffff;
+    border-radius: 0.75rem; /* 12px */
+    border: 1px solid #e5e7eb; /* Cool Gray 200 */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    padding: 2rem; /* 32px */
+    margin: 3rem auto; /* More vertical space */
+    max-width: 61.8rem;
+}
+
+.animation-title {
+    font-size: 1.875rem; /* 30px */
+    font-weight: 700;
+    text-align: center;
+    color: #111827; /* Cool Gray 900 */
+    margin-bottom: 0.5rem;
+}
+
+.animation-subtitle {
+    text-align: center;
+    color: #6b7280; /* Cool Gray 500 */
+    margin-bottom: 2rem; /* More space before the canvas */
+    font-size: 1.125rem; /* 18px */
+}
+
+#tangentGraphCanvas {
+    background-color: #f9fafb; /* Cool Gray 50 */
+    border-radius: 0.5rem; /* 8px */
+    border: 1px solid #e5e7eb; /* Cool Gray 200 */
+}
+
+.animation-controls {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem; /* 24px */
+    margin-top: 2rem; /* More space after the canvas */
+}
+
+@media (min-width: 768px) {
+    .animation-controls {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.control-label {
+    display: block;
+    font-size: 0.875rem; /* 14px */
+    font-weight: 500;
+    color: #374151; /* Cool Gray 700 */
+}
+
+.value-display {
+    font-weight: 700;
+    color: #2563eb; /* Blue 600 */
+    background-color: #eff6ff; /* Blue 50 */
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.25rem;
+    display: inline-block;
+    min-width: 40px;
+    text-align: center;
+}
+
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: #e5e7eb; /* Cool Gray 200 */
+    border-radius: 9999px;
+    outline: none;
+    margin-top: 0.75rem; /* More space for the label */
+    transition: background-color 0.2s ease-in-out;
+}
+
+.slider:hover {
+    background: #d1d5db; /* Cool Gray 300 */
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px; /* Slightly larger */
+    height: 22px; /* Slightly larger */
+    background: #3b82f6; /* Blue 500 */
+    cursor: pointer;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease-in-out;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+.slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    background: #3b82f6;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease-in-out;
+}
+
+.slider::-moz-range-thumb:hover {
+    transform: scale(1.1);
+}
+
+.slope-display-box {
+    grid-column: 1 / -1;
+    text-align: center;
+    background-color: #f0f9ff; /* Sky 50 */
+    padding: 1.25rem; /* More padding */
+    border-radius: 0.5rem;
+    border: 1px solid #e0f2fe; /* Sky 100 */
+}
+
+.slope-text {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 500;
+    color: #0c4a6e; /* Sky 900 */
+}
+
+.slope-value {
+    font-weight: 700;
+    font-size: 1.75rem; /* 28px */
+    color: #0369a1; /* Sky 700 */
+    margin-left: 0.5rem;
+}
+
+/* ========== STYLES FOR INTEGRATION ANIMATION (ENHANCED) ========== */
+
+.integration-animation-container {
+    background-color: #ffffff;
+    border-radius: 0.75rem; /* 12px */
+    border: 1px solid #e5e7eb; /* Cool Gray 200 */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    padding: 2.5rem; /* More padding for a spacious feel */
+    margin: 3rem auto;
+    max-width: 61.8rem;
+}
+
+#integrationCanvas {
+    background-color: #f9fafb; /* Cool Gray 50 */
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    width: 100%;
+    height: auto;
+    margin-bottom: 2rem; /* Space between canvas and controls */
+}
+
+.integration-controls {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem; /* Increased gap */
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .integration-controls {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+.control-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.area-display-box {
+    background-color: #f8fafc;
+    padding: 1.5rem; /* More padding */
+    border-radius: 0.5rem;
+    border: 1px solid #f1f5f9;
+    text-align: left; /* Align text to the left for a cleaner look */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Space between the area text lines */
+}
+
+.area-text {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #374151;
+    margin: 0;
+    display: flex;
+    justify-content: space-between; /* Align value to the right */
+    align-items: center;
+}
+
+.area-value {
+    font-family: 'Inter', monospace; /* Monospaced font for numbers */
+    font-weight: 700;
+    font-size: 1.25rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.375rem;
+}
+
+.rectangle-color {
+    color: #c2410c; /* Amber 700 for better contrast */
+    background-color: #fff7ed; /* Amber 50 */
+}
+
+.exact-color {
+    color: #1d4ed8; /* Blue 700 */
+    background-color: #eff6ff; /* Blue 50 */
+}
+
+/* Re-using slider styles from the tangent animation for consistency */
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 9999px;
+    outline: none;
+    margin-top: 0.75rem;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.slider:hover {
+    background: #d1d5db;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    background: #4f46e5; /* Indigo */
+    cursor: pointer;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease-in-out;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+.slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    background: #4f46e5; /* Indigo */
+    cursor: pointer;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease-in-out;
+}
+
+.slider::-moz-range-thumb:hover {
+    transform: scale(1.1);
+}
+
+/* Footer Styles */
+footer {
+    background-color: #060606; /* A light gray background */
+    border-top: 1px solid #070707; /* A subtle top border */
+    text-align: center; /* Center the text */
+    padding: 25px; /* Add space inside the footer */
+    margin-top: 50px; /* Add space above the footer to separate it from content */
+    font-size: 0.9em; /* Make the font slightly smaller */
+    color: #040404; /* A dark gray text color */
+}
+
+footer p {
+    margin: 5px 0; /* Add a little space between the paragraphs */
+    color: #ffffff;
+}
+
+footer a {
+    color: #007bff; /* A standard blue for links */
+    text-decoration: none; /* Remove the underline from links */
+}
+
+footer a:hover {
+    text-decoration: underline; /* Add underline when hovering over a link */
+}

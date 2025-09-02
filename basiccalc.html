@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basics For Calculus</title>
+
+  <link rel="stylesheet" href="basiccalc.css" />
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+</head>
+
+<body>
+  <header id="title-block-header">
+    <h1 class="title">Basics For Calculus</h1>
+  </header>
+  <h1 id="introduction">Introduction</h1>
+  <p>
+    In this section, we will explore the foundational concepts of calculus. Calculus focuses primarily on limits, differentiation, and integration. To get there, one has to learn some topics and concepts beforehand to properly understand calculus and make it a little easier.
+  </p>
+  <div class="tcolorbox">
+  <p>
+    In the late 17th century, both Sir Isaac Newton and Gottfried Wilhelm Leibniz independently formulated the principles of calculus. Each is recognized for their significant contributions to its development. I encourage readers to further investigate this topic through the accompanying article on 
+    <a href="https://en.wikipedia.org/wiki/History_of_calculus" target="_blank">History Of Calculus.</a> 
+  </p>
+  </div>
+  <p>
+    To effectively understand these concepts, it's essential to have a strong grasp of the foundational topics such as set theory, relations, functions, and geometric concepts like coordinate geometry and vectors, particularly in three dimensions. There is a wide variety of functions, and our goal is to cover a significant portion of them in this discussion.
+  </p>
+  <p>
+    Topics like set theory and logical reasoning are crucial for gaining a deeper understanding of pure mathematics. Since pure mathematics heavily relies on axioms and symbols, studying these subjects is even more important. Calculus is actually classified as part of pure mathematics, specifically within the field of mathematical analysis. I believe it is beneficial to familiarize readers with these concepts, as they will support their future learning.
+  </p>
+  <h1 id="notations">Notations</h1>
+    <p>Readers should first familiarize themselves with the following notations, as I prefer to write using mathematical symbols.
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Meaning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>ℚ⁺</td><td>Set of positive rational numbers</td></tr>
+      <tr><td>ℝ⁺</td><td>Set of positive real numbers</td></tr>
+      <tr><td>{}</td><td>Braces</td></tr>
+      <tr><td>∪</td><td>Union</td></tr>
+      <tr><td>∩</td><td>Intersection</td></tr>
+      <tr><td>∈</td><td>Belongs to</td></tr>
+      <tr><td>∀</td><td>For all / For every</td></tr>
+      <tr><td>∃</td><td>There exists</td></tr>
+      <tr><td>|</td><td>Such that (used in set-builder notation)</td></tr>
+      <tr><td>∧</td><td>And (logical conjunction)</td></tr>
+      <tr><td>∨</td><td>Or (logical disjunction)</td></tr>
+      <tr><td>⇒</td><td>Implies (if ... then ...)</td></tr>
+      <tr><td>⊂</td><td>Is a subset of</td></tr>
+      <tr><td>⇔</td><td>If and only if (iff)</td></tr>
+      <tr><td>≡</td><td>Is equivalent to (equivalence)</td></tr>
+      <tr><td>∅</td><td>Empty set</td></tr>
+      <tr><td>ℕ</td><td>Set of all natural numbers</td></tr>
+      <tr><td>ℤ</td><td>Set of all integers</td></tr>
+      <tr><td>ℚ</td><td>Set of all rational numbers</td></tr>
+      <tr><td>ℝ</td><td>Set of all real numbers</td></tr>
+      <tr><td>ℤ⁺</td><td>Set of all positive integers</td></tr>
+    </tbody>
+  </table>
+
+  <h1 id="set-theory">Set Theory</h1>
+  <p>
+    We begin with set theory, which is fundamentally the foundational language of mathematics. It is essential for articulating and structuring mathematical concepts. In simplest terms, this theory can also be understood as the "Theory of sets." Now, before talking more about the theory of something, shouldn't we first know what that thing is? The readers who already know what sets are and how we write them can skip this section and resume from the next section on 
+    <a href="#comparing-sets">Comparing sets</a>.
+  </p>
+
+  <p>
+    So, what exactly is a set?
+  </p>
+
+  <p>In professional terms,</p>
+  <div class="definition">
+    <p><strong>Definition 1</strong> <em>A set is defined as a well-defined
+    collection of objects.</em></p>
+  </div>
+  <p>
+    Defining a set is just that simple. In our daily lives, we encounter various objects and sometimes collections of objects. A set is a mathematical representation of what we observe around us. For instance, we might refer to a collection of apples or the collection of all the IDs of office workers.
+  </p>
+  
+  <p>
+    We need to establish a conventional and straightforward way to represent a set that is universally accepted, especially for writing extensive and complex research papers. If mathematicians did not adhere to a standardized method for representing sets, significant correspondences, such as Ramanujan's renowned letter to G.H. Hardy, could have been challenging to interpret. This misunderstanding might have altered the course of mathematical history.
+  </p>
+
+  <p>
+    I strongly encourage readers to explore this article on Ramanujan and his relationship with G.H. Hardy.
+    <a href="https://en.wikipedia.org/wiki/Srinivasa_Ramanujan" target="_blank">"Srinivasa_Ramanujan"</a>
+  </p>
+
+  <p>
+    Returning to the discussion of sets, there are two methods to represent a set:
+  </p>
+  <ol>
+    <li>
+      <p>Roster or Tabular form - In this form, the elements of a set is
+        written in {} and are separated by a comma.
+      </p>
+      <p>For example, let the set of even numbers be E. Then in tabular form
+        we’d write it as, 
+        <span class="math display">\[E = \left\{ 2, 4, 6, 8,\ldots \right\}\]</span>
+      </p>
+      <p>Or, the set S of all the students in a class can be represented in
+        tabular form as
+        <span class="math display">\[S=\left\{ Student1, Student2, Student3, Student4,\ldots \right\}\]</span>
+        The elements of this set can also be replaced by the names of each 
+        Individuals students. Right now we have written according to their 
+        roll number, like Student3 just means the student with roll number 3. 
+      </p>
+    </li>
+    <li>
+      <p>Set-builder form - In this form, all the elements of the set have
+        a property that no other element outside the set has that property.
+        Like, 
+        <span class="math display">\[E= \left\{ x \in \mathbb{N}\,\middle|\,  x \: \text{is even}\right\}\]</span>
+      </p>
+    </li>
+  </ol>
+  
+  <p>
+    Now that we understand the different ways to define a set, let’s consider the example provided earlier, where we defined an infinite set that contains all the even numbers. In this case, it is possible to express the set in both the roster form and the set-builder notation. And, can we always represent any set in both forms?
+  </p>
+
+  <p>Let's consider another set, 
+    <span class="math inline">\(A=\left \{2,3,9\right \}\)</span>. 
+    To express this set in set-builder notation, we would write it as 
+    <span class="math inline">\(A=\left \{ x \: \middle| \: x=2,x=3,x=9\right \}\)</span>. 
+     However, using set-builder notation in this case makes the definition more complex than necessary. It's important to think carefully before choosing how to define a set.
+  </p>
+
+  <p>One interesting way to express the set \( S \) (as defined above) in set-builder notation is as follows:
+    <span class="math display">\[S=\left\{ x \mid \text{(x studies in the physics class taught by Kripal Singh)} \right\}\]</span>
+    In this expression, we specify that the set includes students enrolled in the physics class taught by Kripal Singh.
+  </p>
+
+  <p>
+    Defining a finite set can almost always be done in roster form. However, it's not always possible to define an infinite set this way. For instance, consider the set of all real numbers. Can the set of all real numbers be represented in roster form? Think about it.
+  </p>
+
+  <p>
+    Now, let us discuss the properties and characteristics of a set.
+  </p>
+
+  <h2 id="comparing-sets">Comparing Sets</h2>
+  <p>
+    Sets aren't really like numbers at all. When we're comparing them, it's important to stick to the right definitions for how to compare sets.
+  </p>
+
+  <div class="definition">
+    <p>
+      <strong>Definition 2</strong>
+      <em>Two sets 
+        <span class="math inline">\(A\)</span> 
+        and 
+        <span class="math inline">\(B\)</span> 
+        are said to be equal if and only if every element of 
+        <span class="math inline">\(A\)</span> 
+        is in 
+        <span class="math inline">\(B\)</span>
+        , and every element of 
+        <span class="math inline">\(B\)</span> 
+        is in 
+        <span class="math inline">\(A\)</span>.
+      </em>
+    </p>
+  </div>
+  <p>Remember that this is the only requirement for two sets to be equal.</p>
+  <p>Examples of equal sets are as follows: 
+    <span class="math display">\[\ A = \left \{ 1,2,3\right \} = \left \{ 1,2,2,3\right \} =\left \{ 2,3,1\right \}\]</span>
+  </p>
+  <p>The above definition of equal sets can be mathematically written as
+    the following theorem,
+  </p>
+  <div class="theorem">
+    <p><strong>Theorem 1</strong> 
+      <em>Two sets 
+        <span class="math inline">\(A\)</span> 
+        and 
+        <span class="math inline">\(B\)</span> 
+        are equal if and only if 
+        <span class="math display">\[\forall x(x \in A \iff x \in B)\]</span>
+      </em>
+    </p>
+  </div>
+  <div class="tcolorbox">
+    <p>
+      I really think it’s important for readers to pay attention to the symbols because, while a lot of writers stick to plain language to reach a broader audience, I love using symbols in my writing and plan to use them a lot. So, it’s a good idea to get familiar with these notations to keep up with the article. 
+    </p> 
+  </div>
+  
+  <p>
+    The mathematical statement presented in Theorem 1 states the following: For all \( x \), if \( x \) is in set \( A \), then \( x \) is also in set \( B \), and vice versa. We will explore more about mathematical statements and their equivalents in the next section.
+  </p>
+
+  <p>
+    Now, let's explain what subsets are. In simple terms, a subset is a portion of the original set. For example, consider the collection of all the classes taught by any professor at a school as a set. If we take out all the classes taught by the physics professors, we create another set that is a subset of the original set.
+  </p>
+
+  <div class="definition">
+    <p><strong>Definition 3</strong>
+      <em>A subset of a set A is defined as a set that contains elements only from the set A. That is, 
+        <span class="math inline">\(C \subseteq A\)</span> 
+        means every element of
+        <span class="math inline">\(C\)</span> 
+        is also an element of 
+        <span class="math inline">\(A\)</span>.
+      </em>
+    </p>
+  </div>
+  <p>Or mathematically,</p>
+  <div class="theorem">
+    <p><strong>Theorem 2</strong>
+      <em>A set C is a subset of A if and only if 
+        <span class="math display">\[\forall x(x \in C \implies x \in A)\]</span>
+      </em>
+    </p>
+  </div>
+  <p>
+    Please note that, using the above definitions and theorems, we can write 
+    <span class="math display">\[A \subseteq B \text{ and } B \subseteq A \iff A = B\]</span>
+  </p>
+  
+  <p>
+    In arithmetic and algebra, we commonly use symbols like =, <, or > to compare two elements or numbers. This illustrates the definition of an ordered set.
+  </p>
+
+  
+  <div class="definition">
+    <p>A set <em>S</em> with a binary relation &lt; is called a <em>strictly ordered set</em> or <em>totally ordered set</em> if for all <em>x, y, z &isin; S</em>:</p>
+<ol>
+    <li><strong>Trichotomy:</strong> Exactly one of the following holds: <em>x &lt; y</em>, <em>x = y</em>, or <em>y &lt; x</em></li>
+    <li><strong>Transitivity:</strong> If <em>x &lt; y</em> and <em>y &lt; z</em>, then <em>x &lt; z</em></li>
+</ol>
+
+  </div>
+  
+  <p>
+    Understanding this definition will be much easier after readers delve into the section on relations.
+  </p>
+
+  <div class="definition">
+    <p><strong>Definition 4</strong>
+      <em>A proper subset of A is defined as a subset D of A with at least 
+        one element missing from D of the original set A. And is written as 
+        <span class="math inline">\(D \subset A\)</span>.
+      </em>
+    </p>
+  </div>
+
+  <p>That is mathematically,</p>
+  
+  <div class="theorem">
+    <p><strong>Theorem 3</strong> 
+      <em>A set D is a proper subset of A if and only if 
+        <span class="math display">\[\big( \forall x(x \in D \implies x \in A) \big) \land \big( \exists y(y \in A \implies y \notin D) \big)\]</span>
+      </em>
+    </p>
+  </div>
+  
+  <p>
+    Till now the reader must have understood that for comparing any two sets only makes sense when written as 
+    <span class="math inline">\(A \subseteq B\)</span> 
+    and not as 
+    <span class="math inline">\(A\leq B\)</span>.
+  </p>
+
+  <h2 id="finite-and-infinite-set">Finite and Infinite Set</h2>
+  <p>
+    In this section, we will discuss the concept of cardinality, which refers to the number of elements in a set. Sets, in terms of their cardinality, can be categorized into two types: finite sets and infinite sets. The names "finite" and "infinite" provide a clear understanding of the differences between these two types of sets.
+  </p>
+
+  <div class="definition">
+    <p>
+        <strong>Definition 5</strong> 
+        <em>A set is empty or consists of a definite number of elements is 
+          called finite otherwise, the set is called infinite.
+        </em>
+    </p>
+  </div>
+
+  <p>Let us consider an example using basic sets:
+    <ol>
+      <li>
+        <span class="math inline">\(\mathbb{N}\)</span> = The set of all natural numbers.
+      </li>
+      <li>
+        <span class="math inline">\(E\)</span> = The set of all even natural numbers.
+      </li>
+      <li>
+        <span class="math inline">\(O\)</span> = The set of all odd natural numbers.
+      </li>
+    </ol> 
+  </p>
+  <p>
+    Both \(E\) and \(O\) are subsets of \(\mathbb{N}\). Interestingly, while these sets appear different, they are considered "equal" in a particular mathematical sense—a topic we will explore in the section on functions.
+  </p>
+
+  <div class="definition">
+    <p>
+      <strong>Cardinality of a set:</strong> 
+      <em>The cardinality of a set \(A\) is the number of elements contained in \(A\), and is usually denoted by 
+        <span class="math inline">\(n(A)\)</span>.
+      </em>
+    </p>
+  </div>
+
+  <p>
+    But how do we determine the cardinality of an infinite set? We will discuss this concept in more detail in the upcoming section on functions.
+  </p>
+
+  <p>Now we talk about some specific kinds of sets:</p>
+  <div class="definition">
+    <p><strong>Definition 6</strong> 
+      <em>
+        Empty Set: A set is called an empty set if it contains no elements. It is usually denoted by the Greek letter 
+        <span class="math-inline">\( \emptyset \)</span>
+        (phi).
+      </em>
+    </p>
+  </div>
+
+  <div class="definition">
+    <p><strong>Definition 7</strong> 
+      <em>
+        Power Set: A power set is a set that contains all the subsets of a particular set as its elements. The power set of a set \( A \) is typically denoted by 
+        <span class="math-inline">\( \mathcal{P}(A) \)</span>.
+        <span class="math-inline">\[ \mathcal{P}(A) = \{ B \mid B \subseteq A \} \]</span>
+      </em>
+    </p>
+  </div>
+
+  <div class="definition">
+    <p><strong>Definition 8</strong> 
+      <em>
+        Family of Sets: The family of a set is defined as a subset of the power set of that set. The family of a set \( A \) is denoted by 
+        <span class="math-inline">\( F(A) \)</span>.
+        <span class="math-inline">\[ \mathcal{F} = \{ A_i \mid i \in I \} \]</span>
+      </em>
+    </p>
+  </div>
+
+  <p>
+    It is important to note that power sets and families of sets are sometimes confused with one another. However, it is true that 
+    <span class="math-inline">\( \mathcal{F}(A) \subseteq \mathcal{P}(A) \) </span>
+    for any set \( A \). They are sometimes mistaken for one another. But actually 
+    <span class="math-inline">\(\mathcal{F}(A) \subseteq \mathcal{P}(A) \) </span> 
+    for any set A.
+  </p>
+    
+  <p>
+    Now we will explore the operations that can be performed on sets.
+  </p>  
+    
+  <h1 id="operation">Operations on Sets</h1>
+
+  <p>
+    Just as in algebra or arithmetic, we define four basic operations that can be performed on elements or numbers: addition, subtraction, multiplication, and division. Similarly, we can define operations for sets.
+  </p>
+
+  <div class="definition">
+    <p><strong>Definition 9</strong> 
+      <em>Union: The union of two sets A and B is the set containing all elements that belong to A, or B, or both. It is denoted by \(A \cup B\).</em>
+    </p>
+  </div>
+
+  <p>
+    The union can be understood as the set equivalent of addition, although it is not exactly the same as arithmetic addition.
+  </p>
+
+  <div class="definition">
+    <p><strong>Definition 10</strong> 
+      <em>Intersection: The intersection of two sets A and B is the set containing all elements that belong to both A and B. It is denoted by \(A \cap B\).</em>
+    </p>
+  </div>
+
+  <p>
+    In Venn diagrams, the intersection is represented by the elements in the overlapping area of the sets.
+  </p>
+
+  <div class="definition">
+    <p><strong>Definition 11</strong> 
+      <em>Set Difference: The set difference of two sets A and B, denoted by \(A \setminus B\) or \(A - B\), is the set containing elements that belong to A but not to B.</em>
+    </p>
+  </div>
+
+  <p>
+    This operation is similar to subtraction.
+  </p>
+
+  <p>
+    Notice that just like in algebra, where \((a-b)+b=a\), in set theory we can express the relationship \((A \setminus B) \cup B = A\). Readers are encouraged to experiment with the operations of sets and discover relationships like \((A \cup B) \cap C = (A \cap C) \cup (B \cap C)\), among others. It is left to the reader to prove these relationships, and if you are unfamiliar with how to prove such results, I recommend reading the section on 
+    <a href="proof.html" target="_blank">writing proofs</a>. 
+    The readers can use Venn diagrams to become more intuitive about set operations. Venn diagrams are discussed in the next section.
+  </p>
+
+  <p>
+    We can also define union and intersection for a family of sets differently.
+  </p>
+
+  <div class="definition">
+    <p><strong>Definition 12</strong>
+      <em>Suppose \(F\) is a family of sets. Then the intersection and union of \(F\) are the sets \(\cap F\) and \(\cup F\) defined as follows:
+        \[
+        \cap F = \big\{ x \mid \forall A \in F(x \in A) \big\} = \big\{ x \mid \forall A(A \in F \implies x \in A) \big\}.
+        \]
+        \[
+        \cup F = \big\{ x \mid \exists A \in F(x \in A) \big\} = \big\{ x \mid \exists A(A \in F &and; x \in A) \big\}.
+        \]
+      </em>
+    </p>
+  </div>
+
+  <h2 id="venn-diagram">Venn Diagram</h2>
+  <p>
+    This is a great time to discuss one of the most useful representations of sets. It is the easiest way to understand and visualize any operation. This approach makes algebraic statements or equations more intuitive. As we will see, there are situations where simply writing an equation is not enough to fully grasp a problem or concept.
+  </p>
+
+  <p>
+    Most of the relationships between sets can be represented by means of diagrams which are known as Venn Diagrams. 
+  </p>
+
+  <p>
+    Before proceeding, it's important to understand the ground rules regarding Venn diagrams. In Venn diagrams, the universal set \( U \) is represented by points inside a rectangle, while its subsets are depicted as points within closed curves, usually circles, inside the rectangle.
+  </p>
+
+  <p>
+    In the diagram below, we have designated the set of integers as the universe for our discussion. Within this universe, we illustrate the set of even numbers (E) and the set of odd numbers (O) using blue and red colors, respectively. While coloring is not necessary, I chose to do it because it adds a visual element that makes it look appealing.
+  </p>
+
+  <p>
+    As we know, \(E \cap O = \emptyset\), which means an integer is either an even number or an odd number; it can never be both. This non-overlapping nature of the two sets is depicted in the Venn diagram, where the two sets do not intersect. 
+  </p>
+
+  <p>
+    Additionally, we have the set of prime numbers. It is well-known that all prime numbers are odd, with the exception of the first prime number, which is 2 (an even number). Therefore, the entire set of prime numbers is represented within the set of odd numbers, with just a small portion of the set of primes overlapping with the set of even numbers.
+  </p>
+  
+  <div class="venn-title">Venn Diagram: Even, Odd & Prime Numbers</div>
+  
+  <div class="venn-container">
+    <svg width="520" height="280">
+      <!-- Even Numbers Circle -->
+      <circle cx="180" cy="140" r="100" fill="#bbddf5" fill-opacity="0.5" stroke="#3399DD" stroke-width="3"/>
+      <!-- Odd Numbers Circle -->
+      <circle cx="380" cy="140" r="100" fill="#ffcccc" fill-opacity="0.5" stroke="#EE4444" stroke-width="3"/>
+
+      <!-- Prime Set: mostly inside Odd, just nicking Even at 2 -->
+      <ellipse cx="340" cy="140" rx="72" ry="20"
+               fill="#ffe999" fill-opacity="0.5"
+               stroke="#CAA600" stroke-width="3"/>
+
+      <!-- Set Labels -->
+      <text x="110" y="80" font-size="19" fill="#0055aa" font-weight="bold">Even (E)</text>
+      <text x="380" y="85" font-size="19" fill="#cc3300" font-weight="bold">Odd (O)</text>
+      <text x="300" y="145" font-size="18" fill="#666600" font-weight="bold">Prime (P)</text>
+    </svg>
+  </div>
+
+  <p>
+    I hope this explanation provides a clear understanding of how to use Venn diagrams. If you're still unsure, don't worry; you'll become familiar with them in no time!
+  </p>
+
+
+  <h1 id="logical-reasoning">Logical Reasoning</h1>
+  <p>
+    Now in this section, we are going to talk about statements. A mathematical statement is typically defined as a declarative sentence that is either true or false but not both (it has a definite truth value). Every mathematical statement with premises and a conclusion will be basically the core of this discussion.
+  </p>
+
+  <p>
+    A premise is a statement or proposition in an argument that provides support or evidence for the truth of another statement. Premises are the starting points or assumptions on which an argument is built. They lay the groundwork and are taken to be true for the sake of argument. A conclusion is the statement or proposition in an argument that the premises are intended to support or prove. It is what the arguer is trying to establish as true based on the premises provided. An argument is valid if and only if the premises cannot all be true without the conclusion being true as well. Like in the statements below gives some examples:
+  </p>
+
+  <ul>
+    <li>
+      If it rains, then Andrew will not come.
+    </li>
+
+    <p>
+      In this, the premise is "if it rains," as it gives a condition or situation that if this happens, then the next thing, i.e., the conclusion— "then Andrew will not come" —must happen. 
+    </p>
+
+    <p>
+      I hope the following examples will make this concept easy to grasp.
+    </p>
+
+    <li>
+      The weather forecasting people guaranteed that at 4 pm today, it would rain torrentially. Since it's 4 pm now, it must be raining outside.
+    </li>
+
+    <p>
+      The premise in this is, "The weather forecasting people guaranteed that at 4 pm today, it would rain torrentially. Since it's 4 pm now," and the conclusion is, "it must be raining outside." Mostly, the conclusion is the last proposition in a statement that is/will happen if all the above conditions in the premises are met.
+    </p>
+
+    <p>
+      Notice the word "guaranteed" that I purposely used in the premises because the weather forecasting is never 100 percent accurate, and the premise must be the ultimate truth that if the premise happens, the conclusions must happen.
+    </p>
+
+    <li>
+      John sleeps at 9 pm. Since it is 9 pm, he must be sleeping.
+    </li>
+    
+    <li>
+      If you pick a random even number from the set of natural numbers. It will be divisible by 2.
+    </li>
+    
+    <li>
+      Any prime is not divisible by any number other than 1. Since 10007 is prime, it must not be divisible by any number other than 1.
+    </li>
+  </ul>
+
+  <p>
+    The readers must themselves figure out the premise and conclusion in the above three examples.
+  </p>
+
+  <p>
+    Now, we will discuss the symbols used in mathematics for connectives in statements. Connectives are essentially words that link statements, making them more meaningful and mathematically accurate. The three main connectives are as follows:
+  </p>
+
+  <ol>
+    <li>
+      AND - It is mathematically denoted by "&and;". It is used to represent or to mean that both statements must be true.
+    </li>
+    
+    <p>
+      Like, any natural number that is a prime and even, that means that number is 2.
+    </p>
+    
+    <p>
+      In this, the premise consists of two definite conditions. Both conditions are necessary for the conclusion to be correct. Mathematically, the premise could be written as P &and; E, where P denotes the statement that the natural number is prime and E denotes that the natural number is even.
+    </p>
+
+    <li>
+      OR - It is mathematically denoted by "&or;". It is used to mean either this or that, or both are true.
+    </li>
+
+    <p>
+      In this statement, either the cook or the driver did the stealing. There can be a case where both (the cook and the driver) are thieves. So in our discussion, unless specified, we will consider every "or" to be an inclusive one, i.e., writing P &or; Q means that either P is true or Q is true or both are true.
+    </p>
+
+    <li>
+      NOT - It is mathematically denoted by "&not;". It is used to oppose a statement.
+    </li>
+    
+    <p>
+      Like, He did not do it. This statement is basically the opposite of another statement, "He did it."Thus, we can write our original statement "He did not do it" as &not;(He did it).   
+    </p>
+  </ol>
+
+  <p>
+    Look at these examples now,
+  </p>
+  
+  <ol>
+    <li>
+      For all natural numbers \(a\), any other natural number \(b\) will either be greater than or equal to \(a\) or less than or equal to \(b\).
+    </li>
+    
+    <li>
+       If a is greater than or equal to b and b is greater than or equal to a, that means a is equal to b.
+    </li>
+    
+    <li>
+      Since Vinod is Chanchal's brother and Chanchal is Pramod's brother, Vinod is also Pramod's brother.
+    </li>
+
+    <li>
+      Rose is the daughter of Johnny, and Johnny is the son of Lissie, which means that Rose is a granddaughter of Lissie. 
+    </li>
+    
+    <li>
+      He must have had his test today if he went to school. Since he has not gone to school, it follows that he doesn't have his test today. 
+    </li>
+    
+    <li>
+       John goes to school at 8:30 AM. Since it is now 9 AM, he should be at school. If he isn't there, it may mean he is ill and did not attend.
+    </li>
+  </ol>
+
+  <p>
+    In Example (1), we can write the entire statement as 
+    \(\forall a \in \mathbb{N} \ \forall b \in \mathbb{N}\ ((a > b \lor a = b) \lor (a < b \lor a = b))\)
+  </p>
+  
+  <p>
+    We typically write the main statement in parentheses ( ). We also utilise notations defined in set theory.
+  </p>
+
+  <p>
+    The readers must be familiar with the fact that most of the time we write \( (a > b \lor a = b) \) simply as \( a \ge b \) and \( (a < b \lor a = b) \) as \( a \le b \). Thus, we can write our original statement in (1) also as \(\forall a \in \mathbb{N} \ \forall b \in \mathbb{N}\ ( (a \ge b) \lor (a \le b) )\) and notice that it is "inclusive or" that is used here, and the third case, which is of both statements being true, is what the example (2) says, \( ((a \ge b) &and; (a \le b)) &rArr; (a=b) \)
+  </p>
+
+  <p>
+    In example (3), we might need to declare statements for particular variables. If you don't understand what I mean, here's an example.
+  </p>
+
+  <p>
+    We define \(B(x,y)\) as \(x\) is the brother of \(y\). Using this, we can write example (3) as \((B(Vinod,Chanchal) \land B(Chanchal,Pramod)) \rightarrow B(Vinod,Pramod)\).
+  </p>
+
+  <p>
+    We will write example (4) more conveniently, as we will mean \(R\) as Rose, \(J\) as Johnny, and \(L\) as Lissie. We define \(D(x,y)\) as \(x\) is the daughter of \(y\), \(S(x,y)\) as \(x\) is the son of \(y\), and \(G(x,y)\) as \(x\) is the grandchild of \(y\). Using this, we write example (4) as \((D(R,J) \land S(J,L)) \rightarrow G(R,L)\).    
+  </p>
+
+  <p>
+    Example(5) and (6) now can be done by the readers. Hint- just remember that to write "he did not do it", mathematically using the not symbol one can write \(\lnot\)(he did do it).
+  </p>
+
+  <p>
+    In professional mathematical terminology, we say (P ∨ Q) as the disjunction of P and Q, (P ∧ Q) as the conjunction of P and Q, and (¬ P) as the negation of P. I'm just giving these terminologies just to make sure if the readers read some other books and he is not familiar with these terminologies. The real mathematics starts now.
+  </p>
+
+  <p>
+    A question should arise in the reader's mind: how do we mathematically evaluate if a statement is true or false? Well, the above were really simple statements that didn't much need breaking down, but there are actually methods to figure out if a certain statement will be true or false in different cases.
+  </p>
+
+  <p>
+    Let's take a simple example of a statement of the form P ∧ Q. We make a table of different cases and we call this table the truth table (for obvious reasons).
+  </p>
+
+  <h2>Truth Table for \(P \land Q\)</h2>
+  <table>
+    <tr>
+      <th>P</th>
+      <th>Q</th>
+      <th>P &and; Q</th>
+    </tr>
+    <tr>
+      <td>T</td>
+      <td>T</td>
+      <td>T</td>
+    </tr>
+    <tr>
+      <td>T</td>
+      <td>F</td>
+      <td>F</td>
+    </tr>
+    <tr>
+      <td>F</td>
+      <td>T</td>
+      <td>F</td>
+    </tr>
+    <tr>
+      <td>F</td>
+      <td>F</td>
+      <td>F</td>
+    </tr>
+  </table>
+
+  <p>
+    This can be logically understood by taking a general example, "if P \(\land\) Q, then R." For R to happen, the premise must be true, and as it can be seen in the table, the only case in which \(P \land Q\) is true is in the first case when \(P\) and \(Q\) both are true.
+  </p>
+
+  <p>
+    Similarly, we can analyse even complex statements of the form, let's say, \(P \lor \lnot(P \land Q)\). I encourage the readers to try it themselves and make the truth table for this.
+  </p>
+
+  <p>
+    There is another easier way to do this. Only if we could simplify these into something more easily understandable form. Like \(P \lor \lnot(P \land Q)\) is equivalent to \((P \lor \lnot P) \lor \lnot Q\), which is always true. I write below some theorems and laws that contain equivalences that the readers have to understand themselves.
+  </p>
+
+  <div class="law-container">
+      <h2>DeMorgan's laws</h2>
+      <p class="law-statement">
+          \(\neg(P \wedge Q)\) is equivalent to \(\neg P \vee \neg Q\).
+      </p>
+      <p class="law-statement">
+          \(\neg(P \vee Q)\) is equivalent to \(\neg P \wedge \neg Q\).
+      </p>
+  </div>
+
+  <div class="law-container">
+      <h2>Commutative laws</h2>
+      <p class="law-statement">
+          \(P \wedge Q\) is equivalent to \(Q \wedge P\).
+      </p>
+      <p class="law-statement">
+          \(P \vee Q\) is equivalent to \(Q \vee P\).
+      </p>
+  </div>
+
+  <div class="law-container">
+      <h2>Associative laws</h2>
+      <p class="law-statement">
+          \(P \wedge (Q \wedge R)\) is equivalent to \((P \wedge Q) \wedge R\).
+      </p>
+      <p class="law-statement">
+          \(P \vee (Q \vee R)\) is equivalent to \((P \vee Q) \vee R\).
+      </p>
+  </div>
+
+  <div class="law-container">
+      <h2>Idempotent laws</h2>
+      <p class="law-statement">
+          \(P \wedge P\) is equivalent to \(P\).
+      </p>
+      <p class="law-statement">
+          \(P \vee P\) is equivalent to \(P\).
+      </p>
+  </div>
+
+  <div class="law-container">
+      <h2>Distributive laws</h2>
+      <p class="law-statement">
+          \(P \wedge (Q \vee R)\) is equivalent to \((P \wedge Q) \vee (P \wedge R)\).
+      </p>
+      <p class="law-statement">
+          \(P \vee (Q \wedge R)\) is equivalent to \((P \vee Q) \wedge (P \vee R)\).
+      </p>
+  </div>
+
+  <div class="law-container">
+      <h2>Absorption laws</h2>
+      <p class="law-statement">
+          \(P \vee (P \wedge Q)\) is equivalent to \(P\).
+      </p>
+      <p class="law-statement">
+          \(P \wedge (P \vee Q)\) is equivalent to \(P\).
+      </p>
+  </div>
+
+  <div class="law-container">
+      <h2>Double Negation law</h2>
+      <p class="law-statement">
+          \(\neg \neg P\) is equivalent to \(P\).
+      </p>
+  </div>
+
+  <p>
+    Don't move ahead until you have satisfied yourself that these are actually correct. There are two ways to do that: First, you can work on a couple of examples, or secondly, you could try using the fact that "For two equivalent formulas, the truth table is the same."
+  </p>
+
+  <p>
+    Now we can define tautologies and contradictions. Formulas that are always true are tautologies, and those that are always false are called contradictions.
+  </p>
+  
+  <p>
+    Remember we talked about inclusive and exclusive or. Well, we represent them in a different way.
+  </p>
+
+  <ol>
+    <li>
+      \(P &oplus; Q\) means P or Q, but not both.
+    </li>
+    <li>
+      \(P &darr; Q\) means neither P nor Q.
+    </li>
+    <li>
+      \(P \mid Q\) means P and Q are not both true.
+    </li>
+  </ol>
+  
+  <h1 id="relation">Relation</h1>
+
+  <p>What does "relation" mean in a practical sense? For example, phrases like "he is my brother" or "she is my uncle's cousin's daughter's grandmother" describe certain relationships. It's important to note that to establish a meaningful relationship, we need at least two people involved. In mathematical terms, this means that "we must have at least two elements to define a relation."</p>
+  <p>In pure mathematics, we define relations in a similar way. Since relations are defined as ordered pairs, it is essential to understand this concept before exploring what relations truly are.</p>
+ 
+  <h2 id="ordered">Ordered Pair and Cartesian Products</h2>
+
+  <p>We will refer to a pair \((a, b)\) as an ordered pair, where \(a\) is the first coordinate and \(b\) is the second coordinate. It is important to note that \((a, b)\) and \((b, a)\) are considered different pairs. In simple terms, the order of the elements in these pairs matters.</p>
+  
+  <p>This provides insight into how one might define an ordered pair.</p>
+  <div class="definition">
+    <p><strong>Definition 13</strong> 
+      <em> Suppose A and B are sets. Then the cartesian product of A and B, denoted by \(A \times B\), is the set of all the ordered pair in which 
+        the first coordinate is an element of A and the second is an element of B. In other words,
+      </em>
+        <span class="math display">\[A \times B = \big \{ (a,b) \mid a \in A &and; b \in B \big\}\]</span>
+    </p>
+  </div>
+  
+
+  <p>It is important to not confuse the Cartesian product of sets with the standard multiplication of two numbers. The Cartesian product has different properties compared to regular multiplication. We will learn more about its properties ahead.</p>
+
+  <div class="theorem">
+    <p><strong>Theorem 4</strong> 
+      <em>Suppose A,B,C and D are sets,
+        <ol>
+          <li><span class="math inline">\(A \times (B \cap C) = (A \times B) \cap (A \times C)\)</span></li>
+          <li><span class="math inline">\(A \times (B \cup C) = (A \times B) \cup (A \times C)\)</span> </li>
+          <li><span class="math inline">\((A \times B) \cap (C \times D) = (A \cap C) \times (B \cap D)\)</span> </li>
+          <li><span class="math inline">\((A \times B) \cup (C \times D) \subset (A \cup C) \times (B \cup D)\)</span> </li>
+          <li><span class="math inline">\(A \times \phi = \phi \times A = \phi\)</span> </li>
+          <li><span class="math inline">\(A \times (B \backslash C) = (A \times B) \backslash (A \times C) \)</span> </li>
+        </ol>
+      </em>
+    </p>
+  </div>
+ 
+  <p>These are the important properties to consider when working with an Ordered Pair or a Cartesian Product. While some properties resemble those of general multiplication, not all do (for example, see property 4). I encourage readers to explore the proofs on their own, but I will provide parts of some proofs to help you understand better.</p>
+
+  <p>Proof of (1) - Let \( p \) be an arbitrary element of \( A \times (B \cap C) \). By the definition of a Cartesian product, \( p \) must be an ordered pair whose first coordinate is an element of \( A \) and whose second coordinate is an element of \( B \cap C \). In other words, we can write \( p = (x, y) \) where \( x \in A \) and \( y \in B \cap C \). The condition \( y \in B \cap C \) means that \( y \in B \) and \( y \in C \). Since \( x \in A \) and \( y \in B \), we have \( p = (x, y) \in A \times B \). Similarly, we can show that \( p \in A \times C \). Thus, it follows that \( p \in (A \times B) \cap (A \times C) \). Since \( p \) was an arbitrary element of \( A \times (B \cap C) \), we conclude that \( A \times (B \cap C) \subseteq (A \times B) \cap (A \times C) \).</p>
+
+  <p>To establish the equality, we need to show that \( (A \times B) \cap (A \times C) \subseteq A \times (B \cap C) \). This part is left for the reader to prove.</p>
+
+  <p>The rest is up to the readers to prove. However, property (4) stands out as particularly interesting to demonstrate. Refer to the section on 
+    <a href="proof.html" target="_blank">proofs</a>
+    to understand that we need to use cases in our reasoning.</p>
+
+  <p>I encourage readers to also explore why the equation \((A \times B) \cup (C \times D) = (A \cup C) \times (B \cup D)\) is not true.</p>
+
+  <p>Now that we understand what an ordered pair is, let's revisit the definition of a relation in mathematical terms. A relation between two sets can be described as a subset of the Cartesian product of those sets. More formally, we can define it as follows:</p>
+
+  <div class="definition">
+    <p><strong>Definition 14</strong> 
+      <em>Relation: Let \(A\) and \(B\) be sets. A set \(R \subseteq A \times B\) is called a relation from \(A\) to \(B\).</em>
+    </p>
+  </div>
+
+  <p>When we define a relation from a set \(A\) to a set \(B\), we first consider the Cartesian product \(A \times B\), which contains all possible ordered pairs \((a, b)\) where \(a \in A\) and \(b \in B\).</p>
+
+  <p>A relation is then specified as a <b>subset</b> of \(A \times B\); that is, only those pairs \((a, b)\) for which the relation holds are included. This is important because not every element of \(A\) must be related to every element of \(B\), and the relation itself serves to "filter" the valid pairs from all possibilities.</p>
+
+  <p>We cannot simply restrict \(A\) and \(B\) to consist only of elements that participate in the relation because that would make the definition circular—defining our underlying sets using the very relation we aim to define.</p>
+
+  <p>Thus, by starting with \(A \times B\) and specifying the relation as a subset, we ensure clear and precise separation between the sets and the relation itself.</p>
+
+  <p>Since \(R\) effectively filters out the sets, the following are the useful terms we use after filtering out the sets,</p>
+
+  <div class="definition">
+    <p><strong>Definition 15</strong> 
+      <em> Suppose R is a relation from A to B. Then the domain of R is the set
+        $$ Dom(R) = \{ a &isin; A &mid; &exist; b &isin; B &middot; (a, b) &isin; R \}$$
+        The range if R is the set
+        $$ Ran(R) = \{ b &isin; B &mid; &exist; a &isin; A &middot; (a, b) &isin; R \}$$
+        The inverse of R is the relation \(R^{-1}\) from B to A defined as follows:
+        $$ R^{-1} = \{ (b,a) &isin; B &times; A &mid; (a,b) &isin; R \}.$$
+      </em>
+    </p>
+  </div>
+
+  <p>Relations describe connections between elements of two sets. When we have two separate relations connecting three sets in sequence, we can combine, or compose, these relations to form a new relation that directly links the first set to the third. This composition captures the indirect connection established by 'passing through' the intermediate set.</p>
+
+  <div class="definition">
+    <p><strong>Definition 15</strong> 
+      <em> Let \( R \subseteq A \times B \) be a relation from set \( A \) to set \( B \), and \( S \subseteq B \times C \) be a relation from \( B \) to \( C \).
+    The <b>composition</b> of \( S \) with \( R \), denoted by \( S \circ R \), is a relation from \( A \) to \( C \) defined by
+    \[
+    S \circ R = \{ (a, c) \in A \times C \mid \exists b \in B \text{ such that } (a, b) \in R \text{ and } (b, c) \in S \}.
+    \]
+      </em>
+    </p>
+  </div>
+  
+  <p>This means that \( a \) is related to \( c \) via the composition if there exists an intermediate element \( b \) such that \( a \) is related to \( b \) through \( R \), and \( b \) is related to \( c \) through \( S \). The composition isn't defined if the 2nd in R and 1st in S were not the same. The domain of \(R = \big \{ (a,b) \in A \times B \big\}\) can be subset of A. Composition of relation is not commutative.</p>
+
+  <p>Based on the above discussions, here are some properties to keep in mind. The proofs of these properties are left as an exercise to the reader. These proofs are quite straightforward, and working through them will help deepen your understanding and keep you actively engaged with the material, rather than passively reading without fully grasping the concepts.</p>
+
+  <div class="theorem">
+    <p><strong>Theorem 5</strong> 
+      <em>Suppose R is a relation from A to B, S is a relation from B to C, and T is a relation from C to D. Then: 
+          <ol>
+            <li><span class="math inline">\( (R^{-1})^{-1} = R \)</li>
+            <li><span class="math inline">\( Dom(R^{-1}) = Ran(R) \)</li>
+            <li><span class="math inline">\( Range(R^{-1}) = Dom(R) \)</li>
+            <li><span class="math inline">\( T &compfn; (S &compfn; R) = (T &compfn; S) &compfn; R \)</li>
+            <li><span class="math inline">\( (S &compfn; R)^{-1} = R^{-1} &compfn; S^{-1} \)</li>
+          </ol>
+        </span>
+      </em>
+    </p>
+  </div>
+
+  <h2>Ordering Relations</h2>
+  <p>Among relations, some possess special properties that allow us to understand and organize elements in structured ways.</p>
+
+  <p>Before diving into formal definitions, imagine a relation as a rule that associates elements with one another. Some relations inherently include each element paired with itself, some relations behave the same forwards and backwards, and others let you 'chain' connections logically.</p>
+  
+  <div class="definition">
+    <p><strong>Definition 16</strong> 
+      <em> Suppose R is a relation on A. 
+        <ol>
+            <li>\(R\) is said to be replexive in \(A\)  if \(\forall x \in A(xRx)\),
+                or in other words \(\forall x \in A((x,x)\in R)\).
+            </li>
+            <p>Intuitively, think of this as the idea that every element is "connected" to itself.</p>
+            <li>\(R\) is symmetric if \(\forall x \in A \forall y \in A (xRy
+                \implies yRx)\).
+            </li>
+            <p>This means if \( x \) is related to \( y \), then \( y \) is also related to \( x \).</p>
+            <li>\(R\) is transitive if \(\forall x \in A \forall y \in A \forall 
+                z \in A ((xRx &and; yRz) \implies xRz) \).
+            </li>
+            <p>Transitivity expresses the power of chaining relations together.</p>
+        </ol>
+      </em>
+    </p>
+  </div>
+
+  <p>In certain contexts, it is customary to denote the relation between elements \(x\) and \(y\) using the notation \(xRy\) as an alternative to the expression \((x,y) \in R\).</p>
+
+  <p><b>Why do these matter?</b>Relations with all three properties, called equivalence relations, allow us to partition sets into meaningful 'classes' of elements indistinguishable under the relation – a beautiful concept that structures mathematics and its applications.</p>
+
+  <p>These properties can be equivalently described in terms of set inclusions and inverses:</p>
+
+  <div class="theorem">
+    <p><strong>Theorem 6</strong> 
+      <em>Suppose \(R\) is a relation on a set \(A\).
+        <ol>
+            <li>\(R\) is reflexive iff \(i_A \subset R\), where as before 
+                \(i_A\) is the identity relation on \(A\).
+            </li>
+            <li>\(R\) is symmetric iff \(R = R^{-1}\).</li>
+            <li>\(R\) is transitive iff \(R &compfn; R \subset R\).</li>
+        </ol>
+      </em>
+    </p>
+  </div>
+
+  <p>Understanding these equivalences deepens our grasp of how relations behave structurally—it links algebraic operations on relations to intuitive properties.</p>
+  
+  <p>Not all relations are symmetric. Sometimes, to organize elements meaningfully, symmetry is replaced by a weaker condition called antisymmetry:</p>
+
+  <div class="definition">
+    <p><strong>Definition 17</strong> 
+      <em> Suppose R is a relation on a set A. Then \(R\) is said to be 
+        antisymmetric if \(\forall x \in A \forall y \in A((xRy &and; yRx)
+        \implies x=y)\).
+      </em>
+    </p>
+  </div>
+
+  <p>Pairs of elements relate in only one direction unless they are identical—this is crucial for defining ordering.</p>
+
+  <div class="definition">
+    <p><strong>Definition 18</strong> 
+      <em> Suppose R is a relation on a set A. Then \(R\) is called a 
+        partial order on \(A\) if it is reflexive, transitive and antisymmetric. It is 
+        called a total order on \(A\) if it is a partial
+        order, and in addition it has the following property:
+
+        <span class="math inline">\[ \forall x \in A \forall y \in A
+            (xRy &or; yRx) \].
+        </span>
+      </em>
+    </p>
+  </div>
+
+  <p>Partial orders let you compare some pairs, while total orders let you compare every pair. Think of partial orders like hierarchy charts where not all elements are comparable, and total orders like the natural order of numbers.</p>
+
+  <p>Let \(L = \big\{ (x,y) \in R \times R \mid x \leq y \big\}\)
+    and \(S = \big\{ (x,y) \in B \times B \mid x \subset y \big\}\). Where
+    \(B = \mathcal{P}(A), A = \big\{ 1,2 \big\} \). The relations \(L\) and 
+    \(S\) are both partial orders. \(S\) is not a total order, because it 
+    isn't true that \(\forall x \in B \forall y \in B (xRy \lor yRx) \). 
+    For example, if we let \(x = \big\{1\big\}\) and \(y = \big\{2\big\}\),
+    then \(x \not\subset y \) and \(y \not\subset x \). Thus, although we can 
+    think of relation \(S\) as indicating as one elt of \(B\) might be at least
+    as large as another, it does not give us a way of comparing every pair of
+    elements of B.
+  </p>
+
+  <p>\(L\) is a total order, Thus, \(L\) give us a way of comparing any two 
+    real numbers.
+  </p>
+
+  <p>When dealing with partial orders, not all subsets have a "smallest" element, but the notions of minimal and smallest elements help us understand element hierarchies:</p>
+
+  <div class="definition">
+    <p><strong>Definition 19</strong> 
+      <em>
+        Suppose R is a partial order on a set A, B \( \subseteq \) A, and b \( \in \) B.
+      </em>
+    </p>
+    <p>
+      <em>
+        Then b is called an R-smallest element of B (or just a smallest element if R
+        is clear from the context) if \( \forall \)x \( \in \) B(bRx).
+      </em>
+    </p>
+    <p>
+      <em>
+        It is called an R-minimal element (or just a minimal element) if \( \neg \exists \)x \( \in \) B(xRb \( \wedge \) x \( \neq \) b).
+      </em>
+    </p>
+  </div>
+
+  <p>These definitions distinguish between an outright smallest element, which relates to all others, and minimal elements, which may just be 'locally' smallest with no element strictly below them.</p>
+  
+  <div class="theorem">
+    <p><strong>Theorem 7</strong> 
+        <em>
+            Suppose R is a partial order on a set A, and B \( \subseteq \) A.
+        </em>
+    </p>
+    <ol>
+        <li>
+            <em>
+                If \( B \) has a smallest element, then this smallest element is unique. Thus, we can speak of the smallest element of \( B \) rather than a smallest element.
+            </em>
+        </li>
+        <li>
+            <em>
+                Suppose \( b \) is the smallest element of \( B \). Then \( b \) is also a minimal element of \( B \), and it is the only minimal element.
+            </em>
+        </li>
+        <li>
+            <em>
+                If \( R \) is a total order and \( b \) is a minimal element of \( B \), then \( b \) is the smallest element of \( B \).
+            </em>
+        </li>
+    </ol>
+  </div>
+
+  <p>These theorems illustrate the tight link between minimality and uniqueness in ordered structures, key for understanding order theory.</p>
+
+  <div class="proof">
+    <p><em>Proof.</em></p>
+    <ol>
+        <li>
+            <em>
+                Suppose \( b \) is a smallest element of \( B \), and suppose \( c \) is also a smallest element of \( B \). Since \( b \) is a smallest element, \( \forall x \in B (bRx) \), so in particular \( bRc \). Similarly, since \( c \) is a smallest element, \( cRb \). But now since \( R \) is a partial order, it must be antisymmetric, so from \( bRc \) and \( cRb \) we can conclude \( b = c \).
+            </em>
+        </li>
+        <li>
+            <em>
+                Let \( x \) be an arbitrary element of \( B \) and suppose that \( xRb \). Since \( b \) is the smallest element of \( B \), we must have \( bRx \), and now by antisymmetry it follows that \( x = b \). Thus, \( b \) must be a minimal element.
+            </em>
+            <p>
+                <em>
+                    To see that it is the only one, suppose \( c \) is also a minimal element. Since \( b \) is the smallest element of \( B \), \( bRc \). But then since \( c \) is minimal, we must have \( b = c \). Thus \( b \) is the only minimal element of \( B \).
+                </em>
+            </p>
+        </li>
+        <li>
+            <em>
+                Suppose \( R \) is a total order and \( b \) is a minimal element of \( B \). Let \( x \) be an arbitrary element of \( B \). If \( x = b \), then since \( R \) is reflexive, \( bRx \). Now suppose \( x \neq b \). Since \( R \) is a total order, we know that either \( xRb \) or \( bRx \). But \( xRb \) can’t be true, since by combining \( xRb \) with our assumption that \( x \neq b \) we could conclude that \( b \) is not minimal, thereby contradicting our assumption that it is minimal. Thus, \( bRx \) must be true. Since \( x \) was arbitrary, we can conclude that \( \forall x \in B (bRx) \), so \( b \) is the smallest element of \( B \).
+            </em>
+        </li>
+    </ol>
+  </div>
+
+  <p>If we have a relation of \(x \geq y \), then the greatest element of the set would be the R-smallest or R-minimal element of the set.</p>
+
+  <p>A set is the smallest one with a certain property means that the set has the property and that it is the subset of every set with the property.</p>
+
+  <div class="definition">
+    <p><strong>Definition 20</strong> 
+        <em>
+            Suppose \( R \) is a partial order on \( A \), \( B \subseteq A \), and \( a \in A \). Then \( a \) is called a <em>lower bound</em> for \( B \) if \( \forall x \in B (aRx) \). Similarly, it is an <em>upper bound</em> for \( B \) if \( \forall x \in B (xRa) \).
+        </em>
+    </p>
+  </div>
+
+  <p>A smallest element of B is just a lower bound that is also an elt of B.</p>
+
+  <div class="definition">
+    <p><strong>Definition 21</strong> 
+        <em>
+            Suppose \( R \) is a partial order on \( A \) and \( B \subseteq A \). Let \( U \) be the set of all upper bounds for \( B \), and let \( L \) be the set of all lower bounds. If \( U \) has a smallest element, then this smallest element is called the <em>least upper bound</em> of \( B \). If \( L \) has a largest element, then this largest element is called the <em>greatest lower bound</em> of \( B \). The phrases <em>least upper bound</em> and <em>greatest lower bound</em> are sometimes abbreviated <em>l.u.b.</em> and <em>g.l.b.</em>
+        </em>
+    </p>
+  </div>
+
+  <div class="theorem">
+    <p><strong>Theorem 8</strong> 
+        <em>
+            Suppose \( A \) is a set, \( \mathcal{F} \subseteq \mathcal{P}(A) \), and \( \mathcal{F} \neq \varnothing \). Then the least upper bound of \( \mathcal{F} \) (in the subset partial order) is \( \bigcup \mathcal{F} \) and the greatest lower bound of \( \mathcal{F} \) is \( \bigcap \mathcal{F} \).
+        </em>
+    </p>
+  </div>
+
+  <p>This journey through ordering relations illuminates the rich structure underlying sorting, comparison, and classification in mathematics. Embracing these concepts strengthens logic and prepares you for deeper studies in set theory, algebra, and topology. Let curiosity guide your exploration—math shines brightest when it becomes a language for understanding connections.</p>
+
+  <h2>Equivalence Relation</h2>
+  <p>
+    The concept of an equivalence relation is fundamental in mathematics, underpinning the process of grouping objects that share similar properties.
+  </p>
+
+  <div class="definition">
+    <p><strong>Definition 22</strong> 
+        <em>
+          Let \( R \) be a relation on the set \( A \) (that is, \( R \subseteq A \times A \)). We say that \( R \) is an equivalence relation on \( A \) if it satisfies the following three properties for all \( a, b, c \in A \):
+          <ol>
+            <li><b>Reflexivity</b>: \( (a, a) \in R \)</li>
+            <li><b>Symmetry</b>: If \( (a, b) \in R \), then \( (b, a) \in R \)</li>
+            <li><b>Transitivity</b>: If \( (a, b) \in R \) and \( (b, c) \in R \), then \( (a, c) \in R \)</li>
+          </ol>
+        </em>
+    </p>
+  </div>
+
+  <p>
+    Equivalence relations play a vital role throughout mathematics. One of their most elegant applications is their connection with partitions of a set. Partitioning a set not only organizes its elements but also allows us to define a relation that connects elements within each subset. In this way, equivalence relations and partitions together can impose cyclic or repeating structures on mathematical objects.
+  </p>
+
+  <p>
+    Given any partition of a set, we naturally obtain an equivalence relation: two elements are considered equivalent precisely when they belong to the same cell (subset) of the partition. This method is widely used to organize, classify, and analyze mathematical structures—especially those exhibiting symmetry or periodicity.
+  </p>
+
+  <p>But what is <b>partition</b> anyway?</p>
+
+  <div class="definition">
+    <p><strong>Definition 23</strong> 
+        <em>
+          Let \( A \) be a set and \( F \subseteq \mathcal{P}(A) \). We call \( F \) a partition of \( A \) if:
+          <ol>
+            <li>The subsets are pairwise disjoint: \( \big( \forall X,Y \in F,(\ X \neq Y \implies X \cap Y = \varnothing) \big) \)</li>
+            <li>The union of all subsets is the entire set: \( \bigcup F = A \)</li>
+            <li>Each subset is nonempty: \( \forall X \in F,\ X \neq \varnothing \)</li>
+          </ol>
+        </em>
+    </p>
+  </div>
+
+  <p>
+    The concept of an <b>equivalence class</b> is central to the study of equivalence relations.
+  </p>
+
+  <div class="definition">
+    <p><strong>Definition 24</strong> 
+        <em>
+          Let \( R \) be an equivalence relation on a set \( A \), and fix \( a \in A \). The <b>equivalence class</b> of \( a \) with respect to \( R \) is
+          \[
+          [a]_R = \{ x \in A \mid (a, x) \in R \}
+          \]
+        </em>
+    </p>
+  </div>
+
+  <p>
+    The set of all equivalence classes is denoted by \( A / R \), and is called the <b>quotient set</b> (or "modulo" set) of \( A \) by \( R \):
+    \[
+    A/R = \{ [x]_R \mid x \in A \} = \{ X \subseteq A \mid \exists x \in A,\ X = [x]_R \}
+    \]
+  </p>
+
+  <p>
+    The intimate connection between equivalence relations and partitions is summarized in the following theorems:
+  </p>
+
+  <div class="theorem">
+    <p>
+        <strong>Theorem 9</strong>
+        <em>
+          If \( R \) is an equivalence relation on \( A \), then \( A / R \) forms a partition of \( A \).
+        </em>
+    </p>
+  </div>
+
+  <div class="theorem">
+    <p>
+        <strong>Theorem 10</strong>
+        <em>
+          If \( F \) is a partition of \( A \), then there is an equivalence relation \( R \) on \( A \) such that \( A / R = F \).
+        </em>
+    </p>
+  </div>
+
+  <p>
+    In fact, if we start from a partition \( F \) of \( A \), define a relation \( R = \bigcup_{X \in F} (X \times X) \) on \( A \), and then consider the equivalence classes of \( R \), we return precisely to our original partition. This establishes a deep and elegant duality between equivalence relations and set partitions.
+  </p>
+
+  <h1 id="function">Function</h1>
+  <p>Now we arrive at the final topic: Functions.</p>
+  
+  <p>It is unequivocally evident that the concept of a function represents one of the most crucial topics within the discipline of mathematics. At its core, a function is a rule that assigns to each valid input exactly one output.</p>
+
+  <p>A basic definition of a function can be described as a machine: you provide an input, and the machine processes it to produce a single, corresponding output. It is a critical property that for any given input, a function will never produce more than one output. Calculus is fundamentally the study of how functions change, making a solid understanding of them essential.</p>
+
+  <p>At its heart, a function is a rule that establishes a clear and reliable relationship between two sets of values. Think of it as a perfect recipe: for a specific set of inputs (ingredients), you are guaranteed to get one specific output (the final dish).</p>
+  
+  <div class="definition">
+    <p><strong>Definition 25</strong> 
+        <em>
+          Let \(F\) be a relation from \(A\) to \(B\). \(F\) can be qualified as a function if 
+          \[
+          \forall a \in A \exists! b \in B \big( (a,b) \in F \big)
+          \]
+        </em>
+    </p>
+  </div>
+
+  <p>A function \(F\) from \(A\) to \(B\) is written as \(F : A \to B\) and from above definition, for all a in A, there exists only one b in B such that \(F(a)=b\) or that \((a,b)\) satisfies the relation. A function can be called a relation, but a relation can not necessarily be called a function. Thus, we can understand a function as a special kind of relation.</p>
+
+  <p>The "one output for each input" rule has a simple graphical equivalent: the <b><u>Vertical Line Test</u></b>. A vertical line on a graph represents a single x-value. If you can draw a vertical line that touches the graph in more than one place, it means that one x-value corresponds to multiple y-values, and therefore, the graph is not a function. Some might think the graph of a circle defies this. But there doesn't exist a function that defines a full circle.</p>
+
+  <p>Just as we defined domain and range in relation, we also have the same definition here. However, there is an additional term: "Codomain." </p>
+
+  <p>To talk about functions precisely, we use the terms domain, codomain, and range.</p>
+
+  <ul>
+    <li><b>Domain:</b>The set of all possible valid inputs.</li>
+    <li><b>Codomain:</b>The set of all potential outputs. It's a general description of the type of values the function can produce.</li>
+    <li><b>Range:</b>The set of all actual outputs the function produces. The range is always a subset of the codomain.</li>
+  </ul>
+
+  <p>More mathematical definition,</p>
+
+  <div class="definition">
+    <p><strong>Definition 26</strong> 
+      Suppose a function is defined as \(F : A \to B\),
+        <em>
+          The domain of \( f \) is the set \( A \), which is defined formally,
+          \[
+          \text{Domain}(f) = A = \big\{a \in A \mid \exists b \in B (f(a)=b) \big\}.
+          \]
+        </em>
+        <em>
+          The range (also called the image) of \( f \) is the set of all actual outputs attained by applying \( f \) to elements of the domain:
+          \[
+          \text{Range}(f) = \big\{b \in B \mid \exists a \in A (f(a)=b) \big\}.
+          \]
+        </em>
+        <em>
+          The codomain of \( f \) is the set \( B \), which is the set that contains all potential outputs of the function \( f \). The codomain may include values that are not actual outputs of \( f \).
+          \[
+          \text{Codomain}(f) = B 
+          \]
+          and 
+          \[
+          \text{Range}(f) \subseteq \text{Codomain}(f) = B
+          \]
+        </em>
+        
+    </p>
+  </div>
+
+  <p>Now that we have a clear and precise definition of a function, let us explore some of the various types of functions encountered in mathematics. While we won't examine every possible type, we'll discuss a selection that offers a broad perspective and helps reveal the rich diversity and structure within the world of functions.</p>
+
+  <h2>Polynomial Function</h2>
+  <div class="definition">
+    <p><strong>Definition 27</strong> 
+        <em>
+          A polynomial function is a mathematical function that can be expressed in the form:
+          \[
+          f(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0
+          \]
+          where \( n \in \mathbb{N} \cup \{0\} \), \( a_i \in \mathbb{C} \) for all \( i \in \{0,1,\dots,n\} \), and \( a_n \neq 0 \).
+        </em>
+    </p>
+  </div>
+
+  <p>We refer to the value \(n\) of a particular polynomial as its degree. In other words, the degree of a polynomial is the highest power of \(x\) present in the polynomial. The values \(\{a_1, a_2, \ldots, a_n\}\) are called the coefficients of the polynomial.</p>
+
+  <p>Polynomials are the workhorses of mathematics because they are incredibly simple and predictable. Their graphs are always smooth, continuous curves with no breaks or sharp corners.</p>
+
+  <p>We have designated specific names for polynomials based on their degrees. Here is a clearer breakdown:</p>
+
+  <ul>
+    <li><b>Degree 0:</b>Constant Polynomial (e.g., \(5\)).</li>
+    <li><b>Degree 1:</b>Linear Polynomial (e.g., \(2x + 1\)).</li>
+    <li><b>Degree 2:</b>Quadratic Polynomial (e.g., \(x^2 - 2x + 1\)).</li>
+    <li><b>Degree 3:</b>Cubic Polynomial (e.g., \(x^3 + 2x^2 - x + 5\)).</li>
+    <li><b>Degree 4:</b>Quartic Polynomial (e.g., \(x^4 - 3x^2 + 1\)).</li>
+    <li><b>Degree 5:</b>Quintic Polynomial (e.g., \(x^5 + x^4 - 2x^2 + 3\)).</li>
+    <li><b>Degree 6 and above:</b>Generally referred to by their degree (e.g., "degree 6 polynomial," "degree 7 polynomial").</li>
+  </ul>
+
+  <p>This structure should provide a clear understanding of the different types of polynomials based on their degrees.</p>
+
+  <p>We have discussed quadratics in previous 
+    <a href="starting1.html#Quadratic Equation">quadratic equation</a>
+    section, and we will not focus on any specific polynomial. Instead, we will address some questions related to the general form of polynomials.</p>
+
+  <p>It has been known for a very long time that a polynomial has at most as many roots as its degree. But why is this the case?</p>
+
+  <p>Let us consider a general degree-\( n \) polynomial:
+    \[
+    f(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_0.
+    \]
+
+    For clarity, factor out the leading coefficient and write:
+    \[
+    f(x) = a_n \left[ x^n + \frac{a_{n-1}}{a_n} x^{n-1} + \cdots + \frac{a_1}{a_n} x + \frac{a_0}{a_n} \right].
+    \]
+
+    Suppose \( x_1 \) is a root of \( f(x) \), i.e., \( f(x_1) = 0 \). By the Factor Theorem, \( (x - x_1) \) is a factor:
+    \[
+    f(x) = (x - x_1) Q_1(x)
+    \]
+    where \( Q_1(x) \) is a degree-\( n-1 \) polynomial. Expanding, we find:
+    \[
+    f(x) = (x - x_1)\left[ x^{n-1} + b_{n-2} x^{n-2} + \cdots + b_0 \right]
+    \]
+    where each new coefficient \( b_k \) is a sum of coefficients and combinations of \( x_1 \).
+
+    Now, suppose \( x_2 \) is a root of \( Q_1(x) \). Factor again:
+    \[
+    Q_1(x) = (x - x_2) Q_2(x)
+    \]
+    So
+    \[
+    f(x) = (x - x_1)(x - x_2) Q_2(x)
+    \]
+    where \( Q_2(x) \) has degree \( n-2 \).
+
+    Continue this process. After extracting \( k \) roots \( x_1, x_2, \dots, x_k \), the polynomial takes the form:
+    \[
+    f(x) = a_n (x - x_1)(x - x_2)\cdots(x - x_k) Q_k(x)
+    \]
+    with \( Q_k(x) \) a degree \( n-k \) polynomial.
+
+    Repeating until only a quadratic or linear remains, the pattern becomes evident:
+    \[
+    \begin{aligned}
+    f(x) = (x - x_1)\cdots(x - x_{n-2}) \bigg[ &x^2 + \left(\frac{a_{n-1}}{a_n} + \sum_{i=1}^{n-2} x_i \right)x \\
+    &+ \left(\frac{a_{n-2}}{a_n} + \frac{a_{n-1}}{a_n} \sum_{i=1}^{n-2} x_i + \sum_{1 \le i < j \le n-2} x_i x_j \right) \bigg]
+    \end{aligned}
+    \]
+    Extracting another root \( x_{n-1} \):
+    \[
+    f(x) = (x-x_1)\cdots(x-x_{n-1}) \Big[ x + \left(\frac{a_{n-1}}{a_n} + \sum_{i=1}^{n-1} x_i \right) \Big]
+    \]
+    The last bracket is linear, and by setting it to zero we get:
+    \[
+    x_n = -\left( \frac{a_{n-1}}{a_n} + \sum_{i=1}^{n-1} x_i \right)
+    \]
+    Thus, the polynomial can be completely factored as:
+    \[
+    \boxed{\, f(x) = a_n (x - x_1)(x - x_2)\cdots(x - x_n) \,}
+    \]
+  </p>
+
+  <p><b>What Do These Steps Mean?</b></p>
+
+  <p>Each step uncovers one root and reduces the degree of the polynomial by one. The undetermined coefficients in each new bracket relate to both the original coefficients and all the roots found so far—a recursive pattern known as Vieta’s formulas.</p>
+
+  <h2>Trignometric Function</h2>
+  <p>We have explored this topic in greater detail in the 
+    <a href="trig.html" target="_blank">trigonometry section</a>.
+  </p>
+
+  <p>Now that we understand trigonometric functions and polynomials, let's consider how we can combine the two. For example, what does the following polynomial mean?</p>
+
+  <p>\[
+    P(\sin{x}) = a_0 + a_1\sin{x} + a_2\sin^2{x} + a_3\sin^3{x} + \cdots + a_n \sin^n{x}
+    \]
+
+    To interpret this, we need to define the composition of a function.
+  </p>
+  
+  <div class="theorem">
+      <p>
+          <strong>Theorem 11</strong>
+          <em>
+              Suppose \( f : A \to B \) and \( g : B \to C \).
+              Then \( g \circ f : A \to C \), and for any \( a \in A \),
+              the value of \( g \circ f \) at \( a \) is given by the formula:
+          </em>
+      </p>
+      <p style="text-align:center;">
+          \[
+          (g \circ f)(a) = g(f(a))
+          \]
+      </p>
+  </div>
+
+  <h2>Deconstructing the Concept ⚙️</h2>
+    <p>
+        The notation \( (g \circ f)(a) = g(f(a)) \) can look intimidating, but the idea is simple. It means:
+    </p>
+    <ol>
+        <li>First, apply the function <strong>\(f\)</strong> to the input <strong>\(a\)</strong> to get an output, which we call \(f(a)\).</li>
+        <li>Then, take that output, \(f(a)\), and use it as the new input for the function <strong>\(g\)</strong>.</li>
+    </ol>
+    <p>
+        Think of it as a two-step assembly line. The first machine (\(f\)) processes a raw material (\(a\)), and the second machine (\(g\)) processes the output of the first machine. The notation \(g \circ f\) describes the entire assembly line as a single process.
+    </p>
+    
+    <p style="text-align:center; font-size:1.2rem; font-family:monospace;">
+        \( a \xrightarrow{\text{apply } f} f(a) \xrightarrow{\text{apply } g} g(f(a)) \)
+    </p>
+    
+    <h2>Connecting Back to the Example</h2>
+    <p>
+        Let's see how this applies to our trigonometric polynomial \( P(\sin{x}) \). We can define two separate functions:
+    </p>
+    <ul>
+        <li>A trigonometric function: \( f(x) = \sin{x} \)</li>
+        <li>A polynomial function: \( P(y) = a_0 + a_1y + a_2y^2 + \cdots + a_ny^n \)</li>
+    </ul>
+    <p>
+        The expression \( P(\sin{x}) \) is simply the composition \( (P \circ f)(x) \).
+    </p>
+    <p>
+        \[
+            (P \circ f)(x) = P(f(x)) = P(\sin{x})
+        \]
+    </p>
+    <p>
+        Here, for any real number \(x\), we first calculate \(\sin{x}\). The result, which will be a number between -1 and 1, is then used as the input for the polynomial \(P\).
+    </p>
+
+  <h3>Integer Value Functions (Floor and Ceiling)</h3>
+  <p>These functions are all about rounding. They are "step functions" because their graphs look like a staircase. They are surprisingly useful in real-world scenarios:</p>
+  <ul>
+      <li><strong>Floor Function \(\lfloor x \rfloor\):</strong> Rounds down to the nearest integer.
+          <ul>
+              <li><strong>Example:</strong> Calculating your age. If you were born 25 years and 8 months ago, your age is \(\lfloor 25.67 \rfloor = 25\).</li>
+          </ul>
+      </li>
+      <li><strong>Ceiling Function \(\lceil x \rceil\):</strong> Rounds up to the nearest integer.
+          <ul>
+              <li><strong>Example:</strong> Parking garage fees. If a garage charges $5 per hour <em>or fraction thereof</em>, and you park for 2 hours and 15 minutes (2.25 hours), you'll be charged for \(\lceil 2.25 \rceil = 3\) hours.</li>
+          </ul>
+      </li>
+  </ul>
+
+  <h3>Modulus (Absolute Value) Function</h3>
+  <p>The modulus function, denoted \(f(x) = |x|\), gives the magnitude of a number, regardless of its sign.</p>
+  <div>
+      \[
+      |x| =
+      \begin{cases}
+          x & \text{if } x \ge 0 \\
+          -x & \text{if } x < 0
+      \end{cases}
+      \]
+  </div>
+  <p>Its graph is a distinctive "V" shape with the vertex at the origin.</p>
+
+  <p>Functions like these are called piecewise functions. The name comes from the fact that they are defined by different rules over different intervals (or 'pieces') of their domain. Consequently, their graphs often appear as a collection of separate segments.</p>
+
+  <h2 id="inverse-of-a-function">Inverse of a Function</h2>
+  <p>An inverse function, denoted \(f^{-1}\), "reverses" the action of another function \(f\). If \(f\) takes an input \(x\) to an output \(y\), then \(f^{-1}\) takes the input \(y\) back to the original \(x\).</p>
+
+  <p>\[
+    f(x) = y \iff f^{-1}(y) = x
+    \]
+    For an inverse function to exist, the original function must be bijective (both one-to-one and onto). A function is one-to-one if each output corresponds to exactly one input. This can be verified graphically with the Horizontal Line Test:
+  </p>
+
+  <p><b>"A function has an inverse if and only if no horizontal line intersects its graph more than once."</b></p>
+
+  <p>But what exactly are one-to-one and onto functions?</p>
+
+  <div class="definition">
+    <p>
+        <strong>Definition 28</strong>
+        <em>
+            Suppose \( f : A \to B \). We will say that \( f \) is 
+            <span style="font-style:italic;">one-to-one</span> if
+        </em>
+    </p>
+    <p style="text-align:center;">
+        \[
+        \neg \exists a_1 \in A \ \exists a_2 \in A \ 
+        (f(a_1) = f(a_2) \land a_1 \ne a_2)
+        \]
+    </p>
+    <p>
+        <em>We say that \( f \) is <span style="font-style:italic;">onto</span> if</em>
+    </p>
+    <p style="text-align:center;">
+        \[
+        \forall b \in B \ \exists a \in A \ (f(a) = b)
+        \]
+    </p>
+    <p>
+        One-to-one functions are sometimes also called <em>injections</em>,
+        and onto functions are sometimes called <em>surjections</em>.
+    </p>
+  </div>
+
+  <p>Using the information provided above, we can theorise this as follows:</p>
+
+  <div class="theorem">
+    <p>
+        <strong>Theorem 12</strong>
+        <em>
+            Suppose \( f : A \to B \). If \( f \) is one-to-one and onto, 
+            then \( f^{-1} : B \to A \).
+        </em>
+    </p>
+  </div>
+
+  <p>Now that we have defined "onto" and "one-to-one," I want to discuss their use in determining the cardinality of an infinite series. Remember, we touched on this topic while discussing the cardinality of finite sets in the previous sections.</p>
+  
+  <h2>From Finite to Infinite Sets</h2>
+
+  <p>For finite sets, as we saw in 
+    <a href="#comparing-sets">Comparing sets</a>
+    section that, comparing sizes is trivial: we just count the elements. For example, the set \(A = \{1, 2, 3\}\) is smaller than \(B = \{a, b, c, d\}\) because \(|A| = 3\) and \(|B| = 4\).</p>
+
+  <p>However, how do we compare the sizes of infinite sets, like the set of natural numbers \(\mathbb{N} = \{1, 2, 3, \dots\}\) and the set of integers \(\mathbb{Z} = \{\dots, -2, -1, 0, 1, 2, \dots\}\)? We cannot simply "count" them. This is where the concepts of one-to-one (injective) and onto (surjective) functions become indispensable.</p>
+
+  <div class="idea">
+      <p><strong>Core Idea: Equinumerosity</strong></p>
+      <p>Two sets, \(A\) and \(B\), are said to be <em>equinumerous</em> or have the same <em>cardinality</em> if there exists a function \(f: A \to B\) that is a <strong>bijection</strong> (i.e., it is both one-to-one and onto). We denote this as \(|A| = |B|\) or sometimes \(A \sim B\).</p>
+  </div>
+
+  <p>A bijection creates a perfect pairing, ensuring that every element in \(A\) corresponds to exactly one element in \(B\), with no elements in \(B\) left over.</p>
+
+  <hr/>
+
+  <h2>Countably Infinite Sets</h2>
+
+  <p>The most fundamental infinite set is the set of natural numbers, \(\mathbb{N}\). Any set that is equinumerous with \(\mathbb{N}\) is called <em>countably infinite</em>. Its cardinality is denoted by \(\aleph_0\) (aleph-naught).</p>
+
+  <h3>Example: The Integers \(\mathbb{Z}\)</h3>
+
+  <p>At first glance, it seems that \(\mathbb{Z}\) must be "larger" than \(\mathbb{N}\) because it includes all the negative integers and zero. However, we can construct a bijection \(f: \mathbb{N} \to \mathbb{Z}\) to show they have the same cardinality.</p>
+
+  <p>Consider the function:</p>
+  \[
+  f(n) = 
+  \begin{cases} 
+        \frac{n}{2} & \text{if } n \text{ is even} \\
+        -\frac{n-1}{2} & \text{if } n \text{ is odd} 
+     \end{cases}
+  \]
+
+  <p>Let's see how it works:</p>
+  <ul>
+      <li>\(f(1) = -\frac{1-1}{2} = 0\)</li>
+      <li>\(f(2) = \frac{2}{2} = 1\)</li>
+      <li>\(f(3) = -\frac{3-1}{2} = -1\)</li>
+      <li>\(f(4) = \frac{4}{2} = 2\)</li>
+      <li>\(f(5) = -\frac{5-1}{2} = -2\)</li>
+      <li>...and so on.</li>
+  </ul>
+  <p>This function systematically lists every single integer, using each natural number exactly once. Since we have found a bijection, we can conclude that \(|\mathbb{N}| = |\mathbb{Z}| = \aleph_0\). The set of integers is countably infinite.</p>
+
+  <h3>Example: The Rational Numbers \(\mathbb{Q}\)</h3>
+  <p>Even more surprisingly, the set of all positive rational numbers \(\mathbb{Q}^+\) is also countable. We have talked about this in the           
+    <a href="hardy.html" target="_blank">The Proof of Question 7.1</a>
+    section.
+  </p>
+
+  <hr/>
+
+  <h2>Uncountably Infinite Sets</h2>
+
+  <p>The true breakthrough from Cantor was proving that not all infinite sets are countable. Some are fundamentally "larger" than others.</p>
+
+  <div class="theorem">
+    <p><strong>Theorem (Cantor's Theorem)</strong></p>
+    <p>The set of real numbers, \(\mathbb{R}\), is not countable. It is <em>uncountably infinite</em>.</p>
+  </div>
+
+  <div class="proof">
+    <p><em>Proof by Contradiction (Cantor's Diagonal Argument)</em></p>
+    <p>Let's assume, for the sake of contradiction, that the set of real numbers in the interval \((0, 1)\) is countable. If it is countable, we can list all of its elements in some order:
+    \begin{align*}
+        r_1 &= 0.d_{11}d_{12}d_{13}d_{14}\dots \\
+        r_2 &= 0.d_{21}d_{22}d_{23}d_{24}\dots \\
+        r_3 &= 0.d_{31}d_{32}d_{33}d_{34}\dots \\
+        r_4 &= 0.d_{41}d_{42}d_{43}d_{44}\dots \\
+        \vdots
+    \end{align*}
+    where \(d_{ij}\) is the \(j\)-th decimal digit of the \(i\)-th real number on our list.</p>
+
+    <p>Now, we will construct a new real number, \(x\), which is in \((0, 1)\) but is <strong>not</strong> on our list. We define the digits of \(x = 0.c_1c_2c_3\dots\) as follows:
+    \[
+    c_n = 
+    \begin{cases} 
+          4 & \text{if } d_{nn} \neq 4 \\
+          5 & \text{if } d_{nn} = 4
+       \end{cases}
+    \]
+    This rule defines each digit of \(x\). For example, the first digit of \(x\), \(c_1\), is different from the first digit of \(r_1\), \(d_{11}\). The second digit of \(x\), \(c_2\), is different from the second digit of \(r_2\), \(d_{22}\), and so on.</p>
+
+    <p>In general, for any \(n \in \mathbb{N}\), the number \(x\) differs from the number \(r_n\) in the \(n\)-th decimal place. Therefore, \(x\) cannot be equal to any number on our list.</p>
+
+    <p>This contradicts our initial assumption that we could list all the real numbers in \((0, 1)\). Therefore, the assumption must be false. The set of real numbers in \((0, 1)\) is uncountable. Since this subset of \(\mathbb{R}\) is uncountable, the entire set \(\mathbb{R}\) must also be uncountable.</p>
+  </div>
+
+  <hr/>
+
+  <h2>Conclusion</h2>
+  <p>By using the formal definition of a bijection, we have rigorously shown that there are at least two different "sizes" of infinity:</p>
+  <ol>
+      <li><strong>Countable Infinity</strong> (\(\aleph_0\)): The cardinality of \(\mathbb{N}\), \(\mathbb{Z}\), and \(\mathbb{Q}\).</li>
+      <li><strong>Uncountable Infinity</strong> (often denoted by \(c\) for continuum): The cardinality of \(\mathbb{R}\).</li>
+  </ol>
+  <p>This demonstrates that the concepts of one-to-one and onto functions provide a powerful and precise tool for understanding the otherwise paradoxical nature of infinite sets.</p>
+
+  <div class="theorem">
+      <p><strong>Theorem.</strong> 
+          <em>\( \mathbb{R} \sim \mathcal{P}(\mathbb{Z^+}) \).</em>
+      </p>
+  </div>
+
+  <p>Let \( f: \mathbb{Z}^+ \to P(\mathbb{Z}^+) \) be demonstrated as a one-to-one function. The burden of proof lies with the readers to establish this property. I will now present the subsequent portion of the proof.</p>
+
+  <p>We define \( g: \mathbb{R} \to P(\mathbb{Z}^+) \) and prove that \( g \) is one-to-one. </p>
+
+  <p>Fix an integer \(M \ge 100\). For every real \(x\), choose the canonical decimal expansion (the one that does not end with infinitely many 9s). Define \(g: \mathbb{R} \to \mathcal{P}(\mathbb{Z}^+)\) by</p>
+
+  <ul>
+    <li>[(A)] If \(x \in \mathbb{Z}^+\) and \(x < 10\), \quad \(g(x) = \{ M + x \}\).</li>
+    <li>[(B)] If \(x \in \mathbb{Z}^+\) and \(x \ge 10\), \quad \(g(x) = \{ x \}\).</li>
+    <li>[(C)] If \(x \in \mathbb{R} \setminus \mathbb{Z}^+\), write \(x = d_0.d_1d_2d_3\dots\) (canonical).
+      \[
+          g(x) = \{ e_i : e_i = d_i \text{ if } d_i \in \{1,\dots,9\}, e_i = 10 \text{ if } d_i = 0 \}.
+      \]
+    </li>
+  </ul>
+
+  <p><b>Remarks:</b> Case (C) images are subsets of \(\{1,\dots,10\}\). Case (B) images are singletons \(\{y\}\) with \(y \ge 10\). Case (A) images are singletons with elements \(\ge M+1\) (take \(M=100\) to be safe). These ranges are pairwise disjoint.</p>
+
+  <p>Thus \( g \) is a one-to-one function (see for yourself).  
+    Therefore, we can say that 
+    \[
+        \mathbb{R} \sim P(\mathbb{Z}^+).
+    \]
+  </p>
+  
+  <div class="theorem">
+      <p><strong>Theorem.</strong> 
+          <em>For any natural number \( n \), \( \mathbb{N} \sim \mathbb{N}^n \).</em>
+      </p>
+  </div>
+
+  <div class="theorem">
+      <p><strong>Theorem (Countable Partition into Infinite Sets).</strong></p>
+      <p>
+          <em>
+              Let \( A \) be a countably infinite set. Suppose
+          </em>
+      </p>
+      <p class="math display">
+          \[
+          A = \bigcup_{i=1}^{\infty} B_i
+          \]
+      </p>
+      <p><em>where:</em></p>
+      <ul>
+          <li><em>\(B_i \cap B_j = \varnothing\) for all \(i \neq j\) (pairwise disjoint),</em></li>
+          <li><em>each \(B_i\) is infinite.</em></li>
+      </ul>
+      <p><em>Then:</em></p>
+      <ol type="a">
+          <li><em>Each \(B_i\) is countably infinite.</em></li>
+          <li><em>\(A\) is countable in this representation (still countably infinite).</em></li>
+          <li>
+              <em>
+                  If any \(B_i\) is further expressed as
+              </em>
+              <p class="math display">
+                  \[
+                  B_i = \bigcup_{j=1}^{\infty} C_{i,j}
+                  \]
+              </p>
+              <em>
+                  with each \(C_{i,j}\) infinite and pairwise disjoint for fixed \(i\), then each \(C_{i,j}\) is countably infinite, and the union
+              </em>
+              <p class="math display">
+                  \[
+                  A = \bigcup_{i=1}^{\infty} \; \bigcup_{j=1}^{\infty} C_{i,j}
+                  \]
+              </p>
+              <em>
+                  remains countably infinite.
+              </em>
+          </li>
+      </ol>
+  </div>
+
+  <p>
+      It's up to the readers to prove this. I want to talk about a little practical approach of this problem.
+  </p>
+
+  <p>
+    <b>The Infinite Rocket Paradox:</b>  
+  </p>
+
+  <p>
+    Let's assume there is a rocket with infinitely many seats ready to transport the infinite population of a planet. If there is just one group of people, we can simply assign person \(j\) to seat \(j\). So far, so good.
+  </p>
+
+  <p>
+    But here's a twist: what if the planet has infinitely many countries, and each country has infinitely many people? If we start giving tickets country by country, we will use all the infinite tickets in the first country (\(C_1\)) alone, leaving everyone else behind!
+  </p>
+
+  <p>
+    The solution lies in creating a function that maps every person to a unique seat. We can label each person as \(p_{ij}\), where \(i\) is their country number and \(j\) is their person number within that country. The problem is now to find a bijective function \(f: \mathbb{N} \times \mathbb{N} \to \mathbb{N}\) that maps the pair \((i, j)\) to a unique seat number. One such function is the Cantor pairing function. By creating such a list (e.g., diagonally listing all pairs \((i, j)\)), we can ensure every person from every country gets a seat.
+  </p>
+
+  <p>
+    This demonstrates that the set of people is countably infinite, even when partitioned in this way. I was going to give an animation here to help visualize this problem, but it's best for readers to visualize this themselves and spend a little time with this paradox to understand the behavior of infinity.
+  </p>
+  
+</body>
+</html>

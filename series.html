@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Sequences and Series</title>
+  
+  <link rel="stylesheet" href="series.css" />
+  
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+</head>
+<body>
+
+  <header>
+    <h1 class="main-title"><span class="custom-underline">A General Talk on Sequences and Series</span></h1>
+  </header>
+
+  <main>
+    <section id="introduction">
+      <h2>Introduction</h2>
+      <p>
+        So far, we have discussed progressions, and now we will talk about series and sequences. First of all, what is a progression, though? What was in the previously read series that we named it a progression? 
+      </p>
+      <p>
+        Progression is nothing but a special kind of series. Progression always moves forward and always follows a pattern. And that is why we named the three different kind of existing progression based on the pattern that they follow. 
+      </p>
+      <p>
+        Now that we have defined progression as a special kind of a series, then what is a Series then?
+      </p>
+    </section>
+
+    <section id="sequence">
+      <h2>Sequence</h2>
+      <p>
+        We must first understand and define a sequence to comprehend what a series is.
+      </p>
+      <p class="definition">
+        <strong>Definition 1.</strong> Suppose A is a set. A function \(f : I \rightarrow A\), is called a <em>sequence</em> of elements of A.
+      </p>
+      <p>
+        Or, in simpler words, a sequence is a function from the natural numbers to a set. Or a sequence is an ordered list of elements, where each element is assigned to a natural number. 
+      </p>
+      <p>
+        A sequence is usually written in braces, {}, or we sometimes also use parentheses, (). And \(\{a_n\}_{n=1}^{\infty}\) just means that it is a sequence \(\{a_1,a_2,a_3,\cdots\}\). Some examples of sequences are:
+      </p>
+      <ul>
+        <li>
+          \(\{2, 4, 6, 8, 10\}\)
+        </li>
+        <li>
+          \(\left\{\frac{1}{n}\right\}_{n=1}^{\infty} = \left\{1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \dots\right\}\)
+        </li>
+        <li>
+          \(\{a_n\}_{n=1}^{5} = \{3, 7, 1, 0, -2\}\) 
+        </li>
+        <li>
+          \(\{x_0, x_1, x_2\}\)
+        </li>
+        <li>
+          \(\{1, 2, 3, 4, 5, \dots\}\) 
+        </li>
+        <li>
+          \(\{(-1)^n\}_{n=0}^{\infty} = \{1, -1, 1, -1, \dots\}\) 
+        </li>
+        <li>
+          Fibonacci sequence: \(\{F_n\}_{n=0}^{\infty} = \{0, 1, 1, 2, 3, 5, 8, 13, \dots\}\), where \(F_{n} = F_{n-1} + F_{n-2}\) with \(F_0 = 0\), \(F_1 = 1\).
+        </li>
+      </ul>
+      <p>
+        The examples above illustrate that a sequence can be divided into two parts based on its cardinality.
+      </p>
+      <div class="flowchart">
+        <div class="flowchart-box parent-node">Sequence</div>
+        <div class="flowchart-children">
+          <div class="flowchart-box child-node">Finite Sequence</div>
+          <div class="flowchart-box child-node">Infinite Sequence</div>
+        </div>
+      </div>
+      <div class="tcolorbox">
+        <h3><u>Finite Sequence</u></h3>
+        <p>
+          A <strong>finite sequence</strong> is a sequence that has a limited number of terms. It can be thought of as a list of elements indexed from \(1\) to \(n\) for some natural number \(n\). Like \(\{a_1,a_2,a_3,\cdots,a_4\}\). or a more of a formal definition would be,
+        </p>
+        <p>
+          <strong>Definition 2.</strong> Suppose A is a set. A function \(f : I_n \rightarrow A\), where \(n\) is a natural number, is called a <em>finite</em> <em>sequence</em> of elements of A, and \(n\) is called the <em>length</em> of the <em>sequence</em>.
+        </p>
+        <p>
+          <strong>Examples:</strong>
+        </p>
+        <div>
+          \[
+          \{2, 4, 6, 8\}, \quad \{a_1, a_2, a_3\}, \quad \{3, 1, 4, 1, 5\}
+          \]
+        </div>
+      </div>
+      <div class="tcolorbox">
+        <h3>Infinite Sequence</h3>
+        <p>
+          An <strong>infinite sequence</strong> has no end; it continues indefinitely. It is typically defined as a function from the natural numbers \(\mathbb{N}\) to a set A. From the definition 1, if n is not finitely defined, then we can write a formal definition as follows
+        </p>
+        <p>
+          <strong>Definition 3.</strong> Suppose A is a set. A function \(f: N\rightarrow A\), where N is the set of all natural numbers, is called an <em>infinite</em> <em>sequence</em> of elements of A.
+        </p>
+        <p>
+          <strong>Examples:</strong>
+        </p>
+        <div>
+          \[
+          \{1, 2, 3, 4, \dots\}, \quad \left\{\frac{1}{n}\right\}_{n=1}^{\infty}, \quad \{(-1)^n\}_{n=0}^{\infty}
+          \]
+        </div>
+      </div>
+      <p>
+        Now that we know about finite and infinte sequences, there is an interesting concept of convergence of the sequences that arises. A finite set always converges but an infinte sequence does not always converges.
+      </p>
+      <p>
+        But first what is the proper defintion of convergence anyway.
+      </p>
+      <p class="definition-formal">
+        <strong> Definition 4.</strong> A sequence \(\{p_n\}\) in a metric space \(X\) is said to <em>converge</em> if there is a point \(p \in X\) with the property that for every \(\varepsilon > 0\) there is an integer \(N\) such that \(n \geq N\) implies that \(d(p_n, p) < \varepsilon\). (Here \(d\) denotes the distance in \(X\).)
+      </p>
+      <p>
+        In this case we also say that \(\{p_n\}\) converges to \(p\), or that \(p\) is the limit of \(\{p_n\}\), and we write \(p_n \to p\), or
+        \[
+        \lim_{n \to \infty} p_n = p.
+        \]
+      </p>
+      <p>
+        If \(\{p_n\}\) does not converge, it is said to <em>diverge</em>.
+      </p>
+      <div class="tcolorbox">
+        <h3><u>Note</u></h3>
+        <p>
+          You must be wondering what this new concept of metric space is. But we won't be digging much deeper into this concept, but a basic definition of a metric space is :
+        </p>
+        <p>
+          <strong>Definition 5.</strong> A set \(X\), whose elements we shall call <em>points</em>, is said to be a <em>metric space</em> if with any two points \(p\) and \(q\) of \(X\) there is associated a real number \(d(p, q)\), called the <em>distance</em> from \(p\) to \(q\), such that
+        </p>
+        <ul>
+          <li>
+            (a) \(d(p, q) > 0\) if \(p \ne q\), otherwise \(d(p, p) = 0\);
+          </li>
+          <li>
+            (b) \(d(p, q) = d(q, p)\);
+          </li>
+          <li>
+            (c) \(d(p, q) \le d(p, r) + d(r, q)\), for any \(r \in X\).
+          </li>
+        </ul>
+        <p>
+          Any function with these three properties is called a <em>distance function</em>, or a <em>metric</em>.
+        </p>
+        <p>
+          For example, the set of real numbers is a metric space when a suitable distance function is defined, most commonly with the absolute difference function, \(d(x, y) = \lvert x-y \rvert\). For the set of real numbers \(\mathbb{R}\) to be a metric space with this function, it must satisfy the three properties of a metric: non-negativity \( (d(x, y) ≥ 0) \), identity of indiscernibles \( (d(x, y) = 0\) if and only if \(x = y) \), and the triangle inequality \((d(x, z) ≤ d(x, y) + d(y, z))\).
+        </p>
+      </div>
+    </section>
+    <p>
+      I encourage readers who find the definitions challenging not to worry. We will explore convergence and divergence further.
+    </p>
+
+    <section id="convergence-examples">
+    <h2>Examples of Converging and Diverging Sequences</h2>
+
+    <h3>Converging Sequences</h3>
+    <ol>
+      <li>
+        <p>\(\left\{ \frac{1}{n} \right\}_{n=1}^{\infty} = \left\{ 1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \dots \right\}\)</p>
+        <p>Converges to \(0\) as \(n \to \infty\).</p>
+      </li>
+      <li>
+        <p>\(\left\{ r^n \right\}_{n=1}^{\infty}, \quad 0 < r < 1\)</p>
+        <p>Example: \(\left\{ \left( \frac{1}{2} \right)^n \right\}_{n=1}^{\infty} = \left\{ \frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \dots \right\}\)</p>
+        <p>Converges to \(0\).</p>
+      </li>
+      <li>
+        <p>\(\left\{ \frac{1}{n^2} \right\}_{n=1}^{\infty}\)</p>
+        <p>Converges to \(0\) faster than \(\frac{1}{n}\).</p>
+      </li>
+      <li>
+        <p>\(\left\{ \frac{\sin n}{n} \right\}_{n=1}^{\infty}\)</p>
+        <p>Oscillates but converges to \(0\) because it is bounded between \(-\frac{1}{n}\) and \(\frac{1}{n}\).</p>
+      </li>
+      <li>
+        <p>\(\left\{\left(1 + \frac{1}{n} \right)^n \right\}_{n=1}^{\infty}\)</p>
+        <p>Converges to Euler's number \(e \approx 2.71828\).</p>
+      </li>
+    </ol>
+
+    <h3>Diverging Sequences</h3>
+    <ol>
+      <li>
+        <p>\( \{n\}_{n=1}^{\infty} = \{1, 2, 3, 4, \dots\}\)</p>
+        <p>Diverges to \( \infty \).</p>
+      </li>
+      <li>
+        <p>\( \{ 2^n \}_{n=1}^{\infty} = \{2, 4, 8, 16, \dots\}\)</p>
+        <p>Diverges to \(\infty\).</p>
+      </li>
+      <li>
+        <p>\(\{ (-1)^n \}_{n=1}^{\infty} = \{-1, 1, -1, 1, \dots\} \)</p>
+        <p>Diverges because it oscillates.</p>
+      </li>
+    </ol>
+    <p>
+      How do we know that these series converge? While the proper definition of convergence is somewhat technical, we can provide a simple idea to help readers grasp the concept. If the terms of a sequence keep increasing, it is very likely to diverge.
+    </p>
+    <p>
+      For those new to this topic, this may seem confusing or disconnected. Let us clarify: when we say a sequence converges, we are essentially asking, "As we go further along in the sequence, will the sequence continue indefinitely without approaching anything, or will it seem to get closer and closer to a particular value?" By this, we mean that the terms of the sequence become arbitrarily close to some specific number; for any degree of closeness we desire, we can find terms in the sequence that are that close to the target number. This number is called the limit of the sequence, and is the value to which the sequence converges.
+    </p>
+    <p>
+      Notice how we use the phrase "as close as we want", just as in the definition of limits (the readers will see this in the 
+      <a href="calc.html" target="_blank">calculus</a>.      
+      section). Therefore, we define the condition for convergence as
+      \[
+      \lim_{n \to \infty} p_n = p
+      \]
+    </p>
+    <p>
+      We can determine graphically whether a sequence converges or diverges. Remember, a sequence is essentially a function, and since it is a function, we can graph it. So, what type of graph indicates that a function is converging, and what type shows that it is diverging?
+    </p>
+    <p>
+      In simple terms, the core concept of a convergent sequence is that as we move further to the right on the graph (as \( n \) becomes very large), the points get closer and closer to a specific horizontal line. This imaginary horizontal line represents the limit of the sequence. In contrast, a divergent sequence does not settle down to a single finite limit; the points on the graph do not approach a specific horizontal line as \( n \) approaches infinity.
+    </p>
+    <p>
+      By examining the graphs of divergent and convergent sequences, you can easily determine graphically whether a sequence converges or diverges.
+    </p>
+    <p>
+      I encourage you to graph all the examples discussed above and observe for yourself if they are converging or diverging based on the behaviors of their graphs.
+    </p>
+  </section>
+
+  <section id="convergence-tests">
+    <h2>Tests for Convergence of Sequences</h2>
+    <p>Let \( (a_n) \) be a real sequence. The following are common tests and theorems used to determine convergence:</p>
+
+    <h3>Monotone Convergence Theorem</h3>
+    <p>If \( (a_n) \) is monotone increasing and bounded above, or monotone decreasing and bounded below, then \( (a_n) \) converges.</p>
+    <p>This theorem isn’t going to be super helpful unless you know what increasing and decreasing sequences are and what it means to be bounded above and below.</p>
+
+    <h4><u>Definition of monotone</u></h4>
+    <p>A function is either monotonically increasing or monotonically decreasing if its values consistently increase or decrease, respectively, over its entire domain or a specific interval.</p>
+    <p>Monotonically increasing means that the sequence consistently increases without ever decreasing. Its graph would appear quite straightforward, as it moves upward without changing direction. Similarly, a monotonically decreasing sequence will also maintain a consistent direction, continuously decreasing without any upward turns.</p>
+
+    <h4><u>Definition of Boundedness</u></h4>
+    <p>A sequence \(\{a_n\}\) is said to be <em>bounded above</em> if there exists a real number \(M\) such that \[a_n \leq M \quad \text{for all } n \in \mathbb{N}.\] In this case, \(M\) is called an <em>upper bound</em> of the sequence.</p>
+    <p>Similarly, \(\{a_n\}\) is said to be <em>bounded below</em> if there exists a real number \(m\) such that \[a_n \geq m \quad \text{for all } n \in \mathbb{N}.\] In this case, \(m\) is called a <em>lower bound</em> of the sequence.</p>
+    <p>A sequence is called <em>bounded</em> if it is bounded above and bounded below.</p>
+    <p>For some readers, the topics may be progressing quite rapidly, but I encourage you to focus on understanding the basic concepts rather than memorizing definitions. If something isn't clear or intuitive to you, try to visualize it using geometry.</p>
+    <p>When we say a function is "bounded above," it means that the graph of that function will always lie below a certain line or, at most, just touch it. Similarly, "bounded below" means that the graph will always be above that specific line and will never cross it. You can think of it as a "do not cross" line for the graph.</p>
+    <p>Now that we’re discussing bounded sequences, let’s take a brief look at the concepts of supremum and infimum.</p>
+
+    <h4><u>Definition (Supremum and Infimum for Sequences)</u></h4>
+    <p>Let \(\{a_n\}\) be a sequence bounded above. If there exists \(\alpha \in \mathbb{R}\) such that:</p>
+    <ol>
+        <li>\(\alpha\) is an upper bound of \(\{a_n\}\), and</li>
+        <li>If \(\gamma < \alpha\), then \(\gamma\) is not an upper bound of \(\{a_n\}\),</li>
+    </ol>
+    <p>then \(\alpha\) is called the <em>least upper bound</em> (or <em>supremum</em>) of the sequence, and we write \[\alpha = \sup\{a_n : n \in \mathbb{N}\}.\]</p>
+    <p>Similarly, if the sequence is bounded below, we define the <em>greatest lower bound</em> (or <em>infimum</em>) as follows: \(\beta = \inf\{a_n : n \in \mathbb{N}\}\) means:</p>
+    <ol>
+        <li>\(\beta\) is a lower bound of \(\{a_n\}\), and</li>
+        <li>If \(\delta > \beta\), then \(\delta\) is not a lower bound of \(\{a_n\}\).</li>
+    </ol>
+    <p>I encourage readers to comprehend this complex algebraic definition in a simple, geometric way. If you can grasp the concepts of supremum and infimum through this definition, your understanding of algebra is noteworthy. I often suggest that readers visualize mathematical concepts geometrically because it tends to be easier and more intuitive for many students. There are numerous ways to understand a mathematical concept, and that is the beauty of mathematics. It's completely normal to feel more comfortable understanding math in either its algebraic form or its geometric form. Personally, I find that I understand math better when it is presented algebraically rather than geometrically.</p>
+    
+    <h3>Boundedness Test</h3>
+    <p>If \( (a_n) \) converges, then it is bounded: \[\big( a_n \to L \big) \ \Rightarrow \ \exists M > 0 \ ( \ |a_n| \le M \ \forall n).\] (The converse is not true in general.)</p>
+
+    <h3>Squeeze (Sandwich) Theorem</h3>
+    <p>If \( (a_n) \), \( (b_n) \), \( (c_n) \) satisfy \[a_n \le b_n \le c_n \quad\text{and}\quad a_n \to L, \ c_n \to L,\] then \( b_n \to L \).</p>
+    <p>This theorem is also used to solve limit-related problems.</p>
+
+    <h3>Algebra of Limits</h3>
+    <p>If \( a_n \to L \) and \( b_n \to M \), then: \[a_n + b_n \to L+M, \quad a_n b_n \to LM, \quad \frac{a_n}{b_n} \to \frac{L}{M} \ \text{if } M \neq 0.\]</p>
+    <p>Well, this can be directly seen from the theorem talked about above in the limit section.</p>
+
+    <h3>Absolute Convergence Implies Convergence</h3>
+    <p>If \( |a_n| \to 0 \), then \( a_n \to 0 \).</p>
+
+    <h3>Cauchy Criterion</h3>
+    <p>A sequence \( (a_n) \) converges if and only if it is Cauchy: \[\forall \varepsilon > 0, \ \exists N \in \mathbb{N} \ ( \ m,n \ge N \ \Rightarrow \ |a_n - a_m| < \varepsilon).\]</p>
+
+    <h3>Ratio Test (for Sequences)</h3>
+    <p>If \( a_n \neq 0 \) eventually and \[\lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right| = L,\] then:
+    \[\begin{cases} L < 1 &\Rightarrow a_n \to 0, \\ L > 1 &\Rightarrow a_n \ \text{diverges in magnitude}, \\ L = 1 &\Rightarrow \text{inconclusive}. \end{cases}\]</p>
+    <p>Well, this is the most intuitive and obvious one. From this test, we say that if a sequence seems to be decreasing or seems to be approaching smaller and smaller value near infinity, then it is said to be converging.</p>
+
+    <h3>Root Test (for Sequences)</h3>
+    <p>If \[\lim_{n \to \infty} \sqrt[n]{|a_n|} = L,\] then:
+    \[\begin{cases} L < 1 &\Rightarrow a_n \to 0, \\ L > 1 &\Rightarrow |a_n| \to \infty, \\ L = 1 &\Rightarrow \text{inconclusive}. \end{cases}\]</p>
+
+    <h3>Stolz–Cesàro Theorem</h3>
+    <p>If \( (y_n) \) is strictly monotone and unbounded, and \( \lim\limits_{n\to\infty} \frac{x_{n+1} - x_n}{y_{n+1} - y_n} = L \), then: \[\lim_{n\to\infty} \frac{x_n}{y_n} = L.\]</p>
+
+    <h3>Subsequential Limits</h3>
+    <p>If all convergent subsequences of \( (a_n) \) have the same limit \( L \), then \( a_n \to L \).</p>
+    <p>In the simplest of words, a subsequence is just a part or a subset of the sequence. But the formal definition is given below.</p>
+    <p><strong>Definition:</strong> Given a sequence \(\{p_n\}\), consider a sequence \(\{n_k\}\) of positive integers, such that \[n_1 < n_2 < n_3 < \cdots .\] Then the sequence \(\{p_{n_k}\}\) is called a <em>subsequence</em> of \(\{p_n\}\). If \(\{p_{n_k}\}\) converges, its limit is called a <em>subsequential limit</em> of \(\{p_n\}\).</p>
+    <p>It is clear that \(\{p_n\}\) converges to \(p\) if and only if every subsequence of \(\{p_n\}\) converges to \(p\).</p>
+
+    <h3>Limit Comparison for Positive Sequences</h3>
+    <p>If \( a_n > 0, b_n > 0 \) and \[\lim_{n\to\infty} \frac{a_n}{b_n} = c \in (0, \infty),\] then \( a_n \to 0 \iff b_n \to 0 \).</p>
+    
+    <h3>Geometric Sequence Test</h3>
+    <p>For \( |r|<1 \), \( r^n \to 0 \); for \( |r|=1 \), \( r^n \) does not converge unless \( r=1 \).</p>
+  </section>
+
+  <section id="series">
+  <h2>Series</h2>
+      <p>
+        Now that we have a firm grasp of sequences, we can transition to the closely related concept of a series. While a sequence is an ordered list of numbers, a series is the <em>sum</em> of those numbers. This distinction is fundamental: a sequence is a list, while a series is a single value representing the total of that list. 
+      </p>
+    
+      <h3>Defining a Series Through Sequences</h3>
+      <p>
+        The connection between sequences and series is made formal through the <strong>sequence of partial sums</strong>. Given a sequence \(\{a_n\}_{n=1}^{\infty}\), we can form a new sequence, \(\{S_n\}_{n=1}^{\infty}\), where each term is the sum of the first \(n\) terms of \(\{a_n\}\):
+      </p>
+    
+      <div class="math-display">
+        \[
+        \begin{align*}
+            S_1 &= a_1 \\
+            S_2 &= a_1 + a_2 \\
+            S_3 &= a_1 + a_2 + a_3 \\
+            &\vdots \\
+            S_n &= a_1 + a_2 + \cdots + a_n = \sum_{k=1}^{n} a_k
+        \end{align*}
+        \]
+      </div>
+    
+      <p>
+        The infinite series is the limit of this sequence of partial sums as \(n \to \infty\). We denote it as:
+      </p>
+    
+      <div class="math-display">
+        \[
+        \sum_{n=1}^{\infty} a_n
+        \]
+      </div>
+    
+      <p>
+        <strong>Definition:</strong> Given a sequence \(\{a_n\}_{n=1}^{\infty}\), the corresponding series is an expression of the form
+        \[
+        \sum_{n=1}^{\infty} a_n = a_1 + a_2 + a_3 + \dots
+        \]
+        The partial sums are given by \(S_N = \sum_{n=1}^{N} a_n\).
+      </p>
+      <p>
+        <strong>Examples:</strong>
+      </p>
+      <ul>
+        <li>
+          Finite series: \(2 + 4 + 6 + 8 + 10\)
+        </li>
+        <li>
+          Infinite series: \(1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \dots\) (the Harmonic Series)
+        </li>
+        <li>
+          Infinite geometric series: \(\frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \dots\)
+        </li>
+      </ul>
+    </section>
+    
+    <section id="convergence-and-divergence">
+        <h2>Convergence and Divergence Visualization</h2>
+        <p>
+          The question of whether a series <strong>converges</strong> is precisely the question of whether its corresponding sequence of partial sums, \(\{S_n\}\), converges to a finite number.
+        </p>
+        <div>
+            <p><strong>Visualizing the Convergence of the Series \(\sum_{n=0}^{\infty} \left(\frac{1}{2}\right)^n\)</strong></p>
+            <p>The partial sum \(S_N = \sum_{n=0}^{N} \left(\frac{1}{2}\right)^n\) is plotted below. Notice how the sum approaches a specific value (the limit) as more terms are added.</p>
+        </div>
+        <div class="canvas-container">
+            <canvas id="series-canvas"></canvas>
+        </div>
+        <div>
+            <button id="startButton">
+                Start Animation
+            </button>
+            <div class="info-box">
+                <p>Number of Terms (N): <span id="term-count">0</span></p>
+                <p>Current Partial Sum (S_N): <span id="current-sum">0.00000</span></p>
+                <p>Theoretical Limit: <span id="limit">2</span></p>
+            </div>
+        </div>
+    </section>
+    
+    
+    <section id="series-definitions">
+        <h2>Defining Convergent and Divergent Series</h2>
+        <p>A series \(\sum_{n=1}^{\infty} a_n\) is said to <strong>converge</strong> if its sequence of partial sums \(\{S_n\}\) converges to a finite limit \(S\). In this case, we write \(\sum_{n=1}^{\infty} a_n = S\). If the sequence \(\{S_n\}\) does not converge, the series is said to <strong>diverge</strong>. Below are a few ways to think about this concept.</p>
+    
+        <div class="info-box-themed info-box-yellow">
+            <h4>Formal Definition </h4>
+            <ul>
+                <li>A series \(\sum_{n=1}^{\infty} a_n\) is <strong>convergent</strong> if its sequence of partial sums \(S_n\) converges to a finite limit.</li>
+                <li>It is <strong>divergent</strong> if this sequence does not converge—i.e., it does not approach any single finite value.</li>
+            </ul>
+        </div>
+    
+        <div class="info-box-themed info-box-green">
+            <h4>Intuitive Definition</h4>
+            <ul>
+                <li>A series <strong>converges</strong> if, as you add more and more terms, the sum gets arbitrarily close to a specific, finite number.</li>
+                <li>A series <strong>diverges</strong> if the sum fails to approach a single value—it might grow to infinity, decrease to negative infinity, or oscillate without settling.</li>
+            </ul>
+        </div>
+    
+        <div class="info-box-themed info-box-blue">
+            <h4>Simple Definition</h4>
+            <p>A <strong>convergent series</strong> is an infinite sum that adds up to a finite number. A <strong>divergent series</strong> is an infinite sum that doesn't have a finite total.</p>
+        </div>
+    </section>
+
+    <section id="series-examples">
+      <h2>Examples of Converging and Diverging Series</h2>
+
+      <h3>Converging Series</h3>
+      <ol>
+        <li>
+          <p><strong>Geometric Series:</strong> \(\sum_{n=0}^{\infty} ar^n\) converges to \(\frac{a}{1-r}\) if \(|r|<1\).</p>
+          <p>Example: \(\sum_{n=0}^{\infty} \left(\frac{1}{2}\right)^n = 2\).</p>
+        </li>
+        <li>
+          <p><strong>p-Series:</strong> The series \(\sum_{n=1}^{\infty} \frac{1}{n^p}\) converges if \(p>1\).</p>
+          <p>A famous case is the Basel Problem (\(p=2\)): \(\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}\).</p>
+        </li>
+        <li>
+          <p><strong>Telescoping Series:</strong> A series where most terms cancel out.</p>
+          <p>Example: \(\sum_{n=1}^{\infty} \frac{1}{n(n+1)} = \sum_{n=1}^{\infty} \left(\frac{1}{n} - \frac{1}{n+1}\right) = 1\).</p>
+        </li>
+      </ol>
+
+      <h3>Diverging Series</h3>
+      <ol>
+        <li>
+          <p><strong>Harmonic Series:</strong> \(\sum_{n=1}^{\infty} \frac{1}{n} = 1 + \frac{1}{2} + \frac{1}{3} + \cdots\). This diverges to \(\infty\).</p>
+        </li>
+        <li>
+          <p><strong>Geometric Series:</strong> \(\sum_{n=0}^{\infty} ar^n\) diverges if \(|r|\ge 1\).</p>
+          <p>Example: \(1+2+4+8+\cdots\).</p>
+        </li>
+        <li>
+          <p><strong>Non-zero term limit:</strong> If \(\lim_{n\to\infty} a_n \neq 0\), then \(\sum a_n\) diverges.</p>
+          <p>Example: \(\sum_{n=1}^{\infty} \frac{n}{n+1}\).</p>
+        </li>
+      </ol>
+    </section>
+
+    <section id="series-convergence-tests">
+      <h2>Tests for Convergence of Series</h2>
+
+      <div class="info-box-themed info-box-red">
+          <h4>The n-th Term Test for Divergence</h4>
+          <p>If the sequence \(\{a_n\}\) does not converge to 0 (i.e., \(\lim_{n \to \infty} a_n \neq 0\)), then the series \(\sum_{n=1}^{\infty} a_n\) <strong>must diverge</strong>.</p>
+          <p><strong>Warning:</strong> The converse is false. If \(\lim_{n \to \infty} a_n = 0\), the series might converge or it might diverge (e.g., the Harmonic Series).</p>
+      </div>
+
+      <h3>Integral Test</h3>
+      <p>If \(f(x)\) is a continuous, positive, and decreasing function for \(x \geq 1\) and we let \(a_n=f(n)\), then the series \(\sum_{n=1}^{\infty} a_n\) converges if and only if the improper integral \(\int_1^\infty f(x) \, dx\) converges.</p>
+
+      <h3>Comparison Tests</h3>
+      <ul>
+        <li>
+          <strong>Direct Comparison Test:</strong>
+          <ol>
+              <li>If \(0 \leq a_n \leq b_n\) and \(\sum b_n\) converges, then \(\sum a_n\) also converges.</li>
+              <li>If \(0 \leq b_n \leq a_n\) and \(\sum b_n\) diverges, then \(\sum a_n\) also diverges.</li>
+          </ol>
+        </li>
+        <li>
+          <strong>Limit Comparison Test:</strong> If \(\lim_{n\to\infty} \frac{a_n}{b_n} = L\) where \(L\) is a finite and positive number (\(0<L<\infty\)), then either both series converge or both diverge.</li>
+      </ul>
+
+      <h3>Ratio Test</h3>
+      <p>Let \(L = \lim_{n\to\infty} \left| \frac{a_{n+1}}{a_n}\right|\). Then:</p>
+      <ul>
+        <li>If \(L < 1\), the series converges absolutely.</li>
+        <li>If \(L > 1\), the series diverges.</li>
+        <li>If \(L = 1\), the test is inconclusive.</li>
+      </ul>
+
+      <h3>Root Test</h3>
+      <p>Let \(L = \lim_{n\to\infty} \sqrt[n]{|a_n|}.\). Then:</p>
+       <ul>
+        <li>If \(L < 1\), the series converges absolutely.</li>
+        <li>If \(L > 1\), the series diverges.</li>
+        <li>If \(L = 1\), the test is inconclusive.</li>
+      </ul>
+
+      <h3>Alternating Series Test (Leibniz Test)</h3>
+      <p>An alternating series of the form \(\sum_{n=1}^{\infty} (-1)^{n-1}b_n\) (with \(b_n > 0\)) converges if both of the following conditions are met:</p>
+      <ol>
+          <li>The terms are decreasing: \(b_{n+1} \le b_n\) for all \(n\).</li>
+          <li>The limit of the terms is zero: \(\lim_{n\to\infty} b_n = 0\).</li>
+      </ol>
+
+      <h3>Absolute and Conditional Convergence</h3>
+       <ul>
+        <li>A series is <strong>absolutely convergent</strong> if the series of its absolute values, \(\sum |a_n|\), converges.</li>
+        <li>A series is <strong>conditionally convergent</strong> if it converges, but the series of its absolute values, \(\sum |a_n|\), diverges (e.g., the alternating harmonic series \(\sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{n}\)).</li>
+      </ul>
+    </section>
+    
+    <section id="geometric-series-proof">
+        <h2>Proof of Convergence: Infinite Geometric Series</h2>
+        <p>Consider the geometric series: \[S = a + ar + ar^2 + ar^3 + \cdots = \sum_{n=0}^{\infty} ar^n\] where \(a\) is the first term and \(r\) is the common ratio.</p>
+    
+        <h3>Step 1: The Partial Sum Formula</h3>
+        <p>The \(n\)-th partial sum is: \(S_n = a + ar + ar^2 + \cdots + ar^n\). Multiplying by \(r\) gives \(rS_n = ar + ar^2 + \cdots + ar^{n+1}\). Subtracting the two equations yields:</p>
+        <p>\(S_n - rS_n = a - ar^{n+1} \implies S_n(1-r) = a(1-r^{n+1})\)</p>
+        <p>So, for \( r\neq1 \), the formula is: \[S_n = a \frac{1 - r^{n+1}}{1 - r}\]</p>
+    
+        <h3>Step 2: Convergence Analysis</h3>
+        <p>We take the limit of \(S_n\) as \(n \to \infty\):</p>
+        <ul>
+            <li>If \(|r| < 1\), then \(r^{n+1} \to 0\) as \(n\to\infty\), so the limit is \[S = \lim_{n\to\infty} S_n = \frac{a(1-0)}{1 - r} = \frac{a}{1 - r}\]</li>
+            <li>If \(|r| \geq 1\), the term \(r^{n+1}\) does not approach 0, and the series diverges:
+                <ul>
+                    <li>If \(r = 1\), \(S_n = a(n+1) \to \infty\).</li>
+                    <li>If \(r = -1\), \(S_n\) alternates between \(a\) and \(0\).</li>
+                    <li>If \(|r|>1\), \(|r^{n+1}|\to\infty\).</li>
+                </ul>
+            </li>
+        </ul>
+    
+        <div class="info-box-themed info-box-orange">
+            <h4>Theorem: Geometric Series Convergence</h4>
+            <p>An infinite geometric series \(\sum_{n=0}^{\infty} ar^n\) converges to the sum \(\frac{a}{1 - r}\) <strong>if and only if</strong> \(|r| < 1\). If \(|r| \ge 1\), the series diverges.</p>
+        </div>
+    </section>
+  </main>
+    
+  <script>
+    // Self-contained JavaScript for the interactive animation
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('series-canvas');
+      if (!canvas) return; // Exit if canvas not found
+      const ctx = canvas.getContext('2d');
+      const startButton = document.getElementById('startButton');
+      const termCountSpan = document.getElementById('term-count');
+      const currentSumSpan = document.getElementById('current-sum');
+
+      let animationFrameId = null;
+      let isAnimating = false;
+      let term = 0;
+      let sum = 0;
+      
+      const MAX_TERMS = 20; // How many terms to show in the animation
+      const THEORETICAL_LIMIT = 2; // For the series sum(1/2)^n from n=0 to inf
+
+      function resizeCanvas() {
+        const parent = canvas.parentElement;
+        canvas.width = parent.clientWidth;
+        canvas.height = 400; 
+        drawGraph();
+      }
+
+      window.addEventListener('resize', resizeCanvas);
+      
+      function drawGraph() {
+        const width = canvas.width;
+        const height = canvas.height;
+        ctx.clearRect(0, 0, width, height);
+
+        const padding = 40;
+        const graphWidth = width - 2 * padding;
+        const graphHeight = height - 2 * padding;
+
+        const scaleX = graphWidth / MAX_TERMS;
+        const scaleY = graphHeight / (THEORETICAL_LIMIT + 0.5); 
+
+        // Draw axes
+        ctx.strokeStyle = '#6b7280';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(padding, height - padding);
+        ctx.lineTo(width - padding, height - padding); // X-axis
+        ctx.moveTo(padding, padding);
+        ctx.lineTo(padding, height - padding); // Y-axis
+        ctx.stroke();
+        
+        // Draw axis labels
+        ctx.fillStyle = '#343a40';
+        ctx.font = '12px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('Number of Terms (N)', padding + graphWidth / 2, height - 10);
+        ctx.save();
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText('Partial Sum (S_N)', -height / 2, 15);
+        ctx.restore();
+
+        // Draw limit line
+        const limitY = height - padding - THEORETICAL_LIMIT * scaleY;
+        ctx.strokeStyle = '#ef4444'; 
+        ctx.setLineDash([5, 5]);
+        ctx.beginPath();
+        ctx.moveTo(padding, limitY);
+        ctx.lineTo(width - padding, limitY);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        
+        ctx.fillStyle = '#ef4444';
+        ctx.font = '14px Arial';
+        ctx.textAlign = 'right';
+        ctx.fillText(`Limit = ${THEORETICAL_LIMIT}`, width - padding, limitY - 8);
+
+        // Draw plot line and points
+        ctx.beginPath();
+        let firstPoint = true;
+        for (let n = 0; n <= term; n++) {
+            let currentSum = 0;
+            for (let i = 0; i <= n; i++) {
+                currentSum += Math.pow(0.5, i);
+            }
+
+            const x = padding + n * scaleX;
+            const y = height - padding - currentSum * scaleY;
+
+            if (firstPoint) {
+                ctx.moveTo(x, y);
+                firstPoint = false;
+            } else {
+                ctx.lineTo(x, y);
+            }
+        }
+        ctx.strokeStyle = '#2563eb';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Draw points on top of the line
+        ctx.fillStyle = '#2563eb';
+        for (let n = 0; n <= term; n++) {
+            let currentSum = 0;
+            for (let i = 0; i <= n; i++) {
+                currentSum += Math.pow(0.5, i);
+            }
+            const x = padding + n * scaleX;
+            const y = height - padding - currentSum * scaleY;
+            ctx.beginPath();
+            ctx.arc(x, y, 4, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+      }
+
+      function animate() {
+        if (!isAnimating) return;
+
+        if (term < MAX_TERMS) {
+            term++;
+        } else {
+            isAnimating = false;
+            startButton.textContent = 'Reset Animation';
+            cancelAnimationFrame(animationFrameId);
+            return;
+        }
+
+        sum = 0; // Recalculate sum for accuracy
+        for (let i = 0; i <= term; i++) {
+            sum += Math.pow(0.5, i);
+        }
+        termCountSpan.textContent = term;
+        currentSumSpan.textContent = sum.toFixed(5);
+        
+        drawGraph();
+        animationFrameId = requestAnimationFrame(animate);
+      }
+
+      startButton.addEventListener('click', () => {
+        if (isAnimating) {
+          isAnimating = false;
+          startButton.textContent = 'Start Animation';
+          cancelAnimationFrame(animationFrameId);
+        } else {
+          if (term >= MAX_TERMS) {
+            term = 0;
+            sum = 0;
+            termCountSpan.textContent = term;
+            currentSumSpan.textContent = sum.toFixed(5);
+          }
+          isAnimating = true;
+          startButton.textContent = 'Stop Animation';
+          animate();
+        }
+      });
+      
+      resizeCanvas();
+    });
+  </script>
+</body>
+</html>

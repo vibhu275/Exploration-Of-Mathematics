@@ -1,0 +1,260 @@
+/* --- 1. Root Variables & Global Styles --- */
+:root {
+    --primary-font: 'Merriweather', serif; /* Better for reading long paragraphs */
+    --heading-font: 'Lato', sans-serif;
+    --background-color: #fcfdfe;
+    --container-bg: #ffffff;
+    --text-color: #343a40;
+    --heading-color: #005f73;
+    --accent-color: #0a9396;
+    --accent-light: #94d2bd;
+    --subtle-accent: #e9f5f5;
+    --border-color: #dee2e6;
+    --shadow-color-light: rgba(0, 95, 115, 0.08);
+    --shadow-color-dark: rgba(0, 95, 115, 0.15);
+}
+
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth; /* Smooth scrolling for TOC links */
+}
+
+body {
+    font-family: var(--primary-font);
+    line-height: 1.8;
+    margin: 0;
+    padding: 1rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* --- 2. Main Layout & Container --- */
+.container {
+    max-width: 900px;
+    margin: 3rem auto;
+    background: var(--container-bg);
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 30px var(--shadow-color-light);
+    border: 1px solid var(--border-color);
+    position: relative;
+}
+
+header h1 {
+    text-align: center;
+    font-family: var(--heading-font);
+    font-size: 3rem;
+    color: var(--heading-color);
+    margin-bottom: 2.5rem;
+    border-bottom: 3px solid var(--accent-light);
+    padding-bottom: 1rem;
+    font-weight: 700;
+}
+
+section {
+    margin-top: 3.5rem;
+}
+
+footer {
+    text-align: center;
+    margin-top: 4rem;
+    color: #6c757d;
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+}
+
+/* --- 3. Table of Contents (TOC) --- */
+.toc {
+    position: sticky;
+    top: 20px;
+    width: 200px;
+    float: left;
+    margin-left: -240px; /* Position it outside the main content area */
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+.toc h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+.toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.toc li a {
+    text-decoration: none;
+    color: var(--heading-color);
+    font-family: var(--heading-font);
+    font-size: 0.95rem;
+    display: block;
+    padding: 0.5rem;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+}
+.toc li a:hover {
+    background-color: var(--subtle-accent);
+    color: var(--accent-color);
+    transform: translateX(5px);
+}
+
+/* --- 4. Typography --- */
+h2, h3, h4, h5 {
+    font-family: var(--heading-font);
+    color: var(--heading-color);
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 2.2rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+h3 { font-size: 1.7rem; color: #0077b6; }
+h4 { font-size: 1.4rem; color: #0096c7; }
+p, li { font-size: 1.1rem; margin-bottom: 1.25rem; }
+a { color: var(--accent-color); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* --- 5. Table Styling --- */
+.table-container { overflow-x: auto; }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 15px var(--shadow-color-light);
+    border-radius: 8px;
+    overflow: hidden; /* Important for border-radius */
+}
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 0.85rem;
+    text-align: center;
+    transition: background-color 0.2s ease;
+}
+thead {
+    background: linear-gradient(to right, var(--heading-color), var(--accent-color));
+    color: white;
+}
+caption {
+    caption-side: bottom;
+    padding-top: 1rem;
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-style: italic;
+}
+tbody tr:nth-child(even) { background-color: #f8f9fa; }
+tbody tr:hover { background-color: var(--subtle-accent); }
+
+/* --- 6. Special Content Blocks (Theorem & Proof) --- */
+.theorem {
+    border-left: 5px solid var(--accent-color);
+    padding: 1.5rem 2rem;
+    margin: 2rem 0 1rem 0;
+    background-color: var(--subtle-accent);
+    border-radius: 0 8px 8px 0;
+}
+.theorem h4 { margin-top: 0; }
+.proof summary {
+    font-family: var(--heading-font);
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--heading-color);
+    cursor: pointer;
+    padding: 0.75rem 1.5rem;
+    background-color: #f1f3f5;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    list-style: none; /* Hide default marker */
+}
+.proof summary::before {
+    content: '+';
+    margin-right: 0.75rem;
+    font-weight: bold;
+    display: inline-block;
+    transition: transform 0.2s ease-in-out;
+}
+.proof[open] > summary::before {
+    transform: rotate(45deg);
+}
+.proof summary:hover { background-color: #e9ecef; }
+.proof > div {
+    padding: 1.5rem;
+    margin-top: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+/* --- 7. Diagrams and SVG --- */
+.svg-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background: #fdfdfd;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+/* --- 8. Interactive Graph Plotter --- */
+#graph-container {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: #fdfdfd;
+    box-shadow: 0 4px 15px var(--shadow-color-light);
+}
+.controls {
+    display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1.5rem;
+}
+.controls label {
+    font-weight: bold; font-family: var(--heading-font); color: var(--heading-color);
+}
+.controls select, .controls button {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: var(--heading-font);
+    cursor: pointer;
+    background-color: var(--container-bg);
+    transition: all 0.2s ease-in-out;
+}
+.controls button:hover, .controls select:hover {
+    border-color: var(--accent-color);
+    background-color: var(--accent-color);
+    color: white;
+}
+.controls button:active { transform: translateY(2px); }
+
+/* --- 9. Responsive Design --- */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 800px;
+    }
+    .toc {
+        position: static;
+        width: 100%;
+        float: none;
+        margin-left: 0;
+        margin-bottom: 2.5rem;
+    }
+}
+@media (max-width: 768px) {
+    body { padding: 0.5rem; }
+    .container { padding: 1.5rem; margin: 1rem auto; }
+    header h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    p, li { font-size: 1rem; }
+    .controls { flex-direction: column; align-items: stretch; }
+}

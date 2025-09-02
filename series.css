@@ -1,0 +1,271 @@
+/* --- Root Variables for Easy Customization --- */
+:root {
+  --background-color: #f8f9fa; /* Soft, light gray background */
+  --text-color: #343a40;       /* Dark gray for better readability than pure black */
+  --primary-color: #005f73;    /* A deep, academic teal/blue */
+  --secondary-color: #0a9396;  /* A brighter accent for links and highlights */
+  --border-color: #dee2e6;      /* Subtle border color */
+  --highlight-bg: #e9f5f5;      /* Light background for notes and definitions */
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: 'Georgia', 'Times New Roman', serif;
+}
+
+/* --- General Layout & Typography --- */
+body {
+  max-width: 61.8rem; /* A slightly narrower width for better reading comfort */
+  margin: auto;
+  padding: 2rem 1rem;
+  font-family: var(--font-serif);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.75;
+  font-size: 1.1em;
+}
+
+/* --- Headings --- */
+.main-title {
+  color: var(--primary-color);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  font-family: var(--font-sans);
+  color: var(--primary-color);
+  border-bottom: 3px solid var(--border-color);
+  padding-bottom: 0.5rem;
+  margin-top: 2.5rem; /* More space between sections */
+}
+
+h3 {
+  font-family: var(--font-sans);
+  color: var(--primary-color);
+}
+
+/* --- Custom Styled Boxes (like tcolorbox) --- */
+.tcolorbox, .definition, .definition-formal {
+  background-color: var(--highlight-bg);
+  border-left: 5px solid var(--secondary-color);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.tcolorbox strong, .definition strong, .definition-formal strong {
+  color: var(--primary-color);
+  font-family: var(--font-sans);
+}
+
+/* --- Links and Lists --- */
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 2px dotted transparent;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  border-bottom: 2px solid var(--secondary-color);
+}
+
+ul {
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* --- Interactive Canvas Section Styling --- */
+.canvas-container {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+}
+
+#series-canvas {
+  width: 100%;
+  height: auto;
+}
+
+#startButton {
+  background-color: var(--primary-color);
+  font-family: var(--font-sans);
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px; /* Fully rounded button */
+  box-shadow: 0 4px 10px rgba(0, 95, 115, 0.3);
+  transition: all 0.3s ease;
+}
+
+#startButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 95, 115, 0.4);
+}
+
+.info-box {
+  font-family: var(--font-sans);
+  background-color: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.75rem 1.25rem;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.info-box p {
+  margin: 0.25rem 0;
+}
+
+.info-box span {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* --- Flowchart Diagram Styling --- */
+
+/* The main container for the flowchart */
+.flowchart {
+  text-align: center;
+  margin: 3rem 0; /* Adds space around the diagram */
+  position: relative;
+}
+
+/* Base styles for all boxes in the chart */
+.flowchart-box {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: inline-block; /* Allows centering and proper layout */
+  position: relative;
+  z-index: 2; /* Ensures boxes are above the lines */
+}
+
+/* Specific styling for the top "Sequence" box */
+.parent-node {
+  background-color: #cde2ff; /* Light blue background */
+  color: #003d99; /* Dark blue text */
+  border: 1px solid #99c2ff;
+}
+
+/* Styling for the two bottom boxes */
+.child-node {
+  background-color: #fff0d1; /* Light orange background */
+  color: #7a4f01; /* Dark orange/brown text */
+  border: 1px solid #ffe1a3;
+}
+
+/* This pseudo-element draws the short vertical line coming DOWN from the parent box */
+.parent-node::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -20px; /* Puts the line 20px below the box */
+  transform: translateX(-50%);
+  width: 2px;
+  height: 20px;
+  background-color: #adb5bd;
+}
+
+/* A container to hold the two child boxes */
+.flowchart-children {
+  display: flex;
+  justify-content: center;
+  gap: 5rem; /* The space between "Finite" and "Infinite" boxes */
+  margin-top: 40px; /* Creates space for the connecting lines */
+}
+
+/* This pseudo-element draws the vertical lines coming UP from each child box */
+.child-node::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -20px; /* Puts the line 20px above the box */
+  transform: translateX(-50%);
+  width: 2px;
+  height: 20px;
+  background-color: #adb5bd;
+}
+
+/* This pseudo-element on the FIRST child draws the horizontal line connecting the two branches */
+.child-node:first-child::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -20px; /* Aligns it perfectly with the vertical lines */
+  height: 2px;
+  /* The width is calculated as 100% of the box + the gap between boxes */
+  width: calc(100% + 5rem);
+  background-color: #adb5bd;
+  z-index: 1; /* Puts it behind the boxes but in front of the page */
+}
+
+.custom-underline {
+  text-decoration: underline;
+
+  /* You can also customize the underline! */
+  text-decoration-color: #0a9396;   /* Make the line color match your theme */
+  text-decoration-thickness: 2px;  /* Make the line thicker */
+  text-decoration-style: wavy;     /* Or even make it wavy! */
+}
+
+/* --- START: Add these styles to the end of series.css --- */
+
+/* Styles for lists in the new sections */
+section ol, section ul {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+section ol > li, section ul > li {
+  margin-bottom: 1rem;
+}
+
+/* Base style for the new themed info boxes */
+.info-box-themed {
+  border-left: 5px solid;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.info-box-themed h4 {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  margin-top: 0;
+  color: var(--text-color);
+}
+
+/* Yellow Box (for Rudin definitions) */
+.info-box-yellow {
+  background-color: #fffbeb;
+  border-color: #f59e0b;
+}
+
+/* Green Box (for Fitzee definitions) */
+.info-box-green {
+  background-color: #f0fdf4;
+  border-color: #22c55e;
+}
+
+/* Blue Box (for ChatGPT definitions) */
+.info-box-blue {
+  background-color: #eff6ff;
+  border-color: #3b82f6;
+}
+
+/* Orange Box (for Geometric Series Theorem) */
+.info-box-orange {
+  background-color: #fff7ed;
+  border-color: #f97316;
+}
+
+/* --- END: CSS styles --- */

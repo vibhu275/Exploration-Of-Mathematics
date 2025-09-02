@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>High School Math Series</title>
+  <link rel="stylesheet" href="style1.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Cedarville+Cursive&display=swap" rel="stylesheet">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        tags: 'ams'  // Enable automatic equation numbering
+      }
+    };
+  </script>
+
+  <script src="pascals.js" defer></script>
+
+
+  <script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</head>
+<body>
+  <div class="grid-container">
+    <aside class="sidebar">
+      <h2>Table Of Contents</h2>
+
+      <ul class="sidebar-links">        
+        <div class="sub-dropdown">
+          <a href="#ap">Arithmetic Progression ▸</a>
+          <div class="sub-dropdown-content">
+            <a href="proofap.html" target="_blank"> Proof of AP Formulas</a>
+            <a href="gp.html" target="_blank"> Geometric Progression</a>
+          </div>
+        </div>
+
+        <div class="sub-dropdown">
+          <a href="#hp">Harmonic Progression ▸</a>
+          <div class="sub-dropdown-content">
+            <a href="series.html" target="_blank">A General Talk on Sequences and Series</a>
+            <a href="infinity.html" target="_blank">Infnity</a>
+          </div>
+        </div>          
+
+        <li><a href="#Some-interesting-infinite-series">Some interesting infinite series </a></li>
+
+        <div class="sub-dropdown">
+          <a href="#Some interesting infinite sequences">Interesting Sequences ▸</a>
+          <div class="sub-dropdown-content">
+            <a href="hardy.html" target="_blank">A Proof of Question 7.1</a>
+            <li><a href="#Fibonacci Sequence">Fibonacci Sequence</a></li>
+          </div>
+        </div>  
+        
+        <li><a href="#Pascal's Triangle">Pascal's Triangle</a></li>
+        <li><a href="#Quadratic Equation">Quadratic Equation</a></li>
+        
+        <li><a href="trig.html" target="_blank">Trignometry</a></li>
+        <li><a href="basiccalc.html" target="_blank">Basics for calculus</a></li>
+        <li><a href="calc.html" target="_blank">Calculus</a></li>
+      </ul>
+    </aside>
+
+
+    <main class="content">
+      <div class="content-inner">
+
+
+
+        <h2 id="introduction">A Bicycle, a Lesson, and Arithmetic Progression</h2>
+      </div>
+      <div class="content-inner">
+        <p>We will begin our discussion with a story.</p>
+        <p>Ritesh Kumar approached his father, Mr. Kumar, requesting a bicycle.
+          As a mathematician, Mr. Kumar told him he would need to earn it through
+          effort. He proposed a daily allowance starting at one rupee, increasing
+          by one rupee each day, contingent on completing his homework.
+        </p>
+        <p>Initially, Ritesh thought this was unfair, realizing it would take
+          too long to gather the 1770 rupees needed for the bicycle. However, he
+          found a motivational book on his pillow the next morning, which sparked
+          his interest in a chapter about "Arithmetic Progression." He soon
+          realized that by completing his homework diligently for less than two
+          months, he could earn the money, understanding the lesson his father
+          intended to teach him.
+        </p>
+        <p>Now, let us learn that lesson ourselves.</p>
+
+      
+
+        <section id="ap"><h1>Arithmetic Progression</h1>
+
+
+        <p>An Arithmetic Progression is nothing but a list of numbers (which can
+          represent anything), in which each term is obtained by adding a fixed
+          number, called the Common Difference, to the previous term(except for the
+          first term). To construct an Arithmetic Progression, initiate with the 
+          specified first term, increment it by the designated common difference, 
+          and continue this procedure iteratively.
+        </p>
+
+        <p>Some examples of Arithemetic progression are
+          <ol>
+            <li><span class="math-inline">\(1,2,3,4,5,6,7,8,9,\cdots\)</span>
+              <p>First terms is 1 and common difference is 1.</p></li>
+            <li><span class="math-inline">\(2,4,6,8,10,12,14,16,\cdots\)</span>
+              <p>First term is 2 and common difference is 2.</p></li>
+            <li><span class="math-inline">\(3,9,15,21,\cdots\)</span>
+              <p>First term is 3 and common difference is 6.</p></li>
+          </ol>
+        </p></section>
+        
+        
+        <p>We are going to analyze how Ritesh solved his problem by formulating
+          this progression. For our discussion, we will denote the n-th term of
+          the progression as         
+          <span class="math-inline">\(a_n\)</span>, 
+          the common difference as 
+          <span class="math-inline">\(d\)</span>, 
+          and the sum of the first n terms of the progression as 
+          <span class="math-inline">\(S_n\)</span>. 
+          I will now present two important results. 
+          
+
+        </p>
+
+        
+        <span class="math-inline">
+          <div id="eq:enumeration1">
+            \[\begin{equation} \tag{1}
+              a_n=a_1+(n-1)d,
+            \end{equation}\]
+          </div>
+
+          <div id="eq:enumeration2">
+            \[\begin{equation} \tag{2}
+              S_n = \frac{n}{2}\{2a_1 + (n - 1)d\}
+            \end{equation}\]
+          </div>
+
+        </span>
+          
+        
+
+
+        
+
+
+        <div class="tcolorbox">
+          <div class="tcolorbox-title">Important Note For The Readers</div>
+          <div class="tcolorbox-body">
+            <p>
+              I encourage readers to engage with these formulas personally and to
+              attempt to prove them, even if it takes several weeks of dedicated
+              effort. The time you invest is undoubtedly worthwhile. The inherent
+              beauty of mathematics is that once you begin to appreciate the subject
+              truly, it becomes a constant presence in your thoughts. You may find
+              yourself contemplating mathematical problems while dining, navigating
+              the streets, or during other daily activities. Therefore, pursuing
+              mathematics is a valuable endeavor. 
+            </p>       
+          </div>
+        </div>
+
+
+        
+
+
+
+
+        <p>Only after you have made your best effort should you seek proof. This
+
+          <a href="proofap.html" target="_blank">detailed proof</a>
+
+          proof may not align with your conclusions. Another beautiful aspect of
+          mathematics is that there are often multiple solutions to every problem,
+          yet every path ultimately leads to the same outcome.
+        </p>
+
+        <p>Returning to the original problem, Ritesh needed a total of 1,770
+          rupees. He began earning 1 rupee on the first day, and his earnings
+          increased by 1 rupee each subsequent day. To determine how many days it
+          would take for him to accumulate 1,770 rupees, we can use the formula
+          for the sum of an arithmetic sequence. This will help us find the number
+          of days needed to reach that total. Using 
+          <a href="#eq:enumeration2">equation 2</a>
+          we can write
+        </p>
+
+        <p><span class="math-inline">\[\frac{n(n+1)}{2}=1770\]</span></p>
+
+        <p>This is a quadratic equation, which we will learn more about in this
+          article in section titled 
+          <a href="#Quadratic Equation">Quadratic Equation</a>
+          . I recommend that anyone unfamiliar with solving quadratic
+          equations read the relevant section. Solving the quadratic equation, the
+          meaningful result we get is <span class="math-inline">\(n=59\)</span>,
+          which is less than two months.
+        </p>
+        
+        <p>Well, in another scenario, Mr. Kumar could also have said that he would double the amount every
+          day, starting with giving 1 rupee on the first day. Then the progression
+          would have looked something like this 
+          <span class="math-inline">\[1,2,4,8,16,32,\cdots\]</span>
+        </p>
+
+        <p>This type of progression is known as geometric progression and
+          closely resembles the process of deriving the formulas for the sum and
+          the nth term of an arithmetic progression. Therefore, I will now
+          transition to more complex and interesting progressions and sequences. I
+          encourage readers to invest time in exploring geometric progression,
+          attempting to formulate the relevant equations, and verifying them on
+          their own. For those seeking a deeper understanding of 
+
+          <a href="gp.html" target="_blank">Geometric progression</a>
+
+          or who want to check their derived formulas, additional
+          resources are available for further study.
+        </p>
+
+        <section id="hp"><h1>Harmonic Progression</h1>
+
+        <p>I want to draw the reader’s attention to a more intricate concept. A
+          Harmonic Progression is defined as a sequence in which the reciprocals
+          of each term form an Arithmetic Progression. Or in mathematical terms, a
+          general harmonic progression can be represented as follows. 
+          <span class="math-inline">\[\frac{1}{a_1},\frac{1}{a_1+d},\frac{1}{a_1+2d},\frac{1}{a_1+3d},\cdots\]</span>
+          As one can see, the reciprocals of each term constitute an Arithmetic
+          Progression, where the first term is denoted as 
+          <span class="math-inline">\(a_1\)</span> 
+          and the common difference is represented by 
+          <span class="math-inline">\(d\)</span>. 
+          It must now be apparent that the general terms for the Harmonic progression is 
+          
+        </p>
+        
+        <span class="math-inline">
+          <div id="eq:enumeration3">
+            \[\begin{equation} \tag{3}
+              a_n=\frac{1}{a_1+(n-1)d},
+            \end{equation}\]
+          </div>
+        </span>
+
+        <p>
+          where 
+          <span class="math-inline">\(\frac{1}{a_1}\)</span> 
+          is the first term of the Harmonic Progression.
+        </p>
+
+        <p>In discussing harmonic progression, an intriguing aspect emerges when
+          compared to arithmetic and geometric progressions. In the latter two
+          cases, one can easily derive a formula for the sum of the first n terms.
+          However, a general formula for computing the sum of n terms in a
+          harmonic progression, given the first term and common difference, does
+          not exist.
+        </p>
+        
+       
+        
+
+        <div class="tcolorbox">
+          <div class="tcolorbox-title">Important Note For The Readers</div>
+          <div class="tcolorbox-body">
+            <p>I have experienced numerous sleepless nights grappling with the
+              realization that such a formula does not exist. I have dedicated
+              extensive time and effort to this pursuit without achieving success. I
+              encourage readers to engage in this exploration themselves, as one may
+              uncover unexpected insights.
+            </p>
+            <p>As one of the most prominent pure mathematicians of the 21st century,
+              Manjul Bhargava remarked, "Some of the most prominent formulas in
+              mathematics are found just because one was looking for the most
+              beautiful mathematics out there." This statement underscores the
+              intrinsic beauty that can be discovered within mathematical inquiry.
+            </p>
+          </div>
+        </div>
+
+        <p>
+          Though there are some practical uses of harmonic progression. The most 
+          famous one is the solution for block stacking problem. 
+        </p>
+        
+        <p>
+          The problem says -
+        </p>
+          <div class="tcolorbox">
+            <div class="tcolorbox-title">The Block Stacking Problem</div>
+            <div class="tcolorbox-body">
+              <p>"Place N identical rigid rectangular blocks in a stable stack on a table edge in such a way as to maximize the overhang."</p>
+            </div>
+          </div>
+
+        <p>
+          Since this problem involves dealing with physical concepts like 
+          gravitational forces, centre of mass, and torques. It is not a 
+          mathematician's responsibility to do these; it's physicists.
+        </p>
+
+        <p>All I can do is this-
+          <a href="https://en.wikipedia.org/wiki/Block-stacking_problem#Proof_of_solution_of_single-wide_variant" target="_blank">Proof of solution of single-wide variant</a> 
+          .By clicking on the link provided, you will be directed to the relevant 
+          article on Wikipedia, where you can explore the application of harmonic 
+          progression in determining the general solution for this topic.
+        </p>
+
+        <p>In forthcoming sections, we will explore the underlying reasons for
+          the absence of a summation formula in harmonic progression.
+          Additionally, it is noteworthy that while geometric progression permits
+          a general formula for any infinite geometric series, neither arithmetic nor harmonic
+          progression offers a similar capability. 
+        </p>
+        <p>Before jumping on to
+          discovering more series and sequences, i recommend readers who are not
+          much familiar with the definition of series, sequences, converging and
+          diverging series to read this short page on 
+          <a href="series.html" target="_blank">A General Talk on Sequences and Series</a>
+          .And also be familiar with the concept 
+          <a href="infinity.html" target="_blank">infnity</a>.
+        </p>
+
+        <section id="Some-interesting-infinite-series"><h1>Some interesting infinite series</h1>
+        <p>
+          As we saw how infinty can not be treated as a number like we treat the other numbers. 
+
+          Before proceeding any further I want all the readers to first involve themselves with this.
+
+          <p>
+            The Question is -
+          </p>
+            <div class="tcolorbox">
+              <div class="tcolorbox-title">The Sum of all the natural numbers</div>
+              <div class="tcolorbox-body">
+                <p>What is the sum of all natural numbers. Or in other words </p>
+
+                <span class="math-inline">
+                  <div id="eq:enumeration4">
+                    \[\begin{equation} \tag{4}
+                      S = 1+2+3+4+5+6+7+ \cdots ,
+                    \end{equation}\]
+                  </div>
+                </span>
+
+                <p>what is the value of S?</p>
+
+              </div>
+            </div>
+        </p>
+
+        <p>
+          I want all the readers to atleast try to see the behavior and the properties of this series. 
+          We will return back to this after a little discussion on some other series. 
+        </p>
+
+        <p>
+          Let's look at the following series :-
+        </p>
+
+        <span class="math-inline">
+          <div id="eq:enumeration5">
+            \[\begin{equation} \tag{5}
+              S_1 = 1+1+1+1+1+1+1 \cdots ,
+            \end{equation}\]
+          </div>
+        </span>
+
+        <span class="math-inline">
+          <div id="eq:enumeration6">
+            \[\begin{equation} \tag{6}
+              S_2 = 1-1+1-1+1-1+1 \cdots ,
+            \end{equation}\]
+          </div>
+        </span>
+
+        <span class="math-inline">
+          <div id="eq:enumeration7">
+            \[\begin{equation} \tag{7}
+              S_3 = 2+4+6+8+10+12+14+ \cdots ,
+            \end{equation}\]
+          </div>
+        </span>
+
+        <span class="math-inline">
+          <div id="eq:enumeration8">
+            \[\begin{equation} \tag{8}
+              S_4 = 1+3+5+7+9+11+13+ \cdots ,
+            \end{equation}\]
+          </div>
+        </span>
+
+        <span class="math-inline">
+          <div id="eq:enumeration9">
+            \[\begin{equation} \tag{9}
+              S_5 = 1-2+3-4+5-6+7+ \cdots ,
+            \end{equation}\]
+          </div>
+        </span>
+
+        <p>
+          In the standard, rigorous definition of convergence, the series discussed herein are all divergent. The values assigned to them are derived from alternative summation methods that extend the concept of a <i>sum</i> to series that do not converge in the traditional sense. The following sections present the common heuristic, or non-rigorous, arguments used to arrive at these famous results. These manipulations are not valid under the standard rules of algebra for infinite series but provide an intuitive path to the values obtained through more advanced methods.
+        </p>
+
+        <p>Though these series do not converge in the classical sense, using summation methods like Cesàro summation, Abel summation, or analytic continuation, we can assign finite values to them.
+
+          For example, for the series \( S_2 \), we have:
+          \[
+          1 - S_2 = S_2 \implies \boxed{S_2 = \frac{1}{2}}
+          \]
+
+          Next, let \( S \) denote the sum of natural numbers:
+          \[
+          S = 1 + 2 + 3 + 4 + \cdots
+          \]
+
+          Adding \( S \) and \( S_5 \) term by term gives:
+          \[
+          S + S_5 = (1+1) + (2-2) + (3+3) + (4-4) + \cdots = 2 + 0 + 6 + 0 + \cdots = 4 S
+          \]
+
+          Rearranging, we find:
+          \[
+          S + S_5 = 4 S \implies S_5 = 3 S
+          \]
+
+          From analytic continuation, we assign:
+          \[
+          \boxed{S = -\frac{1}{12}}
+          \]
+
+          Thus,
+          \[
+          \boxed{S_5 = \frac{1}{4}} \quad \text{(based on summation method conventions)}
+          \]
+
+          Finally, since \( S_3 \) is twice the sum of natural numbers,
+          \[
+          S_3 = 2 S = 2 \times \left(-\frac{1}{12}\right) = \boxed{-\frac{1}{6}}
+          \]
+        </p>
+
+        <p>Try to find \(S_5\) yourself. There are a lot of stories related to these series. I can't tell them all here, but I encourage the readers to read and know about them.</p>
+
+        <section id="Some interesting infinite sequences"><h1>Some interesting sequences</h1>
+
+        <p>
+          In this discussion, we will explore various sequences that manifest in nature and numerical patterns in unexpected ways.
+        </p>
+        <p>
+          Let's first start with the following question?
+        </p>
+
+        <h3>Question 7.1</h3>
+
+        <p>Prove that if the 
+          <span class="math-inline">\(n^\text{th}\)</span>
+          term of the sequence
+        </p>
+
+        <span class="math-inline">
+          <div id="eq:enumeration10">
+            \[\begin{equation} \tag{10}
+              \frac{1}{1},\frac{2}{1},\frac{1}{2},\frac{3}{1},\frac{2}{2},\frac{1}{3},\frac{4}{1},\frac{3}{2},\frac{2}{3},\frac{1}{4},\frac{5}{1},\frac{4}{2},\frac{3}{3},\frac{2}{4},\dots 
+            \end{equation}\]
+          </div>
+        </span>
+
+        <p>
+          <span class="math-inline">\(\)</span> 
+          is
+          <span class="math-inline">\(\frac{p}{q}\)</span>
+          , then 
+        </p>
+
+        <span class="math-inline">
+          <div id="eq:enumeration11">
+            \[\begin{equation} \tag{11}
+                  n = \frac{(p + q - 2)(p + q - 1)}{2} + q \:         
+              \end{equation}\]
+          </div>
+        </span>
+        <p>And also that the sequence contains all the rational number infinitely many times.</p>
+
+        <p>
+          I encourage readers to explore this question on their own before reviewing any proof. 
+          If you discover an alternative proof, please share it—such discoveries are often enlightening!
+        </p>
+        <p>
+          Further details regarding the sequence in  
+          <a href="#eq:enumeration10">equation 10</a> 
+          will be discussed 
+          in the section on 
+          <a href="hardy.html" target="_blank">The Proof of Question 7.1</a>.
+        </p>
+
+        <div style="margin-top: 2em;"></div>
+        <p>
+          Let’s check out a cool mathematical sequence that really shows off beauty in nature. 
+          You can find this sequence in all sorts of places, like the twists of seashells and 
+          the designs of flowers. It’s caught the attention of everyone from ancient Greek math 
+          whizzes to groundbreaking scientists, innovative architects from the 20th century, 
+          and even in a hit movie thriller.
+
+        </p>
+        <p>
+          What’s amazing about this sequence is that it pops up everywhere. It’s not just a neat math thing; 
+          It is found in the writings of an ancient Greek mathematician, the musings of a revolutionary 
+          cosmological scientist, the designs of a twentieth-century architect, and the intrigue of a 
+          best-selling thriller novel-turned-movie blockbuster. People love to debate its significance and how it can be used.
+
+        </p>
+
+        <p>
+          Artists, architects, and many others get inspired by this idea, using it to make their work more beautiful 
+          and appealing. Let’s dive into this fascinating world of math and see how it influences art, science, and nature!
+        </p>
+         
+        <p>
+          I understand that many individuals may be inquiring about the nature of this sequence and how it can enhance 
+          their ability to create with greater artistry.
+        </p>
+
+      
+        <section id="Fibonacci Sequence"><h1></h1>
+
+        <h3>Fibonacci Sequence</h3>
+        <p>
+          This sequence is named after the famous Italian mathematician 
+          <a href="https://en.wikipedia.org/wiki/Fibonacci" target="_blank">(Fibonacci)</a>
+          . However, Leonardo Fibonacci did not discover the Fibonacci sequence. Although 
+          he popularized it in Western Europe, the sequence was known to Indian mathematicians 
+          centuries earlier. Fibonacci introduced it to the Western world in his 1202 book "Liber Abaci", 
+          but it was studied in India as early as the 6th century BC by Pingala and later by Hemachandra.
+        </p>
+
+        <p>
+          The sequence is described as follows.
+        </p>
+        <span class="math-inline">
+          <div id="eq:enumeration12">
+            \[\begin{equation} \tag{12}
+                  0,1,1,2,3,5,8,13,21,34,55,\cdots            
+              \end{equation}\]
+          </div>
+        </span>
+
+        <p>
+          Can u tell me the formula for the general term of this sequence? Yes, that's right. 
+          The general terms of this sequence are related by the formula
+        </p>
+
+        <span class="math-inline">
+          <div id="eq:enumeration13">
+            \[\begin{equation} \tag{13}
+                  a_{n+2}=a_{n+1}+a_n, \: \text{and }    a_0=0, \: a_1=1            
+              \end{equation}\]
+          </div>
+        </span>
+
+        <p>
+          The general term of the fibonacci series only in terms of n can be written as follows:
+        </p>
+        <span class="math-inline">
+          <div id="eq:enumeration14">
+            \[\begin{equation} \tag{14}
+                  a_n=\frac{(\frac{1+\sqrt{5}}{2})^n+(\frac{1-\sqrt{5}}{2})^n}{\sqrt{5}}          
+              \end{equation}\]
+          </div>
+        </span>
+
+        <p>
+          We will prove the above equation in two ways: 
+          First here we show the derivation and second proof by induction is given in the 
+          <a href="proof.html" target="_blank">proof section</a>.
+        </p>
+
+        <p>The easiest derivation is by constructing a function as follows,</p>
+
+        <p>Let,</p>
+
+        <span class="math-inline">
+          <div id="eq:enumeration15">
+            \[\begin{equation} \tag{15}
+                  f(x) = a_0 + a_1 x + a_2 x^2 + a_3 x^3 + a_4 x^4 + \cdots
+              \end{equation}\]
+          </div>
+        </span>
+
+        <p>
+          where 
+          <span class="math-inline">\(a_n\)</span>
+          is the n-th term in the fibonacci sequence. 
+        </p>
+
+        <p>Since we know from 
+          <a href="#eq:enumeration13">equation 13</a> 
+          that
+          <span class="math-inline">\( a_{n+2} = a_{n+1} + a_n \text{ and } a_0 = 1 \text{ and } a_1 = 1\)</span>.
+          Multiplying both sides by \(x^n\) and using a summation from zero to infinity, we get,
+        </p>
+
+        <span class="math-inline">
+          \[
+          \begin{align*}
+            & \sum_{n=0}^{\infty} x^n a_{n+2} = \sum_{n=0}^{\infty} x^n a_{n+1} + \sum_{n=0}^{\infty} x^n a_n \\
+            \implies & \frac{1}{x^2}( f(x) - a_0 - a_1 x ) = \frac{1}{x} ( f(x) - a_0 ) + f(x) \\
+          \end{align*}
+          \]
+        </span>
+
+        <p>Which gives us,</p>
+
+        <span class="math-inline">
+          <div id="eq:enumeration16">
+            \[\begin{equation} \tag{16}
+                  f(x) = - \frac{1}{x^2+x-1} 
+              \end{equation}\]
+          </div>
+        </span>
+
+        <p>Let's assume </p>
+        
+        <span class="math-inline">
+          <div id="eq:enumeration17">
+            \[\begin{equation} \tag{17}
+                  f(x) = \frac{A}{x-\alpha} + \frac{B}{x-\beta},
+              \end{equation}\]
+          </div>
+        </span>
+
+        <p>where \(\alpha\) and \(\beta\) are the roots of the quadratic equation \(x^2+x-1=0\).</p>
+
+        <p>Let
+          <span class="math-inline">\(\alpha = \frac{-1 + \sqrt{5}}{2}\) </span>
+          and
+          <span class="math-inline">\(\beta = \frac{-1 - \sqrt{5}}{2}\).</span> 
+          We now solve for 
+          <span class="math-inline">\(A\)</span> 
+          and
+          <span class="math-inline">\(B\)</span>  
+          using the           
+          <a href="#eq:enumeration17">equation 17</a> 
+          our assumed partial fraction form.
+        </p>
+
+        <span class="math-inline">
+            \begin{align*}
+            \text{For } x = \alpha:& \quad -1 = A(\alpha - \beta) = A\sqrt{5} \implies A = -\frac{1}{\sqrt{5}} \\
+            \text{For } x = \beta:& \quad -1 = B(\beta - \alpha) = B(-\sqrt{5}) \implies B = \frac{1}{\sqrt{5}}
+            \end{align*}
+        </span>
+
+        <p>
+            Substituting 
+            <span class="math-inline">\(A\)</span> 
+            and 
+            <span class="math-inline">\(B\)</span> 
+            back into our assumed form for 
+            <span class="math-inline">\(f(x)\)</span>:
+        </p>
+
+        <span class="math-inline">
+            \[ f(x) = \frac{1}{\sqrt{5}}\left(\frac{1}{x-\beta} - \frac{1}{x-\alpha}\right) \]
+        </span>
+
+        <p>
+            To use the geometric series expansion, we rearrange the terms into the form \(\frac{C}{1-rx}\), noting that \(\frac{1}{\alpha} = \phi\) and \(\frac{1}{\beta} = 1 - \phi\), where \(\phi = \frac{1+\sqrt{5}}{2}\) is the golden ratio.
+        </p>
+
+        <span class="math-inline">
+            \[ f(x) = \frac{1}{\sqrt{5}} \left( \frac{1/\alpha}{1-x/\alpha} - \frac{1/\beta}{1-x/\beta} \right) = \frac{1}{\sqrt{5}}\left(\frac{\phi}{1 - \phi x} - \frac{1-\phi}{1 - (1-\phi)x}\right) \]
+        </span>
+
+        <p>
+            Using the geometric series formula \(\frac{1}{1-y} = \sum_{n=0}^{\infty} y^n\), we can expand the fractions:
+        </p>
+
+        <span class="math-inline">
+            \[ f(x) = \frac{1}{\sqrt{5}} \left( \sum_{n=0}^{\infty} \phi^{n+1} x^n - \sum_{n=0}^{\infty} (1-\phi)^{n+1} x^n \right) \]
+        </span>
+
+        <p>
+            By equating the coefficients of \(x^n\) with \(a_n\), we arrive at the closed-form expression for the sequence starting with \(a_0=1, a_1=1\):
+        </p>
+
+        <span class="math-inline">
+                \[ a_n = \frac{1}{\sqrt{5}}\left[ \left(\frac{1 + \sqrt{5}}{2}\right)^{n+1} - \left(\frac{1 - \sqrt{5}}{2}\right)^{n+1} \right] \]
+        </span>
+
+
+        <p>
+            This formula allows you to calculate the \(n\)-th term of the sequence directly.
+        </p>
+
+
+
+
+        <p>
+          The first interesting thing about the Fibonacci sequence is: 
+          Almost every flower follow this pattern, as the number of 
+          petals they have always happens to be one of the terms of 
+          this Fibonacci sequence.
+        </p>
+
+        <div class="flower-task">
+          <h3 class="flower-task-title">🌸 A Task for the Readers</h3>
+          <p>Please visit a nearby garden and pick a flower of one of the following types:</p>
+          <p>
+            <li><strong>Lilies:</strong> Typically have 3 petals.</li>
+            <li><strong>Buttercups:</strong> Usually have 5 petals.</li>
+            <li><strong>Chicory:</strong> Can have 21 petals.</li>
+            <li><strong>Daisies:</strong> Can have 34, 55, or 89 petals.</li>
+            <li><strong>Black-eyed Susans:</strong> May have 21 or 34 petals.</li>
+            <li><strong>Delphiniums:</strong> Can have 8 petals.</li>
+            <li><strong>Sunflowers:</strong> The seed head spirals often follow Fibonacci numbers.</li>
+          </p>
+          <p>🌼 <em>Happy flower picking!</em></p>
+        </div>
+
+        <h3>Finding the value of golden ratio</h3>
+        <p>
+          In the sequence, it seems that there is no clear pattern, 
+          except for what is indicated in 
+          <a href="#eq:enumeration7">equation 7</a>. 
+          However, mathematicians are inherently curious and 
+          enjoy exploring mathematical concepts. 
+          They continuously dig deeper until they find elegant 
+          relationships and patterns. They have noticed that, as 
+          we move further along in the series, the ratio of two 
+          preceding terms approaches a fascinating value.
+        </p>
+        <p>
+          Let's determine the value of 
+          <span class="math-inline">\(\frac{a_{n+1}}{a_n}\) </span>
+          as n approaches infinity.{ In calculus, we commonly use the symbol 
+          "lim" to address these types of problems. However, in this 
+          instance, we will proceed without the concept of limits and 
+          use a more intuitive approach to compute our value.}
+        </p>
+        <p>
+          Using <a href="#eq:enumeration7">equation 7</a>, we can write:
+        </p>
+
+        <span class="math-inline">
+          <div id="eq:enumeration15">
+            \[
+            \begin{equation}\tag{15}
+              \frac{a_{n+2}}{a_{n+1}} = 1 + \frac{a_n}{a_{n+1}}
+            \end{equation}
+            \]
+          </div>
+
+        </span>
+        <p>
+        And when <span class="math-inline">\( n \)</span> is large enough, we can write:
+        </p>
+
+        <span class="math-inline">
+          <div id="eq:enumeration16">
+            \[
+            \begin{equation}\tag{16}
+              r = 1 + \frac{1}{r}
+            \end{equation}
+            \]
+          </div>
+        </span>
+
+        <p>
+        Where <span class="math-inline">\( r \)</span> is the ratio of two preceding terms as <span class="math-inline">\( n \)</span> approaches infinity.
+        </p>
+
+        <p>This gives us a quadratic equation:</p>
+
+        <span class="math-inline">
+          <div id="eq:enumeration17">
+            \[
+            \begin{equation}\tag{17}
+              r^2 - r - 1 = 0
+            \end{equation}
+            \]
+          </div>
+        </span>
+
+        <p>Solving this quadratic equation yields:</p>
+
+        <span class="math-inline">
+          <div id="eq:enumeration18">
+            \[
+            \begin{equation}\tag{18}
+              r = \frac{1 + \sqrt{5}}{2}
+            \end{equation}
+            \]
+          </div>
+        </span>
+        
+
+        <p>
+        We give this irrational number a new symbol and name: the golden ratio, denoted by <span class="math-inline">\( \phi \)</span>. Approximating:
+        </p>
+
+        <span class="math-inline">
+          \[
+          \begin{equation}\tag{19}
+            \phi = 1.61803398875\cdots
+          \end{equation}
+          \]
+        </span>
+          
+        
+
+        <p>Let’s see if this is correct:<p>
+
+        <span class="math-inline">
+          \[
+          \begin{align*}
+            \frac{2}{1}   &= 2 \\
+            \frac{3}{2}   &= 1.5 \\
+            \frac{5}{3}   &= 1.666\cdots \\
+            \frac{8}{5}   &= 1.6\cdots \\
+            \frac{13}{8}  &= 1.625 \\
+            \frac{21}{13} &= 1.615\cdots \\
+            \frac{34}{21} &= 1.619\cdots \\
+            \frac{55}{34} &= 1.617
+          \end{align*}
+          \]
+        </span>
+
+        <p>
+        And so on. As we progress further, we get closer to the value of 
+        <span class="math-inline">\( \phi \)</span>. 
+        It takes the ratio of the 11th and 10th terms to achieve the third digit correct after the decimal of 
+        <span class="math-inline">\( \phi \)</span>
+        , which is 
+        <span class="math-inline">\( \frac{88}{55} = 1.61818\cdots \)</span>.
+        Additionally, it takes the ratio of the 20th and 19th terms to achieve 10 
+        correct digits of 
+        <span class="math-inline">\( \phi \)</span> 
+        after the decimal point.
+        </p>
+
+        <p>The golden ratio is used in every field and if you are wondering why this page is looking beautiful in terms of dimensions? The answer 
+          is because i have used the golden ratio throughout the designing this website.
+        </p>
+
+        <section id="Pascal's Triangle"><h1></h1>
+
+
+        <h1>Pascal's Triangle</h1>
+        <p>
+          <a href="https://en.wikipedia.org/wiki/Blaise_Pascal" target="_blank">Blaise Pascal</a>
+          developed Pascal's triangle, which is useful in many cases; 
+          however, we will discuss only one application here. 
+          It is also worthwhile to know the 
+          <a href="https://en.wikipedia.org/wiki/Pascal%27s_triangle#History" target="_blank">history</a>
+          of this triangle.
+        </p>
+        <p>
+          The pascal's triangle looks something like this.
+        </p>
+
+        <div class="pascal-container" id="triangle"></div>
+
+        <p>
+          The rule is simple: 
+          for each row, start with 1, 
+          then add the two terms just above 
+          it from the preceding row, and end with 1.
+        </p>
+        <p>
+          Blaise Pascal was clever enough to notice that this triangle follows the very same pattern as the 
+          coefficients of the expansion of 
+          <span class="math-inline">\((x+y)^n\)</span>. 
+        </p>
+        <p>Let's see the pattern ourself.</p>
+
+        <span class="math-inline">
+          \[
+          \begin{align*}
+            (x+y)^0 &= 1 \\
+            (x+y)^1 &= x+y \\
+            (x+y)^2 &= x^2+2xy+y^2 \\
+            (x+y)^3 &= x^3+3x^2y+3xy^2+y^3 \\
+            (x+y)^4 &= x^4+4x^3y+6x^2y^2+4xy^3+y^4 \\
+            (x+y)^5 &= x^5+5x^4y+10x^3y^2+10x^2y^3+5xy^4+y^5 \\
+            (x+y)^6 &= x^6+6x^5y+15x^4y^2+20x^3y^3+15x^2y^4+6xy^5+y^6 \\
+            (x+y)^7 &= x^7+7x^6y+21x^5y^2+35x^4y^3+35x^3y^4+21x^2y^5+7xy^6+y^7 \\
+            (x+y)^8 &= x^8+8x^7y+28x^6y^2+56x^5y^3+70x^4y^4+56x^3y^5+28x^2y^6+8xy^7+y^8 \\
+            (x+y)^9 &= x^9+9x^8y+36x^7y^2+84x^6y^3+126x^5y^4+126x^4y^5+84x^3y^6+36x^2y^7+9xy^8+y^9 
+          \end{align*}
+          \]
+        </span>
+        <P>As one can see that the coefficient of expansion of 
+          <span class="math-inline">\((x+y)^n\)</span>
+          resembles the nth row of the Pascal's triangle.
+        </P>
+        <p>
+          There's two nice way to formulate the binomial expansion. 
+          One is given here and the other is talked in the calculus section.
+        </p>
+        <p>
+          We define a function for the rth column and nth row of the pascals triangle as 
+          <span class="math-inline">\(F(r,n)\)</span>.
+          This funtion also tells the rth term coefficient in the expansion of 
+          <span class="math-inline">\((x+y)^n\)</span>.
+          By observing the pascals triangle, one can easily write the following:
+        </p>
+        <span class="math-inline">
+          <div id="eq:enumeration20">
+            \[
+            \begin{equation}
+            \begin{aligned}
+            F(r,n+1) &= F(r-1,n) + F(r,n) \\
+            \text{and for every } n,\quad F(0,n) &= 1,\quad F(n,n) = 1
+            \end{aligned}
+            \tag{20}
+            \end{equation}
+            \]
+          </div>
+        </span>
+        <p>Why we can write this. Because thats basically how we define 
+          the rule for writing out the pascal's triangle( see the rule above).
+        </p>
+        <p>
+          Again i would definitely encourage the reader to try and work out 
+          a well defined function that behaves and satisfies all the conditions in
+          <a href="#eq:enumeration20">equation 20</a>. 
+          
+          But everyone familiar with the notation of 
+          <span class="math-inline">\(\binom{n}{r}\)</span>
+          or sometimes also written as
+          <span class="math-inline">\({}^{n}C_{r}\)</span>,
+          might know this is one that satisfies the above requirement in 
+          <a href="#eq:enumeration19">equation 19</a>. And is defined as
+        </p>
+        <span class="math-inline">
+          <div id="eq:enumeration21">
+            \[
+            \begin{equation}\tag{21}
+              \binom{n}{r}={}^{n}C_{r}=\frac{n!}{(n-r)!r!}
+            \end{equation}
+            \]
+          </div>
+        </span>
+        <p>
+          The following property about the 
+          <span class="math-inline">\(\binom{n}{r}\)</span>
+          can be confirmed by the readers:
+        </p>
+        <span class="math-inline">
+          <div id="eq:enumeration22">
+            \[
+            \begin{equation}\tag{22}
+              \binom{n+1}{r}=\binom{n}{r-1}+\binom{n}{r}
+            \end{equation}
+            \]
+          </div>
+        </span>
+        <p>
+          As it can be seen that the 
+          <a href="#eq:enumeration22">equation 22</a>
+          satisfies the property or condition in 
+          <a href="#eq:enumeration20">equation 20</a>.
+        </p>
+        <p>
+          Thus using the above equations and pascal's triangle, one can write the 
+          general expansion of 
+          <span class="math-inline">\((x+y)^n\)</span>.
+        </p>
+        <span class="math-inline">
+          <div id="eq:enumeration23">
+            \[
+            \begin{equation}\tag{23}
+              (x+y)^n=\sum_{r=0}^{n} \binom{n}{r}x^ry^{n-r}
+            \end{equation}
+            \]
+          </div>
+        </span>
+
+        <section id="Quadratic Equation">
+        <h1>Quadratic Equation</h1>
+
+        <p>Now we are going to discuss quadratic equations. 
+          As seen in the article until now, it is that one 
+          concept that can pop up while dealing with other 
+          concepts as well.
+        </p>
+        <p>So a quadratic equation is just a special 
+          kind of polynomial (to know more about 
+          polynomials, go to the function section) 
+          with degree 2. Or in simpler words, any 
+          equation that can be written in the 
+          following form is a quadratic equation.
+        </p>
+        <span class="math-inline">
+          <div id="eq:enumeration24">
+            \[
+            \begin{equation}\tag{24}
+              y=ax^2+bx+c
+            \end{equation}
+            \]
+          </div>
+        </span>
+        <p>This equation must have seemed quite similar to most of the 
+          readers, as anyone who has passed the eighth standard all around 
+          the world knows this equation and also the solution of the roots 
+          of this equation. By roots of the equation, we mean to find such 
+          values of x that make the value of the equation zero, that is, y = 0.
+        </p>
+        <p>The equation in 
+          <a href="#eq:enumeration24">equation (24)</a> 
+          can also be written in terms of its roots. 
+          But how? 
+        </p>
+        <p>Let 
+          <span class="math-inline">\(\alpha\) </span>
+          be one of the roots of the 
+          <a href="#eq:enumeration24">equation (24)</a>
+          . Thus, 
+          dividing the 
+          <a href="#eq:enumeration24">equation (24)</a>
+          by
+          <span class="math-inline">\(x-\alpha\) </span> 
+          gives us the 
+          following equation,
+        </p>
+        <span class="math-inline">
+          <div id="eq:enumeration25">
+            \[
+            \begin{equation}\tag{25}
+                ax^2+bx+c=(x-\alpha)\{ax+(b+a\alpha)\}+\{c+(b\alpha+a\alpha^2)\}
+            \end{equation}
+            \]
+          </div>
+        </span>
+        <p>Since 
+          <span class="math-inline">\(\alpha\)</span> 
+          is a root of the 
+          <a href="#eq:enumeration24">equation (24)</a>
+          , that means 
+          <span class="math-inline">\(c+(b\alpha+a\alpha^2)=0\)</span>
+          . 
+          This tells us that 
+        </p>
+        <span class="math-inline">
+          <div id="eq:enumeration26">
+            \[
+            \begin{equation}\tag{26}
+                ax^2+bx+c=(x-\alpha)(ax+a\alpha+b)=0
+            \end{equation}
+            \]
+          </div>
+        </span>
+        <p>If we assume 
+          <span class="math-inline">\(\beta\) </span>
+          to be the second root of the equation, 
+          then we can write, using the above equation, the following 
+          relation between roots of the quadratic equation,
+        </p>
+        <span class="math-inline">
+          <div id="eq:enumeration27">
+            \[
+            \begin{equation}\tag{27}
+                \alpha+\beta=-\frac{b}{a}
+            \end{equation}
+            \]
+          </div>
+        </span>
+        <p>Squaring both sides gives,</p>
+        <span class="math-inline">
+          \[
+          \begin{align*}
+            \alpha^2+2\alpha\beta+\beta^2 &= \frac{b^2}{a^2} \\
+            (a\alpha^2+b\alpha+c)+2a\alpha\beta+(a\beta^2+b\beta+c) &= \frac{b^2}{a}+b(\alpha+\beta)+2c \\
+          \end{align*}
+          \]
+        </span>
+        <p>Using 
+          <a href="#eq:enumeration27">equation (27)</a>
+          equation (27) and the fact that 
+          \(\alpha,\beta\) are 
+          the roots of the equation, we get,
+        </p>
+        <span class="math-inline">
+          <div id="eq:enumeration28">
+            \[
+            \begin{equation}\tag{28}
+                    \alpha\beta=\frac{c}{a}
+            \end{equation}
+            \]
+          </div>
+        </span>
+          <div class="note-box">
+            <strong><p>Note:</p></strong><p>This is intended to motivate and capture the reader's 
+            attention. I'm deliberately skipping steps to keep readers 
+            engaged. The focus should remain on the solutions, preventing 
+            any distractions.</p>
+            <br><br>
+          </div>
+        
+        <p>It should be noticed that a quadratic equation can have at 
+          most two roots as \(\alpha \text{ and } \beta\). 
+          Their difference can be given by as follows
+        </p>
+        <span class="math-inline">
+          <div id="eq:enumeration29">
+            \[
+            \begin{equation}\tag{29}
+                    (\alpha-\beta)^2 = (\alpha+\beta)^2-4\alpha\beta
+            \end{equation}
+            \]
+          </div>
+        </span>
+        <p>Good for us that we already know the value for \(\alpha+\beta\)
+          and \(\alpha\beta\). Putting them in the above equation from 
+          equation (27) and (28), we get,
+        </p>
+        <span class="math-inline">
+          <div id="eq:enumeration30">
+            \[
+            \begin{equation}\tag{30}
+                    \alpha-\beta= \frac{\sqrt{b^2-4ac}}{a}
+            \end{equation}
+            \]
+          </div>
+        </span>
+        <p>Adding and then subtracting equation (28) and (30) with each 
+          other, we get the roots of the equation in equation (24),
+        </p>
+        <span class="math-inline">
+          <div id="eq:enumeration30">
+            \[
+            \begin{equation}\tag{30}
+                  x=\frac{-b\pm \sqrt{b^2-4ac}}{2a}
+            \end{equation}
+            \]
+          </div>
+        </span>
+
+        <h3>Playing with the quadratic equation </h3>
+        <p>We are now going to see some interesting results that we
+          can come up with using the quadratic equation.
+        </p>
+        <p>So we know that,</p>
+       
+        <span class="math-inline">
+          \[
+          \begin{align*}
+            a\alpha^2+b\alpha+c &= 0 \quad
+            \text{and} , \quad a\beta^2+b\beta+c = 0 
+          \end{align*}
+          \]
+        </span>
+        <p>Now we are gonna do some simple algebra that ought to be 
+          understood by the readers. 
+        </p>
+        <span class="math-inline">
+          \[
+          \begin{align*}
+            & a\alpha^{n+2}+b\alpha^{n+1}+c\alpha^n = 0 \quad \text{ and } \quad a\beta^{n+2}+b\beta^{n+1}+c\beta^n = 0 \\
+            \implies & \quad a(\alpha^{n+2}+\beta^{n+2})+b(\alpha^{n+1}+\beta^{n+1})+c(\alpha^n+\beta^n) = 0
+          \end{align*}
+          \]
+        </span>
+        <p>Now if we let,           
+          <span class="math-inline">\((\alpha^n+\beta^n)=S_n\) </span>,
+          we can write the following equation,
+        </p>
+        <span class="math-inline">
+          <div id="eq:enumeration31">
+            \[
+            \begin{equation}\tag{31}
+                  aS_{n+2}+bS_{n+1}+cS_n = 0
+            \end{equation}
+            \]
+          </div>
+        </span>
+        <p>The relation above found is sometimes called newton's identities.
+          There are a lot more interesting relations and equation that can be seen by just by doing a little bit of algebra to the equation.
+          Below is given such identity and its for the readers to find a derivation for these.
+          (I encourage readers to find a derivation and not 
+          a general proof, though it might work as well to checck if the identity is correct or not. But i want the readers to go through the 
+          journey a mathematician goes through whilst finding out these identities and remember that every individual has got to choose his own unique 
+          journey).
+        </p>
+        <p>Let, 
+          <span class="math-inline">\(G(x)=\sum_{n=0}^{\infty} S_nx^n\) </span>, where 
+          <span class="math-inline">\(S_n\) </span>,
+          has the same meaning as in
+          <a href="#eq:enumeration31">equation (31)</a>. 
+          Then,
+        </p>
+        <span class="math-inline">
+          <div id="eq:enumeration32">
+            \[
+            \begin{equation}\tag{32}
+                  G(x)=\frac{2a+bx}{a+bx+cx^2}
+            \end{equation}
+            \]
+          </div>
+        </span>
+        <h3>Quadratic Graphs in Different Cases:</h3>
+
+        <p>We are now going to see how the quadratic functions behave on the real plane.
+          We write a quadratic function as follows,
+        </p>
+
+        <span class="math-inline">
+          <div id="eq:enumeration31">
+            \[
+            \begin{equation}\tag{31}
+                  f(x)= ax^2+bx+c
+            \end{equation}
+            \]
+          </div>
+        </span>
+        <p>Now if you notice in 
+          <a href="#eq:enumeration30">equation (30)</a>
+          the roots of the equation depends on all the coefficients. 
+          But if u notice there's a term 
+          <span class="math-inline">\(\sqrt{b^2-4ac}\) </span>.
+          This can be considered as the most powerful term in the formula 
+          if we put it that way, not only because of the fact that it is the 
+          term that decides if the equation will have a real root or not, but also 
+          because it is contains all the terms of the equation. So if we change even a 
+          single coefficient, the behaviour and the roots changes.
+        </p>
+        <p>So we will start of by letting, 
+          <span class="math-inline">\((b^2-4ac)=D\) </span>.
+        </p>
+        <p>
+          It is very easy to check that when,
+        </p>
+        <p>
+          <strong>Case 1:</strong> D>0, we get two distinct real roots.
+        </p>
+        <p>
+          <strong>Case 2:</strong> D<0, we can't get two distinct real roots, instead we get two distinct complex roots.
+
+          (for those without the knowlege of imaginary numbers, i suggest you to read a little bit of the complex analysis section.)
+        </p>
+        <p>
+          <strong>Case 3:</strong> D=0, we get one real root.
+        </p>
+        
+        <!-- START: New Graph Section -->
+        <div class="graphs-container my-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              <!-- Graph 1 -->
+              <div class="graph-box-theme p-6 flex flex-col items-center">
+                  <h3 class="text-xl font-medium mb-4">\(y = ax^2 + bx + c, \text{ when } a>0, D>0\)</h3>
+                  <div class="w-full h-64 bg-gray-50 rounded-lg overflow-hidden">
+                      <canvas id="graph1"></canvas>
+                  </div>
+              </div>
+
+              <!-- Graph 2 -->
+              <div class="graph-box-theme p-6 flex flex-col items-center">
+                  <h3 class="text-xl font-medium mb-4">\(y = ax^2 + bx + c, \text{ when } a<0, D>0\)</h3>
+                  <div class="w-full h-64 bg-gray-50 rounded-lg overflow-hidden">
+                      <canvas id="graph2"></canvas>
+                  </div>
+              </div>
+
+              <!-- Graph 3 -->
+              <div class="graph-box-theme p-6 flex flex-col items-center">
+                  <h3 class="text-xl font-medium mb-4">\(y = ax^2 + bx + c, \text{ when } a>0, D=0\)</h3>
+                  <div class="w-full h-64 bg-gray-50 rounded-lg overflow-hidden">
+                      <canvas id="graph3"></canvas>
+                  </div>
+              </div>
+
+              <!-- Graph 4 -->
+              <div class="graph-box-theme p-6 flex flex-col items-center">
+                  <h3 class="text-xl font-medium mb-4">\( y = ax^2 + bx + c, \text{ when } a<0, D=0 \)</h3>
+                  <div class="w-full h-64 bg-gray-50 rounded-lg overflow-hidden">
+                      <canvas id="graph4"></canvas>
+                  </div>
+              </div>
+
+              <!-- Graph 5 -->
+              <div class="graph-box-theme p-6 flex flex-col items-center">
+                  <h3 class="text-xl font-medium mb-4">\(y = ax^2 + bx + c, \text{ when } a>0, D<0\)</h3>
+                  <div class="w-full h-64 bg-gray-50 rounded-lg overflow-hidden">
+                       <canvas id="graph5"></canvas>
+                  </div>
+              </div>
+
+              <!-- Graph 6 -->
+              <div class="graph-box-theme p-6 flex flex-col items-center">
+                  <h3 class="text-xl font-medium mb-4">\(y = ax^2 + bx + c, \text{ when } a<0, D<0 \)</h3>
+                  <div class="w-full h-64 bg-gray-50 rounded-lg overflow-hidden">
+                      <canvas id="graph6"></canvas>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <!-- END: New Graph Section -->
+        <p>I expect the readers to justify these graphs themselves.</p>
+      </div>
+      </div>
+    </main>
+  <script>
+    // --- Reusable Graphing Function ---
+    function drawGraph(canvasId, equationFunc, lineColor = '#1e40af') {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+
+        // Set canvas resolution to match its display size for crisp rendering
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+
+        const width = canvas.width;
+        const height = canvas.height;
+        
+        // Define graph properties
+        const scale = 25; // pixels per unit
+        const xOrigin = width / 2;
+        const yOrigin = height / 2;
+        const axisColor = '#9ca3af'; // gray-400
+        const gridColor = '#e5e7eb'; // gray-200
+
+        ctx.clearRect(0, 0, width, height);
+
+        // --- Draw Grid ---
+        ctx.beginPath();
+        ctx.strokeStyle = gridColor;
+        ctx.lineWidth = 1;
+        // Vertical grid lines
+        for (let i = scale; i < width - xOrigin; i += scale) {
+            ctx.moveTo(xOrigin + i, 0);
+            ctx.lineTo(xOrigin + i, height);
+            ctx.moveTo(xOrigin - i, 0);
+            ctx.lineTo(xOrigin - i, height);
+        }
+        // Horizontal grid lines
+        for (let i = scale; i < height - yOrigin; i += scale) {
+            ctx.moveTo(0, yOrigin + i);
+            ctx.lineTo(width, yOrigin + i);
+            ctx.moveTo(0, yOrigin - i);
+            ctx.lineTo(width, yOrigin - i);
+        }
+        ctx.stroke();
+
+        // --- Draw Axes ---
+        ctx.beginPath();
+        ctx.strokeStyle = axisColor;
+        ctx.lineWidth = 2;
+        // X-axis
+        ctx.moveTo(0, yOrigin);
+        ctx.lineTo(width, yOrigin);
+        // Y-axis
+        ctx.moveTo(xOrigin, 0);
+        ctx.lineTo(xOrigin, height);
+        ctx.stroke();
+
+        // --- Draw Function ---
+        ctx.beginPath();
+        ctx.strokeStyle = lineColor;
+        ctx.lineWidth = 2.5;
+
+        let firstPoint = true;
+        for (let xPixel = 0; xPixel < width; xPixel++) {
+            const x = (xPixel - xOrigin) / scale;
+            const y = equationFunc(x);
+            const yPixel = yOrigin - (y * scale);
+
+            if (yPixel > 0 && yPixel < height) {
+                if (firstPoint) {
+                    ctx.moveTo(xPixel, yPixel);
+                    firstPoint = false;
+                } else {
+                    ctx.lineTo(xPixel, yPixel);
+                }
+            } else {
+                firstPoint = true; // Lift the pen if we go off-screen
+            }
+        }
+        ctx.stroke();
+    }
+
+    // --- Define Equations ---
+    const equations = [
+        { id: 'graph1', func: x => x*x - 4*x + 3, color: '#b87d4b' }, 
+        { id: 'graph2', func: x => -x*x + 4*x - 3, color: '#d84315' },
+        { id: 'graph3', func: x => x*x - 2*x + 1, color: '#16a34a' },
+        { id: 'graph4', func: x => -x*x + 2*x - 1, color: '#d97706' },
+        { id: 'graph5', func: x => x*x + 2*x + 3, color: '#7e22ce' },
+        { id: 'graph6', func: x => -x*x - 2*x - 3, color: '#164e63' }
+    ];
+    
+    function drawAllGraphs() {
+         // Redraw all graphs. Useful for window resizing.
+        equations.forEach(eq => {
+            drawGraph(eq.id, eq.func, eq.color);
+        });
+    }
+
+    // --- Initial Draw & Responsive Redraw ---
+    // Use a slight delay to ensure canvas elements are sized correctly by the browser.
+    window.addEventListener('load', () => setTimeout(drawAllGraphs, 100));
+    
+    // Redraw graphs when the window is resized
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(drawAllGraphs, 150); // Debounce resize event
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+/* General Page Styles */
+body {
+    font-family: 'Merriweather', serif;
+    background-color: #f8f8f8;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+.content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Header and Titles */
+header {
+    text-align: center;
+    border-bottom: 2px solid #555;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+.main-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #222;
+}
+
+.author, .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: #666;
+    margin: 0.2rem 0;
+}
+
+h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    border-left: 5px solid #007bff;
+    padding-left: 10px;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+p, li {
+    font-family: 'Merriweather', serif;
+    font-size: 1.1rem;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Math and Series Styles */
+.math-block {
+    text-align: center;
+    overflow-x: auto; /* Allows for horizontal scrolling on small screens */
+    margin: 1.5rem 0;
+    font-size: 1.2rem;
+}
+
+/* TColorBox Style */
+.tcolorbox {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-left: 5px solid #007bff;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 5px;
+}
+
+.tcolorbox-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* White Paper Section */
+.white-paper-section {
+    background-color: #f0f8ff;
+    border: 1px solid #cce5ff;
+    padding: 1rem;
+    margin: 2rem 0;
+    border-radius: 5px;
+}
+
+.white-paper-section h3 {
+    color: #004085;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .content-wrapper {
+        padding: 1rem;
+    }
+
+    .main-title {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    p, li {
+        font-size: 1rem;
+    }
+}

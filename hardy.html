@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Vibhushit Singh" />
+  <title>A Proof of Question 7.1</title>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="hardy.css" />
+
+  <!-- MathJax for rendering LaTeX -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- JavaScript for Animations -->
+  <script src="triangle-animation.js" defer></script>
+  <script src="rational-animation.js" defer></script>
+
+</head>
+
+<body>
+  <header>
+    <h1><u><strong><em>A Proof of Question 7.1</em></strong></u></h1>
+  </header>
+
+  <h1>Introduction To The Sequence</h1>
+  <p>Let us define the sequence as 
+    <span class="math inline">\(\{a_n\}_{n=1}^{\infty}\)</span>
+    , where 
+    <span class="math inline">\(a_n = \frac{p}{q}\)</span>
+    , 
+    <span class="math inline">\(p, q \in \mathbb{Z^+}\)</span>
+    , and
+  </p>
+
+  <div class="math display">
+    \[n=\frac{(p+q-2)(p+q-1)}{2}+q \tag{1} \]
+  </div>
+
+  <p>So, the initial few terms of the sequence are:</p>
+  <div class="math display">
+    \[\frac{1}{1},\frac{2}{1},\frac{1}{2},\frac{3}{1},\frac{2}{2},\frac{1}{3},\frac{4}{1},\frac{3}{2},\frac{2}{3},\frac{1}{4},\frac{5}{1},\frac{4}{2},\frac{3}{3},\frac{2}{4},\frac{1}{5},\frac{6}{1},\frac{5}{2},\frac{4}{3},\frac{3}{4},\frac{2}{5},\frac{1}{6} \cdots \tag{2} \]
+  </div>
+
+  <p>This formula provides a mapping from the set of ordered pairs of 
+    positive integers, \(\mathbb{Z}^+ \times \mathbb{Z}^+\), to the set 
+    of positive integers \(\mathbb{Z}^+\). By assigning each pair 
+    \((p,q)\) to a term \(a_n = p/q\), the sequence defines a surjection 
+    onto the set of positive rational numbers, \(\mathbb{Q}^+\). A key 
+    consequence of this is that the set \(\mathbb{Q}^+\) is countable.
+  </p>
+
+  <p>It is important to note that, interestingly enough, in this series 
+    every rational number is repeated indefinitely. Thus \(1\) occurs as 
+    \(\frac{1}{1},\frac{2}{2},\frac{3}{3},\cdots\).We can, of course, 
+    avoid this by omitting every number which has already occurred in a 
+    simpler form, but then the problem of determining the precise 
+    position of \(p/q\) becomes more complicated.
+  </p>
+  
+  <p>We prove the formula in equation(1) as follows,</p>
+  <meta charset="UTF-8" />
+  <title>Rational Sequence Dual Table</title>
+  
+  <h2>A More Of A Visual Explanation</h2>
+  <p>In the sequence described by equation(2), we 
+    observe that the numerators \(p\) and denominators \(q\) follow a 
+    specific pattern, which can be visualised in the following table: 
+  </p>
+
+  <div class="table-pair">
+    <table id="denTable">
+      <caption>Denominator (q)</caption>
+      <tbody></tbody>
+    </table>
+
+    <table id="numTable">
+      <caption>Numerator (p)</caption>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <div class="controls">
+    <label for="nTriangle">Enter n (Triangle Tables):</label>
+    <input type="number" id="nTriangle" min="1" max="36" value="8" />
+
+    <label for="triangleSpeed">Speed:</label>
+    <input type="range" id="triangleSpeed" min="100" max="1000" value="500" />
+
+    <button id="startTriangle">Start Triangle Animation</button>
+    <button id="resetTriangle">Reset</button>
+  </div>
+
+  <p><strong>To select a particular numerator p and its corresponding denominator q, follow these rules:</strong></p>
+  <ol>
+    <li>Begin by counting the columns from left to right, followed by counting the rows from top to bottom, in both tables. </li>
+    <li>To find the <code>n-th</code> element (e.g., <code>n=8</code> ), we count through the sequence according to rule 1 
+      until we reach <code>nth</code> position. For <code>n=8</code> , we discover that <code>q=2</code> and <code>p=3</code>(as shown in the animation above).</li>
+  </ol>
+
+  <p>Let \(a\) and \(b\) denote the row and column indices of the table, respectively. The tables follow the following formulas;</p>
+
+  <div class="math display">
+    \[a = \left\lceil \frac{\sqrt{1+8n} - 1}{2} \right\rceil, \quad b = \frac{a(1 - a)}{2} + n, \quad b = q, \quad a = p + q - 1\]
+  </div>
+
+  <p>It is up to the readers to verify this. If you substitute \(a = p + q - 1\) and \(b = q\) into the equation \(b = \frac{a(1 - a)}{2} + n\), you will arrive at the required equation (1).</p>
+  
+  <p>I will conclude this discussion, as this step is highly intuitive, and I encourage readers to engage with their own intuition in this matter.</p>
+
+  <p>The following table helps to visualize how we enumerate fractions diagonally, based on constant 
+    <strong>p + q</strong> 
+    values:
+  </p>
+
+  <div class="controls">
+    <label for="nRational">Enter n (Rational Table):</label>
+    <input type="number" id="nRational" min="1" max="36" value="8" />
+
+    <label for="speedRational">Speed:</label>
+    <input type="range" id="speedRational" min="200" max="1200" value="600" step="100" />
+
+    <button id="startRational">Start Rational Animation</button>
+    <button id="resetRational">Reset</button>
+  </div>
+
+  <h2>Interactive Diagonal Enumerator</h2>
+  <div class="center">
+    <table id="rationalTable">
+      <tbody>
+        <tr><td>p/q</td><td id="1">1</td><td id="2">2</td><td id="3">3</td><td id="4">4</td><td id="5">5</td><td id="6">6</td></tr>
+        <tr><td id="1">1</td><td id="1_1">1/1</td><td id="1_2">1/2</td><td id="1_3">1/3</td><td id="1_4">1/4</td><td id="1_5">1/5</td><td id="1_6">1/6</td></tr>
+        <tr><td id="2">2</td><td id="2_1">2/1</td><td id="2_2">2/2</td><td id="2_3">2/3</td><td id="2_4">2/4</td><td id="2_5">2/5</td><td id="2_6">2/6</td></tr>
+        <tr><td id="3">3</td><td id="3_1">3/1</td><td id="3_2">3/2</td><td id="3_3">3/3</td><td id="3_4">3/4</td><td id="3_5">3/5</td><td id="3_6">3/6</td></tr>
+        <tr><td id="4">4</td><td id="4_1">4/1</td><td id="4_2">4/2</td><td id="4_3">4/3</td><td id="4_4">4/4</td><td id="4_5">4/5</td><td id="4_6">4/6</td></tr>
+        <tr><td id="5">5</td><td id="5_1">5/1</td><td id="5_2">5/2</td><td id="5_3">5/3</td><td id="5_4">5/4</td><td id="5_5">5/5</td><td id="5_6">5/6</td></tr>
+        <tr><td id="6">6</td><td id="6_1">6/1</td><td id="6_2">6/2</td><td id="6_3">6/3</td><td id="6_4">6/4</td><td id="6_5">6/5</td><td id="6_6">6/6</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>We move <strong>anti-diagonally</strong>, where the sum <strong>p + q</strong> remains constant on each diagonal:</p>
+  <ul>
+    <li>Diagonal 2 (p+q=2): <code>1/1</code></li>
+    <li>Diagonal 3 (p+q=3): <code>2/1, 1/2</code></li>
+    <li>Diagonal 4 (p+q=4): <code>3/1, 2/2, 1/3</code></li>
+    <li>Diagonal 5 (p+q=5): <code>4/1, 3/2, 2/3, 1/4</code></li>
+  </ul>
+
+  <p>To find the <strong>nth term</strong> of the sequence, use:</p>
+  <div class="mathdisplay">
+    \[x = \left\lceil \frac{\sqrt{1+8n} - 1}{2} \right\rceil, \quad y = \frac{x(1 - x)}{2} + n, \quad y = q, \quad x = p + q - 1\]
+  </div>
+
+  <p><strong>Where:</strong></p>
+  <ul>
+    <li><code>x</code> is the diagonal number (total number of steps to reach the diagonal)</li>
+    <li><code>y</code> helps extract the denominator <strong>q</strong></li>
+    <li>Then compute <strong>p = x - q + 1</strong> (since <code>x = p + q - 1</code>)</li>
+  </ul>
+
+  <p><strong>Steps to find the <code>n</code>th term from the table:</strong></p>
+  <ol>
+    <li>Compute <code>x</code> using the ceiling formula for the diagonal index</li>
+    <li>Calculate <span class="math inline">q = y = \( \frac{x(1 - x)}{2} + n \)</span></li>
+    <li>Then calculate <code>p = x - q + 1</code></li>
+    <li>The <strong>n</strong>th term is then: <code>aₙ = p/q</code></li>
+  </ol>
+
+  <h2>Intuitive Explanation</h2>
+  <p>The formula in Equation(1) works by traversing the anti-diagonals of an infinite grid of fractions. The sequence is constructed by grouping terms where the sum of the numerator and denominator, \(p+q\), is constant.</p>
+  
+  <ul>
+    <li>Group 1 (\(p+q=2\)): \(\frac{1}{1}\)</li>
+    <li>Group 2 (\(p+q=3\)): \(\frac{2}{1}, \frac{1}{2}\)</li>
+    <li>Group 3 (\(p+q=4\)): \(\frac{3}{1}, \frac{2}{2}, \frac{1}{3}\)</li>
+    <li>Group 4 (\(p+q=5\)): \(\frac{4}{1}, \frac{3}{2}, \frac{2}{3}, \frac{1}{4}\)</li>
+  </ul>
+
+  <p>The term \(\frac{(p+q-2)(p+q-1)}{2}\) is simply the formula for the \((p+q-2)\)-th triangular number, which counts the total number of elements in all the preceding groups. The term `\(+q\)` then specifies the position within the current group. This visual method suggests that every pair \((p,q)\) will eventually be reached. We will now prove this formally.</p>
+
+  <h3>Formal Proof</h3>
+    <p>
+        The proof consists of two parts. First, we show that every positive rational number appears at least once. Second, we extend this to show that every rational number appears infinitely many times.
+    </p>
+    
+    <h4>Part 1: Every Positive Rational Number Appears in the Sequence</h4>
+    <p>
+        <strong>Claim:</strong> For any positive rational number \( \frac{x}{y} \), where \( x, y \in \mathbb{Z}^+ \), there exists a positive integer \( n \) such that \( a_n = \frac{x}{y} \).
+    </p>
+    <p><strong>Proof by Construction:</strong></p>
+    <ol>
+        <li>Let \( \frac{x}{y} \) be an arbitrary positive rational number.</li>
+        <li>We construct a corresponding index \( n \) by choosing \( p=x \) and \( q=y \) and substituting them into Equation (1):
+            <div class="math-display">
+                \[ n = \frac{(x+y-2)(x+y-1)}{2} + y \]
+            </div>
+        </li>
+        <li>We must verify that this \( n \) is a positive integer. Since \( x \ge 1 \) and \( y \ge 1 \), the term \( (x+y-2)(x+y-1) \) is a product of two consecutive integers, which is always even and thus divisible by 2. The result is a non-negative integer. Since \( y \ge 1 \), \( n \) is the sum of a non-negative integer and a positive integer, which is always a positive integer.</li>
+        <li>By this construction, the \(n\)-th term of the sequence is \( a_n = \frac{p}{q} = \frac{x}{y} \).</li>
+    </ol>
+    <p>
+        Since we can find a valid index \( n \) for any arbitrary rational \( \frac{x}{y} \), we have proven that <strong>every positive rational number appears at least once</strong>.
+    </p>
+    
+    <h4>Part 2: Every Positive Rational Number Appears Infinitely Often</h4>
+    <p>
+        <strong>Claim:</strong> Any positive rational number appears at an infinite number of distinct positions in the sequence.
+    </p>
+    <p><strong>Proof:</strong></p>
+    <ol>
+        <li>Let \( \frac{x}{y} \) be an arbitrary positive rational number. This number has an infinite number of equivalent representations given by the set of ordered pairs:
+            <div class="math-display">
+                \[ S = \{ (kx, ky) \mid k \in \mathbb{Z}^+ \} = \{ (x,y), (2x,2y), (3x,3y), \dots \} \]
+            </div>
+        </li>
+        <li>From Part 1, we know that for any ordered pair of positive integers \( (p,q) \), there exists a unique positive integer \( n \) corresponding to it.</li>
+        <li>For each pair \( (p_k, q_k) = (kx, ky) \) in the set \( S \), there is a corresponding unique index \( n_k \):
+            <div class="math-display">
+                \[ n_k = \frac{(k(x+y)-2)(k(x+y)-1)}{2} + ky \]
+            </div>
+        </li>
+        <li>These indices \( n_k \) are all distinct. As \( k \) increases, the sum \( p_k+q_k = k(x+y) \) strictly increases, which in turn makes \( n_k \) strictly increase. Therefore, if \( k_1 \neq k_2 \), then \( n_{k_1} \neq n_{k_2} \).</li>
+        <li>The term at each of these distinct positions is \( a_{n_k} = \frac{p_k}{q_k} = \frac{kx}{ky} = \frac{x}{y} \).</li>
+    </ol>
+    <p>
+        Since we can find a distinct position \( n_k \) for every positive integer \( k \), we have proven that <strong>every positive rational number appears infinitely many times</strong> in the sequence.
+    </p>
+</body>
+</html>

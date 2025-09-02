@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complex Analysis</title>
+    
+    <!-- Use MathJax for rendering LaTeX -->
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>Complex Analysis</h1>
+        </header>
+
+        <section>
+            <h2>Before Complex Numbers</h2>
+            <p>
+                We will learn about complex numbers by exploring their historical development—that is, by studying how they were originally discovered.
+            </p>
+            <p>
+                The solutions of quadratic equations have been known since at least 2000 BC. However, mathematicians faced a puzzling question: what happens to the roots of a quadratic equation of the form \(ax^2 + bx + c = 0\) when the discriminant \(b^2 - 4ac < 0\)? It was understood that there are no real solutions in this case, until mathematicians discovered imaginary numbers in the 16th century.
+            </p>
+            <p>
+                I recommend that readers learn more about the history of imaginary numbers by reading the following article: 
+                <a href="https://en.wikipedia.org/wiki/Imaginary_number#History" target="_blank">https://en.wikipedia.org/wiki/Imaginary_number#History</a>
+            </p>
+            <p>
+                Additionally, you can check out this YouTube video: 
+                <a href="https://www.youtube.com/watch?v=cUzklzVXJwo" target="_blank">https://www.youtube.com/watch?v=cUzklzVXJwo</a>
+            </p>
+            <p>
+                Mathematicians at that time realised that by defining \(i = \sqrt{-1}\) a new set of numbers, called imaginary numbers, emerges. This eventually led to the discovery of complex numbers.
+            </p>
+            <p>
+                The term “discovered” is appropriate here because, although mathematics may initially seem like a product of invention, its concepts often reflect underlying physical realities. When \(i = \sqrt{-1}\) was first proposed, it was thought of as an invented number with no counterpart in nature. However, in the 20th century, it became clear that \(i\) plays a genuine role in natural phenomena, for example in wave equations used in physics.
+            </p>
+            <p>
+                The classical wave equation, which prominently features the imaginary unit \(i\), was originally formulated by <strong>Jean le Rond d'Alembert</strong> in 1746.
+            </p>
+            <p>
+                A further important breakthrough came with the formulation of the <strong>Schrödinger equation</strong> by <strong>Erwin Schrödinger</strong> in 1926, which uses the imaginary unit \(i\) as a fundamental component. This equation describes the quantum wave function and underpins modern quantum mechanics, showing how physical systems evolve probabilistically over time.
+            </p>
+        </section>
+
+        <section>
+            <h2>Emergence of Imaginary Numbers</h2>
+            <p>
+                So we start our discussion from the solution of a quadratic equation. I recommend that you go and read the quadratic equation section before proceeding further.
+            </p>
+            <p>
+                Any Quadratic equation of the form \(ax^2+bx+c=0\) has two roots given by,
+            </p>
+            \[
+                x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}
+            \]
+            <p>
+                Let's put in some numbers. The roots of the quadratic equation \(2x^2+5x+5=0\) are \(\frac{-5+\sqrt{5}}{4}\) and \(\frac{-5-\sqrt{5}}{4}\). But what if the quadratic equation was something like this \(2x^2+5x+7=0\)? Well, there is no real number solution for this. But as you must have seen in the YouTube video given above, in the 16th and 17th centuries, imaginary numbers came into existence. Though they had come into existence in an effort to solve cubic equations, they will help in finding the roots of a quadratic equation.
+            </p>
+            <p>
+                So Imaginary numbers are of the form \(ai\), where a is any real number and \(i\) is the universal constant \(i=\sqrt{-1}\). So this creates a new set of numbers, usually denoted by \(J\) and defined as \(J=\{ bi \mid b \in \mathbb{R},\ b \neq 0 \}\). 
+            </p>
+            <p>
+                Using this, we can write the roots of the equation \(2x^2+5x+7=0\) as \(\frac{-5+\sqrt{31}i}{4}\) and \(\frac{-5-\sqrt{31}i}{4}\). Well there is another...
+            </p>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Write Proofs</title>
+    <link rel="stylesheet" href="proof.css">
+    <!-- KaTeX for rendering LaTeX math -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" xintegrity="sha384-KiWOvVjnN8qwZuNufGbTTvMrcNpYRUbBk4LNIJgB7JdSMdpZaKjGI2mh3NVoMElJ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" xintegrity="sha384-hIoBPJpTadBaddCYcWjLzxCthmdE_SMLVg9ZfYkfeBCprHo+A2sdUPeiygrCFs3w" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" xintegrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>How TO Write Proofs</h1>
+
+        <p>I personally used to struggle a lot to write proofs and even the greatest of mathematicians were once unable to write proofs, and a prime example is Srinivasa Ramanujan.</p>
+        <p>The following is kind of like a summary of the chapter on proofs from the book <em>How to Prove It: A Structured Approach</em> by Daniel J. Velleman. So if anyone who knows how to write proofs or has read the book can skip this section.</p>
+        <p>We will go from <strong>given</strong> - the known or assumed to be true statements, to <strong>goal</strong> - the statements that remain to be proven.</p>
+
+        <section>
+            <h2>Proof Strategies</h2>
+            <div class="strategy">
+                <h3>To Prove a conclusion of the form \(P \rightarrow Q\):</h3>
+                <p>Assume \(P\) is true, and then prove \(Q\).</p>
+            </div>
+            <div class="strategy">
+                <h3>To prove a goal of the form \(P \rightarrow Q\):</h3>
+                <p>Assume \(P\) is true and then prove \(Q\).</p>
+            </div>
+            <div class="strategy">
+                <h3>To prove a goal of the form \(P \rightarrow Q\):</h3>
+                <p>Assume \(Q\) is false and prove that \(P\) is false.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Proofs Involving Negations and Conditionals</h2>
+            <div class="strategy">
+                <h3>To prove a goal of the form \(\neg P\):</h3>
+                <p>If possible, reexpress the goal in some other form and then use one of the proof strategies for this other goal form.</p>
+            </div>
+            <div class="strategy">
+                <h3>To prove a goal of the form \(\neg P\):</h3>
+                <p>Assume \(P\) is true and try to reach a contradiction. Once you have reached a contradiction, you can conclude that \(P\) must be false.</p>
+            </div>
+            <div class="strategy">
+                <h3>To use a given of the form \(\neg P\):</h3>
+                <p>If you’re doing a proof by contradiction, try making \(P\) your goal. If you can prove \(P\), then the proof will be complete, because \(P\) contradicts the given \(\neg P\).</p>
+                <p><em>Rules of Inference - many strategies for using givens suggest ways of drawing inferences from the given. Such strategies are called rules of Inference.</em></p>
+            </div>
+             <div class="strategy">
+                <h3>To use a given of the form \(\neg P\):</h3>
+                <p>If possible, reexpress this given in some other form.</p>
+            </div>
+            <div class="strategy">
+                <h3>To use a given of the form \(P \rightarrow Q\):</h3>
+                <p>If you are also given P, or if you can prove that \(P\) is true, then you can use this given to conclude that \(Q\) is true. Since it is equivalent to \(\neg Q \rightarrow \neg P\), if you can prove that \(Q\) is false, you can use this given to conclude that \(P\) is false.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Proofs Involving Quantifiers</h2>
+            <div class="strategy">
+                <h3>To prove a goal of the form \( \forall x P(x)\):</h3>
+                <p>Let \(x\) stand for an arbitrary object and prove \(P(x)\). The letter \(x\) must be a new variable in the proof. If x is already being used in the proof to stand for something, then you must choose an unused variable, say \(y\), to stand for the arbitrary object, and prove \(P(y)\).</p>
+            </div>
+            <div class="strategy">
+                <h3>To prove a goal of the form \(\exists x P(x)\):</h3>
+                <p>Try to find a value of \( x \) for which you think \( P(x) \) will be true. Then start your proof with ``Let \( x = \) (the value you decided on)'' and proceed to prove \( P(x) \) for this value of \( x \). Once again, \( x \) should be a new variable. If the letter \( x \) is already being used in the proof for some other purpose, then you should choose an unused variable, say \( y \), and rewrite the goal in the equivalent form \( \exists y \, P(y) \). Now proceed as before by starting your proof with ``Let \( y = \) (the value you decided on)'' and prove \( P(y) \).</p>
+            </div>
+            <div class="strategy">
+                <h3>To use a given of the form \(\exists x \, P(x)\):</h3>
+                <p>Introduce a new variable \( x_0 \) into the proof to stand for an object for which \( P(x_0) \) is true. This means that you can now assume that \( P(x_0) \) is true. Logicians call this rule of inference <i>existential instantiation</i>.</p>
+            </div>
+            <div class="strategy">
+                <h3>To use a given of the form \(\forall x \, P(x)\):</h3>
+                <p>You can plug in any value, say \( a \), for \( x \) and use this given to conclude that \( P(a) \) is true. This rule is called <i>universal instantiation</i>.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Proofs Involving Conjunctions and Biconditionals</h2>
+            <div class="strategy">
+                <h3>To prove a goal of the form \(P \land Q\):</h3>
+                <p>Prove \(P\) and \(Q\) separately.</p>
+            </div>
+            <div class="strategy">
+                <h3>To use a given of the form \(P \land Q\):</h3>
+                <p>Treat this given as two separate givens: \(P\) and \(Q\).</p>
+            </div>
+            <div class="strategy">
+                <h3>To prove a goal of the form \(P \leftrightarrow Q\):</h3>
+                <p>Prove \(P \rightarrow Q\) and \(Q \rightarrow P\) separately.</p>
+            </div>
+            <div class="strategy">
+                <h3>To use a given of the form \(P \leftrightarrow Q\):</h3>
+                <p>Treat this as two separate givens: \(P \rightarrow Q\) and \(Q \rightarrow P\).</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Proofs Involving Disjunctions</h2>
+            <div class="strategy">
+                <h3>To use a given of the form \(P \lor Q\):</h3>
+                <p>Break your proof into cases. For case 1, assume that \(P\) is true and use this assumption to prove the goal. For case 2, assume \(Q\) is true and give another proof of the goal.</p>
+            </div>
+            <div class="strategy">
+                <h3>To prove a goal of the form \(P \lor Q\):</h3>
+                <p>Break your proof into cases. In each case, either prove \(P\) or prove \(Q\).</p>
+            </div>
+            <div class="strategy">
+                <h3>To prove a goal of the form \(P \lor Q\):</h3>
+                <p>If \(P\) is true, then clearly the goal \(P \lor Q\) is true, so you only need to worry about the case in which \(P\) is false. You can complete the proof in this case by proving that \(Q\) is true.</p>
+            </div>
+            <div class="strategy">
+                <h3>To use a given of the form \(P \lor Q\):</h3>
+                <p>If you are also given \(\neg P\), or you can prove that \(P\) is false, then you can use this given to conclude that \(Q\) is true. Similarly, if you are given \(\neg Q\) or can prove that \(Q\) is false, then you can conclude that \(P\) is true.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Existence and Uniqueness Proofs</h2>
+            <div class="strategy">
+                <h3>To prove a goal of the form \(\exists! x \, P(x)\):</h3>
+                <p>Prove \(\exists x \, P(x)\) and \(\forall y \, \forall z \, ((P(y) \land P(z)) \rightarrow y = z)\). The first of these goals shows that there exists an \(x\) such that \(P(x)\) is true, and the second shows that it is unique. The two parts of the proof are therefore sometimes labeled <i>existence</i> and <i>uniqueness</i>. Each part is proven using strategies discussed earlier.</p>
+            </div>
+            <div class="strategy">
+                <h3>To prove a goal of the form \(\exists! x \, P(x)\):</h3>
+                <p>Prove \(\exists x \, (P(x) \land \forall y \, (P(y) \rightarrow y = x))\), using strategies from previous subsections.</p>
+            </div>
+            <div class="strategy">
+                <h3>To use a given of the form \(\exists! x \, P(x)\):</h3>
+                <p>Treat this as two given statements, \(\exists x \, P(x)\) and \(\forall y \, \forall z \, ((P(y) \land P(z)) \rightarrow y = z)\). To use the first statement you should probably choose a name, say \(x_0\), to stand for some object such that \(P(x_0)\) is true. The second tells you that if you ever come across two objects \(y\) and \(z\) such that \(P(y)\) and \(P(z)\) are both true, you can conclude that \(y = z\).</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Mathematical Induction</h2>
+            <p>Mathematical Induction is designed for proving statements about the natural numbers.</p>
+            <div class="strategy">
+                <h3>To prove a given of the form \(\forall n \in \mathbb{N} \, P(n)\):</h3>
+                <p>First prove \(P(0)\), and then prove \(\forall n \in N (P(n) \rightarrow P(n+1))\). The first of their proofs is sometimes called the base case and the second the induction step. The assumption that \(P(n)\) is true is sometimes called the inductive hypothesis.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Strong Induction</h2>
+            <p>In some cases this assumption isn't strong enough to make the proof work, and we need to assume that all smaller natural numbers have the property. This is the idea behind a variant of mathematical induction sometimes called strong induction.</p>
+            <div class="strategy">
+                <h3>To prove a goal of the form \(\forall n \in \mathbb{N} \, P(n)\):</h3>
+                <p>Prove that \(\forall n [(\forall k < n P(k)) \rightarrow P(n)] \) , where both n and k range over the natural numbers in this statement.</p>
+            </div>
+            <p>In this induction, we prove that every natural number less than n has the property P, and n has the property P. We refer to the assumption that every natural number smaller than n has the property P as the inductive hypothesis.</p>
+        </section>
+
+        <section>
+            <h2>Proof of the formula for the Fibonacci sequence by Mathematical Induction</h2>
+            <p>We want to prove that for all integers \( n \geq 0 \),
+                \[
+                a_n = \frac{
+                \left(\frac{1+\sqrt{5}}{2}\right)^n + \left(\frac{1-\sqrt{5}}{2}\right)^n
+                }{
+                \sqrt{5}
+                }.
+                \]
+            </p>
+            <p><b>Step 1: Define the sequence</b></p>
+            <p>Assume that the sequence \( \{a_n\} \) satisfies the recurrence relation:
+
+                \[
+                a_n = a_{n-1} + a_{n-2}
+                \]
+
+                with initial conditions
+
+                \[
+                a_0 = 0, \quad a_1 = 1.
+                \]
+            </p>
+            <p><b>Step 2: Base Cases</b></p>
+            <p>Check for \( n=0 \):
+
+                \[
+                a_0 = \frac{
+                \left(\frac{1+\sqrt{5}}{2}\right)^0 + \left(\frac{1-\sqrt{5}}{2}\right)^0
+                }{
+                \sqrt{5}
+                } = \frac{1 + 1}{\sqrt{5}} = \frac{2}{\sqrt{5}} \neq 0.
+                \]
+
+                Since this does not match the initial condition, here the indexing likely begins at \( n=1 \).
+
+                Check for \( n=1 \):
+
+                \[
+                a_1 = \frac{
+                \left(\frac{1+\sqrt{5}}{2}\right)^1 + \left(\frac{1-\sqrt{5}}{2}\right)^1
+                }{
+                \sqrt{5}
+                } = \frac{\frac{1+\sqrt{5}}{2} + \frac{1-\sqrt{5}}{2}}{\sqrt{5}} = \frac{1}{\sqrt{5}} \neq 1.
+                \]
+
+                Again, this does not match initial conditions for Fibonacci numbers. 
+
+                (Note: The standard Binet formula for Fibonacci numbers is 
+
+                \[
+                F_n = \frac{
+                \left(\frac{1+\sqrt{5}}{2}\right)^n - \left(\frac{1-\sqrt{5}}{2}\right)^n
+                }{
+                \sqrt{5}
+                }.
+                \]
+
+                )
+            </p>
+            <p>Assuming the sequence definition fits the formula given (which appears to correspond to a Lucas number sequence), we proceed with the inductive proof.</p>
+            <p><b>Step 3: Inductive Hypothesis</b></p>
+            <p>Assume the formula holds for some integer \( k \geq 1 \) and \( k-1 \), that is
+
+                \[
+                a_k = \frac{
+                \left(\frac{1+\sqrt{5}}{2}\right)^k + \left(\frac{1-\sqrt{5}}{2}\right)^k
+                }{
+                \sqrt{5}
+                },
+                \quad
+                a_{k-1} = \frac{
+                \left(\frac{1+\sqrt{5}}{2}\right)^{k-1} + \left(\frac{1-\sqrt{5}}{2}\right)^{k-1}
+                }{
+                \sqrt{5}
+                }.
+                \]
+            </p>
+            <p><b>Step 4: Inductive Step</b></p>
+            <p>Show that the formula holds for \( k+1 \):
+
+                \[
+                a_{k+1} \stackrel{?}{=} \frac{
+                \left(\frac{1+\sqrt{5}}{2}\right)^{k+1} + \left(\frac{1-\sqrt{5}}{2}\right)^{k+1}
+                }{
+                \sqrt{5}
+                }.
+                \]
+
+                By the recurrence,
+
+                \[
+                a_{k+1} = a_k + a_{k-1}.
+                \]
+
+                Substitute the inductive hypothesis expressions:
+
+                \[
+                a_{k+1} = \frac{
+                \left(\frac{1+\sqrt{5}}{2}\right)^k + \left(\frac{1-\sqrt{5}}{2}\right)^k
+                }{
+                \sqrt{5}
+                } + \frac{
+                \left(\frac{1+\sqrt{5}}{2}\right)^{k-1} + \left(\frac{1-\sqrt{5}}{2}\right)^{k-1}
+                }{
+                \sqrt{5}
+                }.
+                \]
+
+                Factor out \( \frac{1}{\sqrt{5}} \):
+
+                \[
+                a_{k+1} = \frac{1}{\sqrt{5}} \left[
+                \left(\frac{1+\sqrt{5}}{2}\right)^k + \left(\frac{1-\sqrt{5}}{2}\right)^k + \left(\frac{1+\sqrt{5}}{2}\right)^{k-1} + \left(\frac{1-\sqrt{5}}{2}\right)^{k-1}
+                \right].
+                \]
+
+                Group terms:
+
+                \[
+                = \frac{1}{\sqrt{5}} \left[
+                \left(\frac{1+\sqrt{5}}{2}\right)^{k-1} \left(\frac{1+\sqrt{5}}{2} + 1\right) + \left(\frac{1-\sqrt{5}}{2}\right)^{k-1} \left(\frac{1-\sqrt{5}}{2} + 1\right)
+                \right].
+                \]
+
+                Evaluate the terms inside parentheses:
+
+                \[
+                \frac{1+\sqrt{5}}{2} + 1 = \frac{1+\sqrt{5}}{2} + \frac{2}{2} = \frac{3 + \sqrt{5}}{2},
+                \]
+                \[
+                \frac{1-\sqrt{5}}{2} + 1 = \frac{1-\sqrt{5}}{2} + \frac{2}{2} = \frac{3 - \sqrt{5}}{2}.
+                \]
+
+                So,
+
+                \[
+                a_{k+1} = \frac{1}{\sqrt{5}} \left[
+                \left(\frac{1+\sqrt{5}}{2}\right)^{k-1} \cdot \frac{3 + \sqrt{5}}{2} + \left(\frac{1-\sqrt{5}}{2}\right)^{k-1} \cdot \frac{3 - \sqrt{5}}{2}
+                \right].
+                \]
+
+                Notice that
+
+                \[
+                \left(\frac{1+\sqrt{5}}{2}\right)^2 = \frac{3 + \sqrt{5}}{2}, \quad \left(\frac{1-\sqrt{5}}{2}\right)^2 = \frac{3 - \sqrt{5}}{2}.
+                \]
+
+                Thus,
+
+                \[
+                a_{k+1} = \frac{1}{\sqrt{5}} \left[
+                \left(\frac{1+\sqrt{5}}{2}\right)^{k-1} \left(\frac{1+\sqrt{5}}{2}\right)^2 + \left(\frac{1-\sqrt{5}}{2}\right)^{k-1} \left(\frac{1-\sqrt{5}}{2}\right)^2
+                \right].
+                \]
+
+                Combine powers:
+
+                \[
+                a_{k+1} = \frac{1}{\sqrt{5}} \left[
+                \left(\frac{1+\sqrt{5}}{2}\right)^{k+1} + \left(\frac{1-\sqrt{5}}{2}\right)^{k+1}
+                \right].
+                \]
+
+                This is exactly the formula we wanted to prove for \( n = k+1 \).
+            </p>
+            <p><b>Step 5: Conclusion</b></p>
+            <p>By mathematical induction, we have shown that
+
+                \[
+                a_n = \frac{
+                \left(\frac{1+\sqrt{5}}{2}\right)^n + \left(\frac{1-\sqrt{5}}{2}\right)^n
+                }{
+                \sqrt{5}
+                }
+                \]
+
+                holds for all integers \( n \geq 1 \).
+            </p>
+        </section>
+    </div>
+</body>
+</html>

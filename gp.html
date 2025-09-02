@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <meta name="author" content="Vibhushit Singh" />
+    <title>Geometric Progreesion</title>
+    <link rel="stylesheet" href="stylegp.css"/>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="/usr/share/javascript/mathjax/MathJax.js"
+    type="text/javascript"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Cedarville+Cursive&display=swap" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </head>
+  
+  <body>
+    <h1 class="title">A Discussion on Geometric Progreesion</h1>
+    <h1> Definition</h1>
+    <p>
+      A geometric progression is a progression where each term is obtained by multiplying a constant number, called the common ratio, by the preceding term.
+    </p>
+
+    <p>Some examples of Geometric Progression:</p>
+
+    <ol>
+      <li><span class="math display">\(1,2,4,8,16,32,64, \cdots\)</span></li>
+      <li><span class="math display">\(3,6,12,24,48, \cdots\)</span></li>
+      <li><span class="math display">\(\frac{2}{3},1,\frac{3}{2},\frac{9}{4},\frac{27}{8},\cdots\)</span></li>
+    </ol>
+
+    <p>
+      As you can see that in geometric progressions, the terms and the common ratio can indeed be any number, including complex, irrational, and real numbers.
+    </p>
+
+    <h1 id="derivation">Derivation</h1>
+
+    <p>Let us write the progression in its algebraic form, where \(a_n\) 
+      denotes the nth term, \(r\) is the common ratio, and \(S_n\)
+      is the sum of the first n terms of a geometric series.
+    </p>
+
+    <span class="math display">\[a_1,a_1r,a_1r^2,a_1r^3,\cdots\]</span>
+
+    <p>An nth term in a geometric progression is written as 
+
+      <span class="math-inline">
+        <div id="eq:enumeration1">
+          \[\begin{equation} \tag{1}
+            a_n=a_1r^{n-1}
+          \end{equation}\]
+        </div>
+      </span>
+      
+
+    </p>
+
+
+    <p>Thus, what we mean by the sum of the first n terms of a geometric progression is </p>
+
+      <span class="math-inline">
+        <div id="eq:enumeration2">
+          \[\begin{equation} \tag{2}
+            S_n=a_1+a_1r+a_1r^2+a_1r^3+\cdots+a_1r^{n-1}
+          \end{equation}\]
+        </div>
+      </span>
+      
+
+      <p>Multiplying both sides by r gives us,</p>
+      
+      <span class="math-inline">
+        <div id="eq:enumeration3">
+          \[\begin{equation} \tag{3}
+            rS_n=a_1r+a_1r^2+a_1r^3+\cdots+a_1r^{n-1}+a_1r^n
+          \end{equation}\]
+        </div>
+      </span>
+      
+      <p>Putting equation
+        <a href="#eq:enumeration2">(2)</a>
+        in 
+        <a href="#eq:enumeration3">(3)</a>
+        we get, 
+      </p>
+        <span class="math display">\[rS_n=S_n-a_1+a_1r^n \implies (r-1)S_n=a_1(r^n-1)\]</span> 
+      <p>
+        Gives us our final equation
+      </p>
+      
+        <span class="math display">\[S_n=a_1\frac{(r^n-1)}{(r-1)}\]</span>
+      
+    
+
+
+
+    <h1 id="a-derivation-using-summation">A Derivation using Summation</h1>
+
+    <p>This derivation is with the use of summation. Those not familiar with
+      the concept may skip.
+    </p>
+
+    <p>The sum of the first n terms of a geometric progression is </p>
+      <span class="math display">\[S_n=\sum_{i=1}^{n}a_i=\sum_{i=1}^{n}a_1r^{i-1}\]</span>
+
+      <span class="math-inline">
+        <div id="eq:enumeration4">
+        \[\begin{equation} \tag{4}
+          \implies S_n=a_1 \sum_{i=0}^{n-1}r^i=a_1(1+r+r^2+\cdots+r^{n-1})
+        \end{equation}\]
+      </div>
+      </span>
+      
+
+      <p>We know, using the binomial expansion </p>
+
+      <span class="math display">\[(a^n-b^n)=(a-b)(a^{n-1}+a^{n-2}b+a^{n-3}b^2+\cdots+ab^{n-2}+b^{n-1})\]</span>
+      
+      <p>Putting a=1 and b=r,</p>
+      
+      <span class="math-inline">
+        <div id="eq:enumeration5">
+          \[\begin{equation} \tag{5}
+            (1-r^n)=(1-r)(1+r+r^2+\cdots+r^n-1)
+          \end{equation}\]
+        </div>
+      </span>
+      
+
+      <p>
+      Using equation
+      <a href="#eq:enumeration5">(5)</a>
+      in
+      <a href="#eq:enumeration4">(4)</a>
+      , we can easily write, 
+      </p>
+
+      <span class="math display">\[S_n=a_1\frac{(1-r^n)}{(1-r)}\]</span>
+
+
+    <h1 id="infinite-geometric-series">Infinite geometric series</h1>
+      <p>Individuals who are not acquainted with the concept of 
+        <a href="infinity.html" target="_blank">infinity</a>          
+        are advised to become familiar with this concept before further engagement.
+      </p>
+      
+      <p>An infinite geometric series is characterized by its continuous
+        nature, wherein each term is derived by multiplying the preceding term
+        by a constant known as the common ratio.
+      </p>
+      <p>A general infinite geometric series can be written as </p>
+
+        <span class="math display">\[a,ar,ar^2,ar^3,ar^4,\cdots\]</span>
+      
+      <p>And the sum of this infinite series can be written as, </p>
+        <span class="math display">\[S=a+ar+ar^2+ar^3+ar^4+ar^5+\cdots =\sum_{n=0}^{\infty}ar^n\]</span> 
+        <span class="math display">\[S=a+r(a+ar+ar^2+ar^3+\cdots)=a+rS\]</span> 
+        
+        <span class="math-inline">
+          <div id="eq:enumeration6">
+            \[\begin{equation} \tag{6}
+              S=\frac{a}{1-r},
+            \end{equation}\]
+          </div>
+        </span>
+      
+      <p>
+        In light of thisoutcome, we will analyze the behavior of this formula.
+      </p>
+
+      <p>
+        <strong>\(\text{ Case 1: }\)</strong>
+        When \(a &gt; 0\) and \(r &gt; 0\) , the sum will consistently yield a positive value. However, the equation
+        <a href="#eq:enumeration6" data-reference-type="eqref" data-reference="eq:enumeration6">(6)</a> 
+        tells us that if \(r &gt; 1\), then \(S &lt; 0\). This presents a contradiction (because we can easily see in 
+        the series that all its terms are positive, 
+        and adding an infinite number of positive number always reults in being a positive number. Though saying 
+        this contradicts a very famous infinite series that we are going to talk about in the 
+        <a href="starting1.html#Some-interesting-infinite-series">Interesting Infinite Series</a>
+        ). Therefore, we establish the constraint \(r &lt; 1\)
+        in order for the formula to yield a meaningful and accurate outcome.
+      </p>
+
+      <p>
+        <strong>\(\text{ Case 2: }\)</strong>
+        When 
+        <span class="math display">\(a&gt;0\)</span> 
+        and 
+        <span class="math display">\(r&lt;0\)</span>
+        , this should be dealt by further diving into two cases(as you will see later why we did that?). 
+        To deal with the following cases, we break the series into two parts as follows:
+        From equation
+        <a href="#eq:enumeration5" data-reference-type="eqref" data-reference="eq:enumeration5">(5)</a> 
+        and
+        <a href="#eq:enumeration6" data-reference-type="eqref" data-reference="eq:enumeration6">(6)</a> 
+        we can see if
+      </p>
+        <span class="math display">\[S=a+ar+ar^2+ar^3+\cdots\]</span> 
+        <span class="math display">\[\implies S=(a+ar^2+ar^4+\cdots)+(ar+ar^3+ar^5+\cdots)\]</span> 
+      <p>
+        Let’s \(S_1\) and \(S_2\) be \((a+ar^2+ar^4+\cdots)\) and \((ar+ar^3+ar^5+\cdots)\) respectively.
+      </p>
+      <p>Thus S becomes \(S=S_1+S_2\), where </p>
+        <span class="math display">\[\label{eq:enumeration5} S_1=\frac{a}{1-r^2}\]</span> 
+      <p>
+        and 
+      </p>
+              <span class="math display">\[\label{eq:enumeration6} S_2=\frac{ar}{1-r^2}\]</span>
+
+      <p>
+        <strong>\(\text{ Case 2A: }\)</strong> 
+        When \(-1&lt;r&lt;0\), the formula tells that \(S_1&gt;0\), \(S_2&lt;0\) and \(S&gt;0\). which implies that \(|S_1|&gt;|S_2|\).
+      </p>
+      <p>(Notice that we have taken the absolute value, not the actual value of \(S_1\) and \(S_2\) to avoid further confusion.)
+      </p>
+      <p>Comparing the absolute value of equation
+        <a href="#eq:enumeration5" data-reference-type="eqref" data-reference="eq:enumeration5">(5)</a> 
+        and
+        <a href="#eq:enumeration6" data-reference-type="eqref" data-reference="eq:enumeration6">(6)</a>
+        , one can easily confirm that this happens when \(|r|&lt;1\).
+      </p>
+      <p>And also looking at the behavior of the series expansion of \(S_1\) and \(S_2\)
+        we can confirm that in this case this formula holds as the formula says that \(|S_1|&gt;|S_2|\)
+        and comparing each term of the series expansion of \(S_1\) and \(S_2\)
+        ,we get, since we know that when any number less than 1 and greater than -1 
+        is raised to some positive power its absolute value always decreases. Thus, we can say by 
+        comparing each term that \(|S_1|&gt;|S_2|\).
+      </p>
+      <p>
+        <strong>\(\text{ Case 2B: }\)</strong> 
+        When \(r&lt;-1\)
+        , the formula tells that 
+        \(S_1&lt;0\)
+        , \(S_2&gt;0\)
+        and \(S&gt;0\)
+        . which implies that \(|S_1|&lt;|S_2|\).
+      </p>
+      <p>But when we look at the series expansion of \(S_1\)
+        . As all the terms are raised to an even power, thus \(S_1&gt;0\)
+        . A contradiction.
+      </p>
+      <p>We will see the convergence and divergence proof in the section on 
+          <a href="series.html" target="_blank">A General Talk on Sequences and Series</a>
+      </p>
+      
+      <h1 id="why-does-a-derived-and-proved-formula-not-work-everywhere">Why does a derived and proved formula not work everywhere</h1>
+      <p>A pertinent question may have arisen in the reader’s mind. Initially, when we began deriving this equation, we
+        stated, "Look, here is an equation; let us find the general formula for
+        its sum." However, upon reading up the section on 
+          <a href="series.html" target="_blank">sequences and series</a>
+        the reader will get to know that it is essential to first ascertain
+        whether the series in question is convergent or divergent.
+      </p>
+      <p>It’s a common misconception that mathematics is just a collection of rigid formulas. So when we discover a situation where a formula fails, it’s tempting to call it an 'exception'—a frustrating rule to be memorized, much like we might encounter in an empirical science.
+      </p>
+      <p>But the beauty of mathematics is that there are no true exceptions.</p>
+      <p>When a mathematical formula breaks down, it isn’t an arbitrary quirk. Instead, it’s a logical signpost that we’ve reached the boundary of a concept. Exploring why a formula fails in certain cases doesn't lead to a list of exceptions; it leads to a deeper understanding, revealing the fundamental reasoning and elegant patterns that define the mathematical world.</p>
+      <p>The formula exhibits limitations at particular points along the
+        number line due to the convergence characteristics of the series. A
+        comprehensive proof will be provided in the section titled 
+        "<a href="series.html" target="_blank">A General Talk on Sequences and Series</a>"
+      </p>
+        <p>Individuals who are not acquainted with the concept of 
+        <a href="calc.html" target="_blank">limits</a>
+        may opt
+        to disregard this additional proof.
+      </p>
+      <h1 id="derivation-using-the-partial-sum-formula">Derivation Using the Partial Sum Formula</h1>
+      <p>Consider a geometric series with first term \(a\) 
+        and common ratio \(r\)
+        . The sum of the first \(n\)
+        terms is given by:
+      </p>
+        <span class="math display">\[S_n = a + ar + ar^2 + \cdots + ar^{n-1}.\]</span>
+
+        <p>This is a finite geometric series, and it has the closed-form
+        expression:
+      </p>
+
+      <span class="math display">\[S_n = \frac{a(1 - r^n)}{1 - r}, \quad \text{for } r \neq 1.\]</span>
+
+      <p>Now, consider the infinite series:</p>
+        <span class="math display">\[S = \lim_{n \to \infty} S_n = \lim_{n \to \infty} \frac{a(1 - r^n)}{1 - r}.\]</span>
+      <p>We analyze the behavior of the term \(r^n\) as \(n \to \infty\):
+      </p>
+      <ul>
+        <li>
+          <p>
+            <strong>\(\text{ Case 1: }\)</strong> 
+            If \(|r| &lt; 1\)
+            , then 
+          </p>
+            <span class="math display">\[\lim_{n \to \infty} r^n = 0\]</span> 
+            <p>So the sum becomes: 
+          </p>
+                      <span class="math display">\[S = \frac{a(1 - 0)}{1 - r} = \frac{a}{1 - r}, \quad \text{(Converges )}.\]</span>
+
+        </li>
+        <li>
+          <p>
+            <strong>\(\text{ Case 2: }\)</strong> 
+            If \(|r| &gt; 1\)
+            , then 
+          </p>
+
+            <span class="math display">\[\lim_{n \to \infty} r^n = \infty\]</span> 
+          <p>  and so \(S_n \to \infty\).
+          </p>
+          <p>The series diverges.</p>
+        </li>
+        <li>
+          <p>
+            <strong>\(\text{ Case 3: }\)</strong> 
+            If \(r = -1\)
+            , then \(r^n\)
+            alternates between \(1\) 
+            and \(-1\)
+            , and does not approach a single value. Thus, \(S_n\)
+            does not converge to a finite limit (oscillates).
+          </p>
+        </li>
+      </ul>
+      <p>
+        <strong>\(\text{ Conclusion: }\)</strong>
+      </p>
+        <span class="math display">\[\boxed{ \text{The infinite geometric series converges if and only if } |r| &lt; 1.}\]</span>
+
+
+  </body>
+</html>

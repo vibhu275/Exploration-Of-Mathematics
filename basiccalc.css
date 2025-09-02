@@ -1,0 +1,378 @@
+html {
+    color: #1a1a1a;
+    background-color: #fdfdfd;
+}
+html, body {
+  height: auto;
+  overflow: auto;
+}
+
+body {
+  font-family: 'Caveat', cursive;
+  margin: 0 auto;
+  max-width: 61.8em;
+  padding: 50px;
+  background: #f0f0f0;
+  overflow-wrap: break-word;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+}
+@media (max-width: 600px) {
+    body {
+    font-size: 0.9em;
+    padding: 12px;
+    }
+    h1 {
+    font-size: 1.8em;
+    }
+}
+@media print {
+    html {
+    background-color: white;
+    }
+    body {
+    background-color: transparent;
+    color: black;
+    font-size: 12pt;
+    }
+    p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+    }
+    h2, h3, h4 {
+    page-break-after: avoid;
+    }
+}
+p {
+    margin: 1em 0;
+}
+a {
+    color: #1a1a1a;
+}
+a:visited {
+    color: #1a1a1a;
+}
+img {
+    max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 1.4em;
+}
+h5, h6 {
+    font-size: 1em;
+    font-style: italic;
+}
+h6 {
+    font-weight: normal;
+}
+ol, ul {
+    padding-left: 1.7em;
+    margin-top: 1em;
+}
+li > ol, li > ul {
+    margin-top: 0;
+}
+blockquote {
+    margin: 1em 0 1em 1.7em;
+    padding-left: 1em;
+    border-left: 2px solid #e6e6e6;
+    color: #606060;
+}
+code {
+    font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+    font-size: 85%;
+    margin: 0;
+    hyphens: manual;
+}
+pre {
+    margin: 1em 0;
+    overflow: auto;
+}
+pre code {
+    padding: 0;
+    overflow: visible;
+    overflow-wrap: normal;
+}
+.sourceCode {
+    background-color: transparent;
+    overflow: visible;
+}
+hr {
+    background-color: #1a1a1a;
+    border: none;
+    height: 1px;
+    margin: 1em 0;
+}
+/* Styling for the Truth Table container */
+.truth-table-container {
+    background-color: #ffffff; /* White background */
+    border-radius: 1rem; /* Rounded corners */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    padding: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    color: #374151; /* Darker gray text */
+    max-width: 400px;
+    margin: 2rem auto; /* Center the container */
+}
+
+/* General table styling */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Header row styling */
+thead tr {
+    background-color: #e5e7eb; /* Light gray header background */
+    color: #1f2937; /* Dark text for header */
+}
+
+/* Individual header cells */
+th {
+    padding: 0.75rem 0.5rem;
+    border-bottom: 2px solid #6b7280; /* Darker line under header */
+}
+
+/* Top-left header cell with rounded corner */
+th:first-child {
+    border-top-left-radius: 0.5rem;
+}
+
+/* Top-right header cell with rounded corner */
+th:last-child {
+    border-top-right-radius: 0.5rem;
+}
+
+/* Body row styling */
+tbody tr {
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* Hover effect on rows */
+tbody tr:hover {
+    background-color: #f3f4f6; /* Slightly lighter gray on hover */
+}
+
+/* Individual data cells */
+td {
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid #d1d5db; /* Light gray separator line */
+}
+
+/* Bottom-left cell with rounded corner */
+tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 0.5rem;
+}
+
+/* Bottom-right cell with rounded corner */
+tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 0.5rem;
+}
+
+/* Special styling for the 'P & Q' column */
+td:last-child {
+    font-weight: 600; /* Bolder for the result column */
+    color: #4b5563; /* Slightly darker text */
+}
+
+/* Center the heading */
+h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #1f2937;
+    font-family: 'Merriweather', serif;
+}
+
+header {
+    margin-bottom: 4em;
+    text-align: center;
+}
+#TOC li {
+    list-style: none;
+}
+#TOC ul {
+    padding-left: 1.3em;
+}
+#TOC > ul {
+    padding-left: 0;
+}
+#TOC a:not(:hover) {
+    text-decoration: none;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+/* The extra [class] is a hack that increases specificity enough to
+    override a similar rule in reveal.js */
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+    font-size: inherit;
+    width: 0.8em;
+    margin: 0 0.8em 0.2em -1.6em;
+    vertical-align: middle;
+}
+
+.definition, .theorem {
+  background-color: #f9f9ff;
+  border-left: 5px solid #4a90e2;
+  padding: 1em;
+  margin: 2em 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.definition strong, .theorem strong {
+  display: block;
+  font-size: 1.15em;
+  color: #2c3e50;
+  margin-bottom: 0.3em;
+}
+
+.definition em, .theorem em {
+  color: #444;
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+.math.display {
+  display: block;
+  background: #f4faff;
+  padding: 0.8em 1em;
+  border-radius: 8px;
+  margin: 1.5em 0;
+  font-size: 1.1em;
+  overflow-x: auto;
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.06);
+}
+
+header#title-block-header {
+  background: linear-gradient(to right, #f5f7fa, #dfe9f3);
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+header h1.title {
+  font-size: 2.6rem;
+  color: #2c3e50;
+  margin-bottom: 0.4em;
+}
+
+header p.author, header p.date {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.note-box {
+  background-color: #fff9e6;
+  border-left: 4px solid #f39c12;
+  padding: 1em 1.4em;
+  margin: 2em 0;
+  font-family: Georgia, serif;
+  font-size: 1.05em;
+  color: #4a3c2c;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.tcolorbox a {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+.tcolorbox a:hover {
+  color: #003366;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+  font-family: 'Georgia', serif;
+  font-size: 1.2rem;
+  background-color: #fff8e1;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 0.6rem 1rem;
+  text-align: left;
+}
+
+th {
+  background-color: #f9e4b7;
+  color: #3b2f2f;
+  font-weight: bold;
+}
+
+
+.venn-title { text-align: center; font-size: 1.4em; margin-top: 20px; }
+    .venn-key { margin: 10px auto; width: 500px; font-size: 1em; }
+    .venn-container { display: flex; justify-content: center; margin-top: 16px; }
+    svg { background: #f9f9f9; border-radius: 16px; }
+
+.set-label {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+
+    .set-label {
+      font-weight: bold;
+      font-size: 1rem;
+    }
+  
+  .center-content {
+  display: block;
+  margin: 2rem auto;
+  text-align: center;
+  }
+
+
+  .tcolorbox {
+    background: rgba(255, 248, 220, 0.6); /* antique paper color */
+    border: 2px solid #8b5e3c;
+    border-radius: 12px;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    box-shadow: 0 0 20px rgba(0,0,0,0.25);
+    font-family: 'Georgia', serif;
+  }
+
+  .tcolorbox-title {
+    background-color: #d2b48c;
+    color: #3b2f2f;
+    font-weight: bold;
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid #8b5e3c;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: 'Caveat', cursive;
+  }
+
+  .tcolorbox-body {
+    color: #2c1b0f;
+    font-size: 0.618em;
+    line-height: 1.65;
+  }
+
+  .tcolorbox-body::first-letter {
+    font-size: 160%;
+    font-weight: bold;
+    color: #1b138b;
+    margin-right: 6px;
+    float: left;
+    line-height: 1;
+  }
