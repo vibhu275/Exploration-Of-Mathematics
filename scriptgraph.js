@@ -1,146 +1,106 @@
-function drawGraph() {
-    const canvas = document.getElementById('fitzzzz-graph');
-    if (!canvas || !canvas.getContext) {
-        console.error('Canvas element not found or not supported.');
-        return;
-    }
-    const ctx = canvas.getContext('2d');
+// Get the canvas and its 2D rendering context
+const staticCanvas = document.getElementById('staticGraphCanvas');
+const staticCtx = staticCanvas.getContext('2d');
 
-    // Set up canvas dimensions and scale
-    const width = canvas.width;
-    const height = canvas.height;
-    const scaleX = 80;
-    const scaleY = 40;
-    const offsetX = width / 2 - 1 * scaleX;
-    const offsetY = height / 2 + 0 * scaleY;
-
-    // Function to convert coordinates
-    const toCanvasX = (x) => offsetX + x * scaleX;
-    const toCanvasY = (y) => offsetY - y * scaleY;
-
-    // Clear canvas before redrawing
-    ctx.clearRect(0, 0, width, height);
-
-    // Axes
-    ctx.strokeStyle = '#333';
-    ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    ctx.moveTo(0, offsetY);
-    ctx.lineTo(width, offsetY);
-    ctx.moveTo(offsetX, 0);
-    ctx.lineTo(offsetX, height);
-    ctx.stroke();
-
-    // Arrows for axes
-    const arrowSize = 8;
-    // X-axis arrow
-    ctx.beginPath();
-    ctx.moveTo(width - arrowSize, offsetY - arrowSize / 2);
-    ctx.lineTo(width, offsetY);
-    ctx.lineTo(width - arrowSize, offsetY + arrowSize / 2);
-    ctx.fill();
-    // Y-axis arrow
-    ctx.beginPath();
-    ctx.moveTo(offsetX - arrowSize / 2, arrowSize);
-    ctx.lineTo(offsetX, 0);
-    ctx.lineTo(offsetX + arrowSize / 2, arrowSize);
-    ctx.fill();
-
-    // Red parabola: -x^2 + 2x + 2
-    ctx.strokeStyle = '#e53e3e';
-    ctx.lineWidth = 2.5;
-    ctx.beginPath();
-    for (let x = -3; x <= 4; x += 0.01) {
-        const y = -x * x + 2 * x + 2;
-        const canvasX = toCanvasX(x);
-        const canvasY = toCanvasY(y);
-        if (x === -3) {
-            ctx.moveTo(canvasX, canvasY);
-        } else {
-            ctx.lineTo(canvasX, canvasY);
-        }
-    }
-    ctx.stroke();
-
-    // Green line: x + 9/4
-    ctx.strokeStyle = '#38a169';
-    ctx.lineWidth = 2.5;
-    ctx.beginPath();
-    for (let x = -3; x <= 4; x += 0.01) {
-        const y = x + 9 / 4;
-        const canvasX = toCanvasX(x);
-        const canvasY = toCanvasY(y);
-        if (x === -3) {
-            ctx.moveTo(canvasX, canvasY);
-        } else {
-            ctx.lineTo(canvasX, canvasY);
-        }
-    }
-    ctx.stroke();
-
-    // Blue line: -x + 13/4
-    ctx.strokeStyle = '#4299e1';
-    ctx.lineWidth = 2.5;
-    ctx.beginPath();
-    for (let x = -3; x <= 4; x += 0.01) {
-        const y = -x + 13 / 4;
-        const canvasX = toCanvasX(x);
-        const canvasY = toCanvasY(y);
-        if (x === -3) {
-            ctx.moveTo(canvasX, canvasY);
-        } else {
-            ctx.lineTo(canvasX, canvasY);
-        }
-    }
-    ctx.stroke();
-
-    // Intersection points and labels
-    ctx.fillStyle = '#2d3748';
-    ctx.font = '14px "Inter", sans-serif';
-    ctx.textAlign = 'left';
-    ctx.textBaseline = 'top';
-
-    const drawPoint = (x, y, label, labelOffsetX = 5, labelOffsetY = -5) => {
-        ctx.beginPath();
-        ctx.arc(toCanvasX(x), toCanvasY(y), 4, 0, 2 * Math.PI);
-        ctx.fill();
-        ctx.fillText(label, toCanvasX(x) + labelOffsetX, toCanvasY(y) + labelOffsetY);
-    };
-
-    drawPoint(-2.25, 0, 'A', 5, -15);
-    drawPoint(0.5, 2.75, 'P(x,y)', 10, -15);
-    drawPoint(0.5, 0, 'P\'', 10, 5);
-    drawPoint(3.25, 0, 'A\'', 5, 5);
-    drawPoint(0, 0, 'O', -15, 5);
-    drawPoint(-0.25, 23 / 16, 'Q', -25, -15);
-    drawPoint(0.5, 23 / 16, 'Q\'', 10, 5);
-
-    // Dotted lines
-    ctx.strokeStyle = '#718096';
-    ctx.lineWidth = 1.5;
-    ctx.setLineDash([4, 4]);
-
-    const drawDottedLine = (x1, y1, x2, y2) => {
-        ctx.beginPath();
-        ctx.moveTo(toCanvasX(x1), toCanvasY(y1));
-        ctx.lineTo(toCanvasX(x2), toCanvasY(y2));
-        ctx.stroke();
-    };
-
-    drawDottedLine(0.5, 0, 0.5, 2.75);
-    drawDottedLine(-0.25, 23 / 16, 0.5, 2.75);
-    drawDottedLine(-0.25, 23 / 16, 0.5, 23 / 16);
-
-    ctx.setLineDash([]);
+// Function to resize the canvas and redraw the graph
+function resizeStaticCanvas() {
+    staticCanvas.width = staticCanvas.offsetWidth;
+    staticCanvas.height = staticCanvas.offsetHeight;
+    drawStaticGraph();
 }
 
-window.addEventListener('load', drawGraph);
-window.addEventListener('resize', () => {
-    const canvas = document.getElementById('tikz-graph');
-    if (canvas) {
-        const parent = canvas.parentElement;
-        canvas.width = parent.clientWidth;
-        canvas.height = parent.clientHeight;
-        drawGraph();
+// Draw the graph of f(x) = 1/(x-1)
+function drawStaticGraph() {
+    staticCtx.clearRect(0, 0, staticCanvas.width, staticCanvas.height);
+    const width = staticCanvas.width;
+    const height = staticCanvas.height;
+    const originX = width / 2;
+    const originY = height / 2;
+    const scaleX = 80; // pixels per unit
+    const scaleY = 80; // pixels per unit
+    
+    // The function to be graphed
+    function f(x) {
+        return 1 / (x - 1);
     }
-});
+
+    // Draw the axes
+    staticCtx.beginPath();
+    staticCtx.strokeStyle = '#64748b'; // slate-500
+    staticCtx.lineWidth = 1;
+    staticCtx.moveTo(0, originY);
+    staticCtx.lineTo(width, originY);
+    staticCtx.moveTo(originX, 0);
+    staticCtx.lineTo(originX, height);
+    staticCtx.stroke();
+
+    // Draw the vertical asymptote at x=1
+    staticCtx.beginPath();
+    staticCtx.strokeStyle = '#ef4444'; // red-500
+    staticCtx.lineWidth = 1.5;
+    staticCtx.setLineDash([5, 5]);
+    const asymptoteX = originX + 1 * scaleX;
+    staticCtx.moveTo(asymptoteX, 0);
+    staticCtx.lineTo(asymptoteX, height);
+    staticCtx.stroke();
+    staticCtx.setLineDash([]);
+    
+    // Asymptote label
+    staticCtx.font = '12px Inter, sans-serif';
+    staticCtx.fillStyle = '#ef4444';
+    staticCtx.textAlign = 'center';
+    staticCtx.textBaseline = 'bottom';
+    staticCtx.fillText('x = 1', 306.18, 16.18);
+
+    // Draw the function's graph
+    staticCtx.beginPath();
+    staticCtx.strokeStyle = '#2563eb'; // blue-600
+    staticCtx.lineWidth = 2;
+    for (let i = 0; i < width; i++) {
+        const x = (i - originX) / scaleX;
+        const y = f(x);
+        const canvasY = originY - y * scaleY;
+        if (Math.abs(x - 1) < 0.05) {
+            staticCtx.stroke();
+            staticCtx.beginPath();
+        } else if (i === 0) {
+            staticCtx.moveTo(i, canvasY);
+        } else {
+            staticCtx.lineTo(i, canvasY);
+        }
+    }
+    staticCtx.stroke();
+
+    // Add labels for axes and key points
+    staticCtx.font = '12px Inter, sans-serif';
+    staticCtx.fillStyle = '#1f2937';
+    
+    // Y-axis label
+    staticCtx.textAlign = 'right';
+    staticCtx.textBaseline = 'middle';
+    staticCtx.fillText('y', originX - 5, 10);
+    
+    // X-axis label
+    staticCtx.textAlign = 'center';
+    staticCtx.textBaseline = 'top';
+    staticCtx.fillText('x', width - 10, originY + 5);
+    
+    // Origin label
+    staticCtx.textAlign = 'right';
+    staticCtx.textBaseline = 'top';
+    staticCtx.fillText('0', originX - 5, originY + 5);
+
+    // Y-intercept label (at x=0, y=-1)
+    const yInterceptY = originY - (-1) * scaleY;
+    staticCtx.beginPath();
+    staticCtx.arc(originX, yInterceptY, 4, 0, 2 * Math.PI);
+    staticCtx.fillStyle = '#2563eb';
+    staticCtx.fill();
+    staticCtx.fillText('(0,-1)', originX - 10, yInterceptY);
+}
+
+// Event listeners to handle resizing and initial load
+window.addEventListener('resize', resizeStaticCanvas);
+window.onload = function() {
+    resizeStaticCanvas();
+};
