@@ -194,29 +194,44 @@
                     <summary>View Geometric Proof</summary>
                     <div>
                         <div class="svg-container">
-                            <svg width="400" height="350" viewBox="0 0 190 200">
-                                <style>
-                                    .label { font-family: 'Times New Roman', serif; font-size: 10px; font-style: italic; }
-                                    .angle-label { font-family: 'Times New Roman', serif; font-size: 8px; }
-                                    .shaded-area { fill: #e0e0e0; stroke: black; stroke-width: 0.5; }
-                                    .main-line { stroke: black; stroke-width: 0.7; fill: none; }
-                                    .right-angle { stroke: black; stroke-width: 0.6; fill: none; }
-                                </style>
+                            <svg width="400" height="350" viewBox="0 0 190 200" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .label { font-family: 'Times New Roman', serif; font-size: 10px; font-style: italic; }
+    .angle-label { font-family: 'Times New Roman', serif; font-size: 8px; }
+    .shaded-area { fill: #e0e0e0; stroke: black; stroke-width: 0.5; }
+    .main-line { stroke: black; stroke-width: 0.7; fill: none; }
+    .right-angle { stroke: black; stroke-width: 0.6; fill: none; }
+  </style>
 
-                                <polygon points="10,180 60.04,93.43 110,7" class="shaded-area" />
+  <polygon points="10,180 60.04,93.43 110,7" class="shaded-area" />
 
-                                <path d="M 10,180 L 170,180" class="main-line" /> <path d="M 110,180 L 110,7" class="main-line" />   <path d="M 170,180 L 170,87.7" class="main-line" /> <path d="M 10,180 L 170,87.7" class="main-line" />  <path d="M 10,180 L 110,7" class="main-line" />     <path d="M 110,122.3 L 60.04,93.43" class="main-line" /> <path d="M 110,173 L 103,173 L 103,180" class="right-angle" /> <path d="M 170,173 L 163,173 L 163,180" class="right-angle" /> <path d="M 65.2,96.43 L 68.2,91.27 L 63.04,88.27" class="right-angle" /> <path d="M 36,180 A 26 26 0 0 1 32.5,166.5" class="main-line" /> <path d="M 45,180 A 35 35 0 0 1 27.5,152.5" class="main-line" /> <text x="5" y="185" class="label">A</text>
-                                <text x="172" y="185" class="label">C</text>
-                                <text x="108" y="185" class="label">E</text>
-                                <text x="172" y="85" class="label">B</text>
-                                <text x="112" y="6" class="label">D</text>
-                                <text x="112" y="125" class="label">O</text>
-                                <text x="50" y="90" class="label">O'</text>
-                                <text x="85" y="105" class="label">x</text>
-                                
-                                <text x="35" y="172" class="angle-label">α</text>
-                                <text x="32" y="157" class="angle-label">β - α</text>
-                            </svg>
+  <path d="M 10,180 L 170,180" class="main-line" />
+  <path d="M 110,180 L 110,7" class="main-line" />
+  <path d="M 170,180 L 170,87.7" class="main-line" />
+  <path d="M 10,180 L 170,87.7" class="main-line" />
+  <path d="M 10,180 L 110,7" class="main-line" />
+  <path d="M 110,122.3 L 60.04,93.43" class="main-line" />
+  <path d="M 110,173 L 103,173 L 103,180" class="right-angle" />
+  <path d="M 170,173 L 163,173 L 163,180" class="right-angle" />
+  <path d="M 65.2,96.43 L 68.2,91.27 L 63.04,88.27" class="right-angle" />
+
+  <!-- Changed sweep-flag (last flag) from 1 -> 0 to flip arc direction to concave -->
+  <path d="M 36,180 A 26 26 0 0 0 32.5,166.5" class="main-line" />
+  <path d="M 45,180 A 35 35 0 0 0 27.5,152.5" class="main-line" />
+
+  <text x="5" y="185" class="label">A</text>
+  <text x="172" y="185" class="label">C</text>
+  <text x="108" y="185" class="label">E</text>
+  <text x="172" y="85" class="label">B</text>
+  <text x="112" y="6" class="label">D</text>
+  <text x="112" y="125" class="label">O</text>
+  <text x="50" y="90" class="label">O'</text>
+  <text x="85" y="105" class="label">x</text>
+
+  <text x="35" y="172" class="angle-label">α</text>
+  <text x="32" y="157" class="angle-label">β - α</text>
+</svg>
+
                         </div>
                         <p>In the right-angled triangle \(\triangle AOO'\), where \(OO'\) (denoted as \(x\)) is the perpendicular from \(O\) to \(AD\), we can state:
                         \[
